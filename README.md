@@ -1,6 +1,37 @@
 # php-api
 A school assigment
 
+## Glöm ej
+- När man raderar ett inlägg ska kommentarerna som är länkat till den också försvinna
+
+# Project structure:
+  * App
+    * Controllers
+      * EntriesController.php
+      * UsersController.php
+      * CommentsController.php
+      * LikesController.php
+    * auth.php
+    * ConfigHandler.php
+    * container.php
+    * cors.php
+  * public
+    * index.php
+    * css
+      * style.css
+    * scss
+      * partials
+        * header.scss
+        * footer.scss
+      * modules
+        * colors.scss
+        * spaces.scss
+      * style.scss
+    * scripts
+      * fetch.js
+      * main.js
+    * views
+      * index.php
 
 # Database structure:
 * entries
