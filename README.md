@@ -38,6 +38,7 @@ Medlemmar: `Beratcan`, `Maya`, `Leo`
   * Hämta en specifik användare med `GET` (/api/users/{id})
   * Skapa en användare med `POST` (/register)
 
+
 * Likes:
   * Hämta alla likes länkade till en entry med `GET` (/api/likes/{entryId})
   * Skapa en like länkad till användaren som "Like":at och entryt som "Like":as med `POST` (/api/likes)
