@@ -102,3 +102,15 @@
   * likeID - INT
   * userID - INT
   * entryID - INT
+
+  /********************************
+ *      ENDPOINTS & ROUTES        *
+ ********************************/
+
+ https://localhost:3000/api
+
+    /users
+    /users/posts
+    /users/posts/comments
+    /users/posts/comments/likes
+
