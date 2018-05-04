@@ -2,7 +2,7 @@
 `A school assigment`
 
 Gruppnamn: `php-api`,
-Medlemmar: `Beratcan`, `Maya`, `Leo`
+Medlemmar: `Beratcan`, `Maia`, `Leo`
 
 ---
 
