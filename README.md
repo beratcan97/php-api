@@ -103,9 +103,9 @@
   * userID - INT
   * entryID - INT
 
-  /********************************
- *      ENDPOINTS & ROUTES        *
- ********************************/
+  
+ >     *ENDPOINTS & ROUTES*
+
 
  https://localhost:3000/api
 
