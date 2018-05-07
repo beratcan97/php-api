@@ -80,7 +80,7 @@ class TodoController
         $statement = $this->db->prepare("UPDATE entries SET content = :content WHERE entryID = :entryID");
         $statement->execute([
         ":content" => $newContent,
-        ":entryID" => $commentID
+        ":entryID" => $entryID
       ]);
     }
 }
