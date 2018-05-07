@@ -63,4 +63,24 @@ class TodoController
           
         ];
     }
+
+    public function delete($id)
+    {
+        $addOne = $this->db->prepare(
+            'DELETE FROM entries WHERE entryID = :entryID '
+        );
+
+        $addOne->execute([
+          ':entryID'  => $id
+        ]);
+    }
+
+    public function update($newContent, $entryID)
+    {
+        $statement = $this->db->prepare("UPDATE entries SET content = :content WHERE entryID = :entryID");
+        $statement->execute([
+        ":content" => $newContent,
+        ":entryID" => $commentID
+      ]);
+    }
 }
