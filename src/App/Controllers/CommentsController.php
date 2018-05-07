@@ -68,7 +68,7 @@ class CommentsController
 
     public function update($newContent, $commentID)
     {
-        $statement = $this->db->prepare("UPDATE comments SET content = :content WHERE commentID = :commentID");
+        $statement = $this->db->prepare('UPDATE comments SET content = :content WHERE commentID = :commentID');
         $statement->execute([
         ":content" => $newContent,
         ":commentID" => $commentID
