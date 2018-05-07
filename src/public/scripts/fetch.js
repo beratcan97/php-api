@@ -1,6 +1,6 @@
 const db = (function() {
 
-  function getUsers() {
+  async function getUsers() {
     let data = await fetch("/users")
     .then(response => response.json())
     .then(data => data);
