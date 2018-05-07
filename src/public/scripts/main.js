@@ -1,1 +1,1 @@
-console.log(api.getUsers());
+console.log(db.getUsers());

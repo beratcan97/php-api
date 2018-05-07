@@ -1,4 +1,4 @@
-const api = (function() {
+const db = (function() {
 
   function getUsers() {
     let data = await fetch("/users")

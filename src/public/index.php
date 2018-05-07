@@ -43,15 +43,13 @@ $app->get('/logout', function ($request, $response, $args) {
 
 //  API
 $app->group('/api', function () use ($app) {
-
-  require_once 'partials/users_route.php'
+    require_once 'partials/users_route.php';
 
     require_once 'partials/entries_route.php';
 
     require_once 'partials/comments_route.php';
 
     require_once 'partials/likes_route.php';
-
 });
 
 $app->run();
