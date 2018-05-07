@@ -41,7 +41,7 @@ class TodoController
          */
         $addOne->execute(
             [':entryID'  => $entryID,
-            [':userID'  => $userID]
+            ':userID'  => $userID]
         );
     }
 
