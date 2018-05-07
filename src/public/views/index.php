@@ -11,7 +11,8 @@
 
 <body>
   <h1>Hello from the Frontend!</h1>
-  <script src="scripts/main.js"></script>
 </body>
 
+<script src="scripts/fetch.js"></script>
+<script src="scripts/main.js"></script>
 </html>
