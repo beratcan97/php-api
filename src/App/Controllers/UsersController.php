@@ -5,16 +5,7 @@ namespace App\Controllers;
 class UsersController
 {
     private $db;
-
-    /**
-     * Dependeny Injection (DI): http://www.phptherightway.com/#dependency_injection
-     * If this class relies on a database-connection via PDO we inject that connection
-     * into the class at start. If we do this TodoController will be able to easily
-     * reference the PDO with '$this->db' in ALL functions INSIDE the class
-     * This class is later being injected into our container inside of 'App/container.php'
-     * This results in we being able to call '$this->get('Todos')' to call this class
-     * inside of our routes.
-     */
+    
     public function __construct($pdo)
     {
         $this->db = $pdo;
@@ -22,7 +13,7 @@ class UsersController
 
     public function getAll()
     {
-        $getAll = $this->db->prepare("SELECT * FROM users");
+        $getAll = $this->db->prepare('SELECT * FROM users');
         $getAll->execute();
         return $getAll->fetchAll();
     }

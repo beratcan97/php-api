@@ -1,7 +1,7 @@
 <?php
 // USERS
 $app->get('/users', function ($request, $response, $args) {
-    $allEntries = $this->get('users')->getAll();
+    $allUsers = $this->get('users')->getAll();
     return $response->withJson(['data' => $allUsers]);
 });
 

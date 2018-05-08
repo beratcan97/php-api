@@ -6,8 +6,7 @@ const db = (function() {
     .then(dat => dat)
     .catch(err => console.log(err));
 
-    console.log(data);
-    // return data;
+    return data;
   }
 
   async function postUsers() {
