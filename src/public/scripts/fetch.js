@@ -10,10 +10,9 @@ const db = (function() {
 
   async function postUsers() {
     let val = {
-      username: "göran",
-      password: "hoppla",
-      createdAt: "1991-07-24",
-      admin: false
+      "username": "göran",
+      "password": "hoppla",
+      "createdAt": "1991-07-24"
     }
 
     const postOptions = {
@@ -22,9 +21,9 @@ const db = (function() {
       // credentials: 'include' // <-- muy importante
     };
 
-    let data = fetch('api/register', postOptions)
+    fetch('api/register', postOptions)
       .then(res => res.json())
-      .then(dat => console.log(dat.data.content + " was posted"));
+      .then(dat => console.log(dat + " was posted"));
       console.log("posted");
 
 
