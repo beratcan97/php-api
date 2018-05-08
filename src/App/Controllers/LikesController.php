@@ -46,7 +46,7 @@ class TodoController
     }
 
     public function delete($likeID){
-        $statement = $db->prepare("DELETE FROM likes WHERE likeID = :likeID");
+        $statement = $db->prepare('DELETE FROM likes WHERE likeID = :likeID');
         $statement->execute(
         [':likeID'  => $likeID]
         );

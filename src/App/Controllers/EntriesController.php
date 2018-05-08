@@ -75,12 +75,13 @@ class TodoController
         ]);
     }
 
-    public function update($newContent, $entryID)
+    public function update($title, $newContent, $entryID)
     {
-        $statement = $this->db->prepare("UPDATE entries SET content = :content WHERE entryID = :entryID");
+        $statement = $this->db->prepare('UPDATE entries SET title = :title, content = :content WHERE entryID = :entryID');
         $statement->execute([
+        ":title" => $title,
         ":content" => $newContent,
-        ":entryID" => $commentID
+        ":entryID" => $entryID
       ]);
     }
 }
