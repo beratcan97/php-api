@@ -15,14 +15,14 @@ class UsersController
      * This results in we being able to call '$this->get('Todos')' to call this class
      * inside of our routes.
      */
-    public function __construct(\PDO $pdo)
+    public function __construct($pdo)
     {
         $this->db = $pdo;
     }
 
     public function getAll()
     {
-        $getAll = $this->db->prepare('SELECT * FROM users');
+        $getAll = $this->db->prepare("SELECT * FROM users");
         $getAll->execute();
         return $getAll->fetchAll();
     }

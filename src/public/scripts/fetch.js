@@ -3,9 +3,11 @@ const db = (function() {
   async function getUsers() {
     let data = await fetch("api/users")
     .then(response => response.json())
-    .then(data => data);
+    .then(dat => dat)
+    .catch(err => console.log(err));
 
-    return data;
+    console.log(data);
+    // return data;
   }
 
   async function postUsers() {

@@ -3,4 +3,5 @@ async function callDB() {
   console.log(users);
 }
 
-db.postUsers();
+// db.postUsers();
+db.getUsers();

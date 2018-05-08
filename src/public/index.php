@@ -9,7 +9,7 @@ require_once '../../vendor/autoload.php';
 $container = require '../App/container.php';
 $app = new \Slim\App($container);
 $auth = require '../App/auth.php';
-// require '../App/cors.php';
+require '../App/cors.php';
 
 
 /********************************
@@ -41,9 +41,13 @@ $app->get('/logout', function ($request, $response, $args) {
     return $response->withJson('Success');
 });
 
-//  API
+// API
 $app->group('/api', function () use ($app) {
-    require_once 'partials/users_route.php';
+    // require_once 'partials/users_route.php';
+    $app->get('/users', function ($request, $response, $args) {
+        $allEntries = $this->get('users')->getAll();
+        return $response->withJson(['data' => $allUsers]);
+    });
 
     require_once 'partials/entries_route.php';
 
