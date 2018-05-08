@@ -25,7 +25,7 @@ class CommentsController
         return $getOne->fetch();
     }
 
-    public function add($comment, $createdAt, $userId)
+    public function add($comment)
     {
         /**
          * Default 'completed' is false so we only need to insert the 'content'
@@ -39,8 +39,8 @@ class CommentsController
          */
         $addOne->execute([
           ':content'  => $comment['content'],
-          ':createdAt' => $createdAt,
-          ':createdBy' => $userId
+          ':createdAt' => $comment['createdAt'],
+          ':createdBy' => $comment['createdBy']
         ]);
 
         /**
