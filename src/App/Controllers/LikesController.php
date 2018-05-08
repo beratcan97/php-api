@@ -40,8 +40,8 @@ class TodoController
          * Insert the value from the parameter into the database
          */
         $addOne->execute(
-            [':entryID'  => $like['entryID']],
-            [':userID'  => $like['userID']]
+            [':entryID'  => $like['entryID'],
+             ':userID'  => $like['userID']]
         );
     }
 
