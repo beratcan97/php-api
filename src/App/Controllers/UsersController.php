@@ -48,8 +48,8 @@ class UsersController
         $addOne->execute(
             //ex [':content'  => $todo['content']]
             [':username'  => $user['username'],
-            [':password'  => $user['password']],
-            [':createdAt'  => $user['createdAt']]
+             ':password'  => $user['password'],
+             ':createdAt'  => $user['createdAt']]
         );
     }
 }
