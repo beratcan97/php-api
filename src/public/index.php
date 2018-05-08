@@ -9,7 +9,7 @@ require_once '../../vendor/autoload.php';
 $container = require '../App/container.php';
 $app = new \Slim\App($container);
 $auth = require '../App/auth.php';
-require '../App/cors.php';
+// require '../App/cors.php';
 
 
 /********************************
