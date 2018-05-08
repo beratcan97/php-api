@@ -27,14 +27,14 @@ class UsersController
         return $getAll->fetchAll();
     }
 
-    public function getOne($id)
+    public function getOne($userID)
     {
-        $getOne = $this->db->prepare('SELECT * FROM users WHERE id = :id');
-        $getOne->execute([':id' => $id]);
+        $getOne = $this->db->prepare('SELECT * FROM users WHERE userID = :userID');
+        $getOne->execute([':userID' => $userID]);
         return $getOne->fetch();
     }
 
-    public function add($username ,$password, $createdAt)
+    public function add($user)
     {
         /**
          * Default 'completed' is false so we only need to insert the 'content'
@@ -47,9 +47,9 @@ class UsersController
          */
         $addOne->execute(
             //ex [':content'  => $todo['content']]
-            [':username'  => $username,
-            ':password'  => $password,
-            ':createdAt'  => $createdAt]
+            [':username'  => $user['username'],
+            [':password'  => $user['password']],
+            [':createdAt'  => $user['createdAt']]
         );
     }
 }

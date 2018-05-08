@@ -13,6 +13,6 @@ $app->get('/users/{id}', function ($request, $response, $args) {
 
 $app->post('/register', function ($request, $response, $args) {
     $body = $request->getParsedBody();
-    $newComment = $this->users->add($body);
+    $newUser = $this->users->add($body);
     return $response->withJson(['data' => $newUser]);
 });

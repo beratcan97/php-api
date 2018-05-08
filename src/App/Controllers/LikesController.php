@@ -27,21 +27,21 @@ class TodoController
         return $getOne->fetch();
     }
 
-    public function add($entryID, $userID)
+    public function add($like)
     {
         /**
          * Default 'completed' is false so we only need to insert the 'content'
          */
         $addOne = $this->db->prepare(
-            'INSERT INTO likes ($entryID, $userID) VALUES (:entryID, :userID)'
+            'INSERT INTO likes (entryID, userID) VALUES (:entryID, :userID)'
         );
 
         /**
          * Insert the value from the parameter into the database
          */
         $addOne->execute(
-            [':entryID'  => $entryID,
-            ':userID'  => $userID]
+            [':entryID'  => $like['entryID']],
+            [':userID'  => $like['userID']]
         );
     }
 
