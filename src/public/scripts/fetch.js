@@ -1,38 +1,85 @@
-const db = (function() {
+const api = (function() {
 
-  async function getUsers() {
-    let data = await fetch("api/users")
-    .then(response => response.json())
-    .then(dat => dat)
-    .catch(err => console.log(err));
+  async function get(route) {
+    route = route.toString();
+    let data = await fetch("api/" + route)
+      .then(response => response.json())
+      .then(dat => dat)
+      .catch(err => console.log(err));
 
     return data;
   }
 
-  async function postUsers() {
-    let val = {
-      "username": "göran",
-      "password": "hoppla",
-      "createdAt": "1991-07-24"
-    }
+  async function getOne(route, id) {
+    route = route.toString();
+    let data = await fetch("api/" + route + "/" + id)
+      .then(response => response.json())
+      .then(dat => dat)
+      .catch(err => console.log(err));
+
+    return data;
+  }
+
+  async function post(route, val) {
+    // example
+    // val = {
+    //   "username": "göran",
+    //   "password": "hoppla",
+    //   "createdAt": "1991-07-24"
+    // }
+
+    route = route.toString();
 
     const postOptions = {
-      method: 'POST',
+      method: "POST",
       body: val,
-      // credentials: 'include' // <-- muy importante
+      credentials: "include" // <-- muy importante
     };
 
-    fetch('api/register', postOptions)
+    let post = fetch("api/" + route, postOptions)
       .then(res => res.json())
-      .then(dat => console.log(dat + " was posted"));
-      console.log("posted");
+      .then(data => data);
+    console.log("posted");
 
+    return post;
+  }
 
-    // return data;
+  async function update(route, id, val) {
+    route = route.toString();
+
+    const patchOptions = {
+      method: "PATCH",
+      body: val
+    };
+
+    let patch = fetch("api/" + route + "/" + id, patchOptions)
+      .then(res => res.json())
+      .then(data => data)
+      .catch(err => console.log(err));
+
+    return patch;
+  }
+
+  async function remove(route, id) {
+    route = route.toString();
+
+    const removeOptions = {
+      method: "DELETE"
+    };
+
+    let remove = fetch("api/" + route + "/" + id, removeOptions)
+      .then(res => res.json())
+      .then(data => data)
+      .catch(err => console.log(err));
+
+    return remove;
   }
 
   return {
-    getUsers: getUsers,
-    postUsers: postUsers
-  }
+    get: get,
+    getOne: getOne,
+    post: post,
+    update: update,
+    remove: remove
+  };
 })();
