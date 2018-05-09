@@ -23,5 +23,5 @@
   </div>
   <script src="scripts/fetch.js"></script>
   <script src="scripts/main.js"></script>
-  
-  <?php require_once('partials/footer.php'); ?>
+
+  <?php require_once('components/footer.php'); ?>
