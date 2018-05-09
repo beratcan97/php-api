@@ -20,7 +20,7 @@ const api = (function() {
     let logout = await fetch("/logout")
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log(err);
+    .catch(err => console.log(err));
 
     return logout;
   }
