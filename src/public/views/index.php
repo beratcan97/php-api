@@ -21,6 +21,13 @@
     </div>
     <button type="submit">Submit</button>
   </div>
-  
+
+    <form id="register_form" method="post">
+      <label for="register_username">username</label>
+      <input type="text" name="username">
+      <label for="register_password">password</label>
+      <input type="password" name="password">
+      <button type="submit" name="registerBtn" id="registerBtn">Register</button>
+    </form>
 
   <?php require_once('components/footer.php'); ?>

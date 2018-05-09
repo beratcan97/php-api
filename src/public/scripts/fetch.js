@@ -55,18 +55,20 @@ const api = (function() {
 
     route = route.toString();
 
-    const postOptions = {
-      method: "POST",
-      body: body,
-      credentials: "include" // <-- muy importante
-    };
+     const postOptions = {
+       method: "POST",
+       body: body,
+       credentials: "include" // <-- muy importante
+     };
+
+     console.log(postOptions);
 
     let post = fetch("/api/" + route, postOptions)
       .then(res => res.json())
-      .then(data => data);
-    console.log("posted");
+      .then(data => console.log(data + " was posted"));
+    // console.log("posted");
 
-    return post;
+    // return post;
   }
 
   async function update(route, id, body) {

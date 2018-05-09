@@ -1,12 +1,11 @@
-// async function callDB() {
-//   let users = await db.getUsers();
-//   console.log(users);
-// }
-//
-// // db.postUsers();
-// callDB();
+let registerBtn = document.getElementById("registerBtn");
+let registerForm = document.getElementById("register_form");
 
-fetch("api/users")
-.then(response => response.json())
-.then(dat => console.log(JSON.stringify(dat)))
-.catch(err => console.log(err));
+registerForm.addEventListener('submit', function() {
+  e.preventDefault();
+  console.log(this);
+  const formData = new FormData(this);
+  console.log(formData);
+  // api.post("register", formData);
+  // api.get("users");
+});
