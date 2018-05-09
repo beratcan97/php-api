@@ -19,9 +19,8 @@
           <input type="password" class="input" id="password" name="password" placeholder="Password">
       </div>
     </div>
-    <button type="submit">Update</button>
+    <button type="submit">Submit</button>
   </div>
-  <script src="scripts/fetch.js"></script>
-  <script src="scripts/main.js"></script>
+  
 
   <?php require_once('components/footer.php'); ?>
