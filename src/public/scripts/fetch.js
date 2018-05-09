@@ -1,26 +1,51 @@
 const api = (function() {
 
+  async function login(body) {
+
+    const postOptions = {
+      method: "POST",
+      body: body,
+      credentials: "include" // <-- muy importante
+    };
+
+    let login = await fetch("/login", postOptions)
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+
+    return login;
+  }
+
+  async function logout() {
+    let logout = await fetch("/logout")
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log(err);
+
+    return logout;
+  }
+
   async function get(route) {
     route = route.toString();
-    let data = await fetch("api/" + route)
+    let get = await fetch("/api/" + route)
       .then(response => response.json())
-      .then(dat => dat)
+      .then(data => data)
       .catch(err => console.log(err));
 
-    return data;
+    return get;
   }
 
   async function getOne(route, id) {
     route = route.toString();
-    let data = await fetch("api/" + route + "/" + id)
+    let getOne = await fetch("/api/" + route + "/" + id)
       .then(response => response.json())
-      .then(dat => dat)
+      .then(data => data)
       .catch(err => console.log(err));
 
-    return data;
+    return getOne;
   }
 
-  async function post(route, val) {
+  async function post(route, body) {
     // example
     // val = {
     //   "username": "göran",
@@ -32,11 +57,11 @@ const api = (function() {
 
     const postOptions = {
       method: "POST",
-      body: val,
+      body: body,
       credentials: "include" // <-- muy importante
     };
 
-    let post = fetch("api/" + route, postOptions)
+    let post = fetch("/api/" + route, postOptions)
       .then(res => res.json())
       .then(data => data);
     console.log("posted");
@@ -44,15 +69,15 @@ const api = (function() {
     return post;
   }
 
-  async function update(route, id, val) {
+  async function update(route, id, body) {
     route = route.toString();
 
     const patchOptions = {
       method: "PATCH",
-      body: val
+      body: body
     };
 
-    let patch = fetch("api/" + route + "/" + id, patchOptions)
+    let patch = fetch("/api/" + route + "/" + id, patchOptions)
       .then(res => res.json())
       .then(data => data)
       .catch(err => console.log(err));
@@ -67,7 +92,7 @@ const api = (function() {
       method: "DELETE"
     };
 
-    let remove = fetch("api/" + route + "/" + id, removeOptions)
+    let remove = fetch("/api/" + route + "/" + id, removeOptions)
       .then(res => res.json())
       .then(data => data)
       .catch(err => console.log(err));
