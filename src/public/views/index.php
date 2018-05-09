@@ -2,18 +2,26 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/style.css">
-  <title>Frontend</title>
+  <?php require_once('components/head.php'); ?>
 </head>
 
 <body>
-  <h1>Hello from the Frontend!</h1>
+  <div>
+    <div class="field">
+      <label for="username" class="subtitle">Username</label>
+      <div class="control">
+          <input type="text" class="input" id="username" name="username" placeholder="Username">
+      </div>
+    </div>
+    <div>
+      <label for="password" class="subtitle">Password</label>
+      <div class="control">
+          <input type="password" class="input" id="password" name="password" placeholder="Password">
+      </div>
+    </div>
+    <button type="submit">Update</button>
+  </div>
   <script src="scripts/fetch.js"></script>
   <script src="scripts/main.js"></script>
-</body>
-
-
-</html>
+  
+  <?php require_once('partials/footer.php'); ?>
