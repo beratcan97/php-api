@@ -6,6 +6,19 @@
 </head>
 
 <body>
+  <?php require_once('components/navbar.php'); ?>
+  <div class="container">
+		<?php if(!isset($_SESSION['userID'])): ?> 
+			<div class="message-body">
+				<p class="title">Welcome!</p>
+				<p class="subtitle">Please sign in or sign up!</p>
+			</div>
+			
+		<?php else:
+		
+		endif;?>
+	
+	</div>
   <div>
     <div class="field">
       <label for="username" class="subtitle">Username</label>
