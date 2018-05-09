@@ -46,29 +46,17 @@ const api = (function() {
   }
 
   async function post(route, body) {
-    // example
-    // val = {
-    //   "username": "göran",
-    //   "password": "hoppla",
-    //   "createdAt": "1991-07-24"
-    // }
-
     route = route.toString();
 
      const postOptions = {
        method: "POST",
        body: body,
-       credentials: "include" // <-- muy importante
+       credentials: "include"
      };
-
-     console.log(postOptions);
 
     let post = fetch("/api/" + route, postOptions)
       .then(res => res.json())
       .then(data => console.log(data + " was posted"));
-    // console.log("posted");
-
-    // return post;
   }
 
   async function update(route, id, body) {

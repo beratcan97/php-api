@@ -5,7 +5,7 @@ namespace App\Controllers;
 class UsersController
 {
     private $db;
-    
+
     public function __construct($pdo)
     {
         $this->db = $pdo;
@@ -27,23 +27,20 @@ class UsersController
 
     public function add($user)
     {
-        //Creats hashed password
         $hashed = password_hash($user["password"], PASSWORD_BCRYPT);
+        $date = date('Y-m-d');
 
-        /**
-         * Default 'completed' is false so we only need to insert the 'content'
-         */
         $addOne = $this->db->prepare(
-            'INSERT INTO users (username, password, createdAt) VALUES (:username, :password, :createdAt)'
+            'INSERT INTO users (username, password, createdAt, admin) VALUES (:username, :password, :createdAt, :admin)'
         );
-        /**
-         * Insert the value from the parameter into the database
-         */
+
         $addOne->execute(
-            //ex [':content'  => $todo['content']]
-            [':username'  => $user['username'],
-            ':password'  => $hashed,
-            ':createdAt'  => $user['createdAt']]
+            [
+              ':username'  => $user['username'],
+              ':password'  => $hashed,
+              ':createdAt'  => $date,
+              ':admin' => false
+            ]
         );
     }
 }

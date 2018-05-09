@@ -19,6 +19,10 @@ $app->get('/', function ($request, $response, $args) {
     return $this->view->render($response, 'index.php');
 });
 
+$app->post('/register', function ($request, $response, $args) {
+    return $this->view->render($response, 'register.php');
+});
+
 
 $app->post('/login', function ($request, $response, $args) {
     $body = $request->getParsedBody();
