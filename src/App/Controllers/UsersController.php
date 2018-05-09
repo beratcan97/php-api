@@ -27,6 +27,9 @@ class UsersController
 
     public function add($user)
     {
+        //Creats hashed password
+        $hashed = password_hash($user["password"], PASSWORD_BCRYPT);
+
         /**
          * Default 'completed' is false so we only need to insert the 'content'
          */
@@ -39,7 +42,7 @@ class UsersController
         $addOne->execute(
             //ex [':content'  => $todo['content']]
             [':username'  => $user['username'],
-            ':password'  => $user['password'],
+            ':password'  => $hashed,
             ':createdAt'  => $user['createdAt']]
         );
     }
