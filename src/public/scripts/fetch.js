@@ -4,24 +4,18 @@ const api = (function() {
   // login och logout är egna funktioner eftersom
   // de inte routas mot /api/... utan går direkt till /login eller /logout
   async function login(body) {
-    body.forEach(item => {
-      console.log(item);
-    });
     const postOptions = {
       method: "POST",
       body: body,
       credentials: "include"
     };
 
-    let login = await fetch("/login", postOptions)
+    fetch("/login", postOptions)
     .then(response => response.text())
-    .then(data => {
-      console.log(data);
-      location.reload();
-    })
+    .then(data => console.log(data[1] + " has logged in"))
     .catch(err => console.log(err));
 
-    return login;
+    // return login;
   }
 
   async function logout() {
@@ -71,9 +65,14 @@ const api = (function() {
        credentials: "include"
      };
 
-    let post = fetch("/api/" + route, postOptions)
+    fetch("/api/" + route, postOptions)
       .then(res => res.json())
-      .then(data => console.log(data + " was posted"));
+      .then(data => {
+        data.forEach(item => {
+          console.log(item + " was posted");
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   async function update(route, id, body) {
@@ -81,6 +80,7 @@ const api = (function() {
 
     const patchOptions = {
       method: "PATCH",
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: body
     };
 
@@ -110,7 +110,6 @@ const api = (function() {
   return {
     login: login,
     logout: logout,
-    index: index,
     get: get,
     getOne: getOne,
     post: post,
