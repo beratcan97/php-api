@@ -10,8 +10,8 @@
   <div class="container">
 		<?php if (!isset($_SESSION['userID'])): ?>
 			<div class="message-body">
-				<p class="title">Welcome!</p>
-				<p class="subtitle">Please sign in or sign up!</p>
+				<h1 class="title">Welcome!</h1>
+				<h2 class="subtitle">Please sign in or register a new account!</h2>
 			</div>
 
 		<?php else:
