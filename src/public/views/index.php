@@ -10,8 +10,8 @@
   <div class="container">
 		<?php if (!isset($_SESSION['loggedIn'])): ?>
 			<div class="message-body">
-				<p class="title">Welcome!</p>
-				<p class="subtitle">Please sign in or sign up!</p>
+				<h1 class="title">Welcome!</h1>
+				<h2 class="subtitle">Please sign in or register a new account!</h2>
 			</div>
 
       <form action="/login" method="post" id="login_form">
@@ -33,31 +33,9 @@
         </form>
 		<?php else:
 ?>
-<p class="title">Welcome, <?= $_SESSION['username'] ?> </p>
-
-      <a href="/logout"><button type="button" id="logout" name="logout">Log out</button></a>
+  <p class="title">Welcome, <?= $_SESSION['username'] ?> </p>
+  <a href="/logout"><button type="button" id="logout" name="logout">Log out</button></a>
 <?php endif;?>
+</div>
 
-	</div>
-  <!--
-  <div>
-    <div class="field">
-      <label for="username" class="subtitle">Username</label>
-      <div class="control">
-          <input type="text" class="input" id="username" name="username" placeholder="Username">
-      </div>
-    </div>
-    <div>
-      <label for="password" class="subtitle">Password</label>
-      <div class="control">
-          <input type="password" class="input" id="password" name="password" placeholder="Password">
-      </div>
-    </div>
-    <button type="submit">Submit</button>
-  </div>
-  -->
-
-
-
-
-  <?php require_once('components/footer.php'); ?>
+<?php require_once('components/footer.php'); ?>
