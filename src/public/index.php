@@ -33,16 +33,18 @@ $app->post('/login', function ($request, $response, $args) {
     $user = $fetchUserStatement->fetch();
     if (password_verify($body['password'], $user['password'])) {
         $_SESSION['loggedIn'] = true;
-        $_SESSION['userID'] = $user['id'];
-        return $response->withJson(['data' => [ $user['id'], $user['username'] ]]);
+        $_SESSION['userID'] = $user['userID'];
+        $_SESSION['username'] = $user['username'];
+
+        return $response->withJson(['data' => [ $user['userID'], $user['username'] ]]);
     }
     return $response->withJson(['error' => 'wrong password']);
 });
 
 
 $app->get('/logout', function ($request, $response, $args) {
-    session_destroy();
-    return $response->withJson('Success');
+  session_destroy();
+  return $response->withRedirect("/");
 });
 
 // API
