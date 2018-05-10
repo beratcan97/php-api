@@ -42,7 +42,6 @@
   - `api.patch("/route", body)` - samma som `post` fast uppdaterar. EJ TESTAD
   - `api.delete("/route/{id}")` - Raderar objektet i angiven route med {id}
   - `api.login(body)` - skickar data som ligger i body mot /login routen. Body måste innehålla "username" och "password".
-  - `api.logout()` - Anropar "/logout". Dödar sessionen.
 
 
 ---

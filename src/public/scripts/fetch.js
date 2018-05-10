@@ -14,17 +14,6 @@ const api = (function() {
     .then(response => response.text())
     .then(data => console.log(data[1] + " has logged in"))
     .catch(err => console.log(err));
-
-    // return login;
-  }
-
-  async function logout() {
-    let logout =  await fetch("/logout")
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
-
-    return logout;
   }
 
   async function index() {
