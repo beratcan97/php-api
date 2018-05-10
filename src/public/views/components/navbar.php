@@ -6,16 +6,16 @@
 				<?php if(!isset($_SESSION['userID'])): ?>
 				
 				<li class="navbar-item">
-					<a href="components/login.php">Sign up</a>
+					<a href="views/components/login.php">Log in</a>
 				</li>
 				<li class="navbar-item">
-					<a href="components/signin.php">Sign in</a>
+					<a href="views/components/register.php">Register</a>
 				</li>
 				
 				<?php else:  ?>
 									
 				<li class="navbar-item">
-					<a href="components/signout.php">Sign out</a>
+					<a href="views/components/logout.php">Sign out</a>
 				</li>
 
 				<?php endif; ?>	
