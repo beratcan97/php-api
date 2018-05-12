@@ -11,7 +11,7 @@
       <div class="control">
           <input type="password" class="input" id="login_password" name="password" placeholder="Password">
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit">Log in</button>
     </div>
   </form>
   <?php require('footer.php'); ?>
