@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <?php require_once('components/head.php'); ?>
-</head>
+<?php require_once('components/head.php'); ?>
 
 <body>
   <?php require_once('components/navbar.php'); ?>
@@ -14,12 +9,12 @@
 				<h2 class="subtitle">Please sign in or register a new account!</h2>
 			</div>
 
-      <form action="/login" method="post" id="login_form">
+      <!-- <form action="/login" method="post" id="login_form">
         <label for="login_username">Username:</label><br />
         <input type="text" name="username" id="login_username"> <br />
         <label for="login_password">Password:</label><br />
         <input type="password" name="password" id="login_password"><br />
-        <button type="button" name="login" id="login_btn">Log in</button>
+        <button type="submit" name="login" id="login_btn">Log in</button>
       </form>
 
       <br />
@@ -30,11 +25,10 @@
           <label for="register_password">password</label>
           <input id="register_password" type="password" name="password">
           <button type="submit" name="registerBtn" id="registerBtn">Register</button>
-        </form>
+        </form> -->
 		<?php else:
 ?>
   <p class="title">Welcome, <?= $_SESSION['username'] ?> </p>
-  <a href="/logout"><button type="button" id="logout" name="logout">Log out</button></a>
 <?php endif;?>
 </div>
 

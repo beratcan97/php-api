@@ -1,8 +1,5 @@
 const api = (function() {
 
-
-  // login och logout är egna funktioner eftersom
-  // de inte routas mot /api/... utan går direkt till /login eller /logout
   async function login(body) {
     const postOptions = {
       method: "POST",
@@ -11,18 +8,9 @@ const api = (function() {
     };
 
     fetch("/login", postOptions)
-    .then(response => response.text())
-    .then(data => console.log(data[1] + " has logged in"))
-    .catch(err => console.log(err));
-  }
-
-  async function index() {
-    let index = await fetch("/")
       .then(response => response.json())
-      .then(data => data)
+      .then(data => console.log(data))
       .catch(err => console.log(err));
-
-    return index;
   }
 
   async function get(route) {
@@ -48,19 +36,15 @@ const api = (function() {
   async function post(route, body) {
     route = route.toString();
 
-     const postOptions = {
-       method: "POST",
-       body: body,
-       credentials: "include"
-     };
+    const postOptions = {
+      method: "POST",
+      body: body,
+      credentials: "include"
+    };
 
     fetch("/api/" + route, postOptions)
       .then(res => res.json())
-      .then(data => {
-        data.forEach(item => {
-          console.log(item + " was posted");
-        });
-      })
+      .then(data => console.log(JSON.stringify(data)))
       .catch(err => console.log(err));
   }
 
@@ -69,7 +53,7 @@ const api = (function() {
 
     const patchOptions = {
       method: "PATCH",
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: body
     };
 
@@ -98,7 +82,6 @@ const api = (function() {
 
   return {
     login: login,
-    logout: logout,
     get: get,
     getOne: getOne,
     post: post,

@@ -2,23 +2,23 @@
 	<div class="container">
 		<div class="navbar-end">
 			<ul class="navbar">
-				
-				<?php if(!isset($_SESSION['userID'])): ?>
-				
+
+				<?php if (!isset($_SESSION['userID'])): ?>
+
 				<li class="navbar-item">
-					<a href="views/components/login.php">Log in</a>
+					<a href="/login">Log in</a>
 				</li>
 				<li class="navbar-item">
-					<a href="views/components/register.php">Register</a>
-				</li>
-				
-				<?php else:  ?>
-									
-				<li class="navbar-item">
-					<a href="views/components/logout.php">Sign out</a>
+					<a href="/register">Register</a>
 				</li>
 
-				<?php endif; ?>	
+				<?php else:  ?>
+
+				<li class="navbar-item">
+					<a href="/logout">Sign out</a>
+				</li>
+
+				<?php endif; ?>
 			</ul>
 		</div>
 	</div>

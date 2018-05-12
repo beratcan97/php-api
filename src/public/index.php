@@ -19,9 +19,14 @@ $app->get('/', function ($request, $response, $args) {
     return $this->view->render($response, 'index.php');
 });
 
-$app->post('/register', function ($request, $response, $args) {
-    return $this->view->render($response, 'register.php');
+$app->get('/register', function ($request, $response, $args) {
+    return $this->view->render($response, 'components/register.php');
 });
+
+$app->get('/login', function ($request, $response, $args) {
+    return $this->view->render($response, 'components/login.php');
+});
+
 
 
 $app->post('/login', function ($request, $response, $args) {
@@ -43,8 +48,8 @@ $app->post('/login', function ($request, $response, $args) {
 
 
 $app->get('/logout', function ($request, $response, $args) {
-  session_destroy();
-  return $response->withRedirect("/");
+    session_destroy();
+    return $response->withRedirect("/");
 });
 
 // API

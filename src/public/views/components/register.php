@@ -1,3 +1,4 @@
+<?php require('head.php'); ?>
 <form action="/api/register" id="register_form" method="post">
     <div class="field">
       <label for="register_username">Username</label>
@@ -13,3 +14,5 @@
       <button type="submit" name="registerBtn" id="registerBtn">Register</button>
     </div>
   </form>
+
+<?php require('footer.php'); ?>
