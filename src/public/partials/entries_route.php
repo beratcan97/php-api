@@ -5,6 +5,12 @@ $app->get('/entries', function ($request, $response, $args) {
     return $response->withJson(['data' => $allEntries]);
 });
 
+$app->get('/entries/user/{id}', function ($request, $response, $args) {
+    $id = $args['id'];
+    $allEntries = $this->get('entries')->getAllByUser($id);
+    return $response->withJson(['data' => $allEntries]);
+});
+
 $app->get('/entries/{id}', function ($request, $response, $args) {
     $id = $args['id'];
     $singleEntry = $this->get('entries')->getOne($id);

@@ -15,7 +15,7 @@
 				<?php else:  ?>
 
 				<li class="navbar-item">
-					<a href="/logout">Sign out</a>
+					<a href="/logout" id="sign_out">Sign out</a>
 				</li>
 
 				<?php endif; ?>

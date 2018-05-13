@@ -9,7 +9,10 @@ const api = (function() {
 
     fetch("/login", postOptions)
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        localStorage.setItem("userID", data.data[0]);
+        localStorage.setItem("username", data.data[1]);
+      })
       .catch(err => console.log(err));
   }
 
@@ -43,8 +46,8 @@ const api = (function() {
     };
 
     fetch("/api/" + route, postOptions)
-      .then(res => res.json())
-      .then(data => console.log(JSON.stringify(data)))
+      .then(res => res.text())
+      .then(data => data)
       .catch(err => console.log(err));
   }
 
