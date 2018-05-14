@@ -10,8 +10,8 @@ const api = (function() {
     fetch("/login", postOptions)
       .then(response => response.json())
       .then(data => {
-        localStorage.setItem("userID", data.data[0]);
-        localStorage.setItem("username", data.data[1]);
+        sessionStorage.setItem("userID", data.data[0]);
+        sessionStorage.setItem("username", data.data[1]);
       })
       .catch(err => console.log(err));
   }

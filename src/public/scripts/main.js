@@ -47,13 +47,17 @@ if (isset(entryForm)) {
 
 if (isset(signOut)) {
   signOut.addEventListener("click", function() {
-    localStorage.clear();
+    sessionStorage.clear();
   });
 }
 
 //  build entries
 async function buildEntries() {
-  let userRoute = "entries/user/" + localStorage.getItem("userID");
+  let loader = document.createElement("DIV");
+  loader.classList.add("loader");
+  document.body.appendChild(loader);
+
+  let userRoute = "entries/user/" + sessionStorage.getItem("userID");
   let userEntries = await api.get(userRoute);
 
   for (let i = 0; i < userEntries.data.length; i++) {
@@ -64,10 +68,12 @@ async function buildEntries() {
       let newEntry = builder.entries(userEntries.data[i], comments.data);
       entriesContainer.appendChild(newEntry);
   }
+  
+  loader.remove();
 }
 
-if(isset(localStorage.getItem("userID"))) {
+if(isset(sessionStorage.getItem("userID"))) {
   buildEntries();
 }
 
-console.log(localStorage);
+console.log(sessionStorage);
