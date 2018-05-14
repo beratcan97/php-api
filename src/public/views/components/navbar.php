@@ -15,6 +15,10 @@
 				<?php else:  ?>
 
 				<li class="navbar-item">
+					<a href="../">Home</a>
+				</li>
+
+				<li class="navbar-item">
 					<a href="/logout" id="sign_out">Sign out</a>
 				</li>
 
