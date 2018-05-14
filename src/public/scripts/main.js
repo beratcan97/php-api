@@ -66,4 +66,4 @@ if(isset(localStorage.getItem("userID"))) {
   buildEntries();
 }
 
-// console.log(localStorage);
+console.log(localStorage);
