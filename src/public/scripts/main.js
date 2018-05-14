@@ -56,15 +56,12 @@ async function buildEntries() {
   let userRoute = "entries/user/" + localStorage.getItem("userID");
   let userEntries = await api.get(userRoute);
 
-  console.log(userEntries);
-
-  userEntries.data.forEach(entry => {
-    let commentRoute = "comments/entries/" + entry.entryID;
-    let comments = api.get(commentRoute);
-    console.log(comments);
-    let newEntry = builder.entries(entry, comments);
-    entriesContainer.appendChild(newEntry);
-  });
+  for (let i = 0; i < userEntries.data.length; i++) {
+      let commentRoute = "comments/entries/" + userEntries.data[i].entryID;
+      let comments = await api.get(commentRoute);
+      let newEntry = builder.entries(userEntries.data[i], comments.data);
+      entriesContainer.appendChild(newEntry);
+  }
 }
 
 if(isset(localStorage.getItem("userID"))) {
