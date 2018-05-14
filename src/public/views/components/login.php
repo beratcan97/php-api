@@ -3,13 +3,13 @@
     <div class="field">
       <label for="username" class="subtitle">Username</label>
       <div class="control">
-          <input type="text" class="input" id="login_username" name="username" placeholder="Username">
+          <input type="text" class="input" id="login_username" name="username" placeholder="Username" required>
       </div>
     </div>
     <div>
       <label for="password" class="subtitle">Password</label>
       <div class="control">
-          <input type="password" class="input" id="login_password" name="password" placeholder="Password">
+          <input type="password" class="input" id="login_password" name="password" placeholder="Password" required>
       </div>
       <button type="submit">Log in</button>
     </div>
