@@ -1,7 +1,7 @@
 
 <div class="section">
 	<div>
-		<h3 class="h5"><?= $post['title'] ?></h3>
+		<h3 class="h5"><?= $entry['title'] ?></h3>
 		<div class="field">
 			<a href="edit_post.php?entryID=<?= $entry["entryID"]?>" class="button">Edit</a>	
 			<form action="partials/delete_post.php" class="field" method="POST">

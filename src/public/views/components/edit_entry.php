@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
 	<?php require_once('head.php'); ?>
-</head>
-<body>
+
 	<?php require_once('navbar.php'); ?>
 	
-    <div class="container column box">
+    <div class="container">
         <?php if(isset($_SESSION['userID'])): ?>
         <h1 class="title">Edit your entry</h1>
 
         <div>
-            <form class="field" action="edit_post.php" method="POST">
+            <form class="field" action="edit_entry.php" method="POST">
                 <label for="title" class="subtitle">Title</label>
                 <div class="control">
                     <input type="text" class="input" name="title" value="<?= $entry['title']; ?>">

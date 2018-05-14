@@ -3,7 +3,7 @@
 
 <form action="/api/register" class="box" id="register_form" method="post">
     <div class="section">
-      <p class="title">Create new account</p>
+      <p class="title">Create a new account</p>
     </div>
     <div class="field">
       <label for="register_username" for="username" class="subtitle">Username</label>
