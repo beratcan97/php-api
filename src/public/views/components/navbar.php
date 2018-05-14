@@ -1,5 +1,4 @@
 <nav class="navbar">
-	<div class="container">
 		<div class="navbar-end">
 			<ul class="navbar">
 
@@ -29,6 +28,5 @@
 				<?php endif; ?>
 			</ul>
 		</div>
-	</div>
 </nav>
 

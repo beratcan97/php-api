@@ -2,7 +2,7 @@
 
 <body>
   <?php require_once('components/navbar.php'); ?>
-  <main class="container column box">
+  <main class="container">
 		<?php if (!isset($_SESSION['loggedIn'])): ?>
 				<h1 class="title">Welcome!</h1>
 				<h2 class="subtitle">Please sign in or register a new account!</h2>	

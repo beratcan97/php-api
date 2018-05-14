@@ -1,8 +1,8 @@
 <?php require('head.php'); ?>
 <?php require_once('navbar.php'); ?>
 
-<p class="title has-text-centered">Fill in username and password to login</p>
-<form action="/login" class="container column box is-one-third" id="login_form" method="post">
+<p class="title">Fill in username and password to login</p>
+<form action="/login" class="box" id="login_form" method="post">
     <div class="field">
       <label for="username" class="subtitle">Username</label>
       <div class="control has-icons-left">
