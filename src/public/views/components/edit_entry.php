@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php require_once('components/head.php'); ?>
+	<?php require_once('head.php'); ?>
 </head>
 <body>
-	<?php require_once('components/navbar.php'); ?>
+	<?php require_once('navbar.php'); ?>
 	
     <div class="container">
         <?php if(isset($_SESSION['userID'])): ?>
@@ -30,6 +30,6 @@
         <?php endif; ?>
 	</div>
 
-	<?php require_once('partials/footer.php'); ?>
+	<?php require_once('footer.php'); ?>
 </body>
 </html>
