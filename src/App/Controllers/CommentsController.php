@@ -27,7 +27,10 @@ class CommentsController
 
     public function getAllByEntry($entryID)
     {
-        $getAllByEntry = $this->db->prepare('SELECT * FROM comments WHERE entryID = :entryID');
+        $getAllByEntry = $this->db->prepare('SELECT comments.*, users.username AS "username"
+          FROM comments
+          INNER JOIN users ON comments.createdBy = users.userID
+          WHERE entryID = :entryID');
         $getAllByEntry->execute([':entryID' => $entryID]);
         return $getAllByEntry->fetchAll();
     }
@@ -44,6 +47,9 @@ class CommentsController
         /**
          * Default 'completed' is false so we only need to insert the 'content'
          */
+
+        $date = date('Y-m-d, H:i:s');
+
         $addOne = $this->db->prepare(
             'INSERT INTO comments (content, createdAt, createdBy) VALUES (:content, :createdAt, :createdBy)'
         );
@@ -53,7 +59,7 @@ class CommentsController
          */
         $addOne->execute([
           ':content'  => $comment['content'],
-          ':createdAt' => $comment['createdAt'],
+          ':createdAt' => $date,
           ':createdBy' => $comment['createdBy']
         ]);
 

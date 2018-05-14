@@ -20,7 +20,11 @@ class EntriesController
 
     public function getAllByUser($createdBy)
     {
-        $getAll = $this->db->prepare('SELECT * FROM entries WHERE createdBy = :createdBy');
+        $getAll = $this->db->prepare('SELECT entries.*,
+          users.username AS "entryUsername"
+          FROM entries
+          INNER JOIN users ON users.userID = entries.createdBy
+          WHERE entries.createdBy = :createdBy');
         $getAll->execute([
           ':createdBy' => $createdBy
         ]);
@@ -40,7 +44,7 @@ class EntriesController
             'INSERT INTO entries (title, content, createdBy, createdAt) VALUES (:title, :content, :createdBy, :createdAt)'
         );
 
-        $date = date('Y-m-d');
+        $date = date('Y-m-d, H:i:s');
 
         $addOne->execute([':title'  => $entry['title'],
                          ':content'  => $entry['content'],

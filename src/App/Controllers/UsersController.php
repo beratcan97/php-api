@@ -28,7 +28,8 @@ class UsersController
     public function add($user)
     {
         $hashed = password_hash($user["password"], PASSWORD_BCRYPT);
-        $date = date('Y-m-d');
+        $date = date('Y-m-d, H:i:s');
+
 
         $addOne = $this->db->prepare(
             'INSERT INTO users (username, password, createdAt, admin) VALUES (:username, :password, :createdAt, :admin)'
