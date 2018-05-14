@@ -27,6 +27,9 @@ $app->get('/login', function ($request, $response, $args) {
     return $this->view->render($response, 'components/login.php');
 });
 
+$app->get('/profile', function ($request, $response, $args) {
+    return $this->view->render($response, 'profile.php');
+});
 
 
 $app->post('/login', function ($request, $response, $args) {

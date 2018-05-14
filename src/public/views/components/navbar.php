@@ -18,6 +18,10 @@
 					<a href="/logout" id="sign_out">Sign out</a>
 				</li>
 
+				<li class="navbar-item">
+					<a href="/profile">Profile</a>
+				</li>
+
 				<?php endif; ?>
 			</ul>
 		</div>
