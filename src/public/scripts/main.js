@@ -53,12 +53,17 @@ if (isset(signOut)) {
 
 //  build entries
 async function buildEntries() {
-  let route = "entries/user/" + localStorage.getItem("userID");
-  let userEntries = await api.get(route);
+  let userRoute = "entries/user/" + localStorage.getItem("userID");
+  let userEntries = await api.get(userRoute);
 
   console.log(userEntries);
+
   userEntries.data.forEach(entry => {
-    entriesContainer.appendChild(builder.entries(entry.title, entry.content));
+    let commentRoute = "comments/entries/" + entry.entryID;
+    let comments = api.get(commentRoute);
+    console.log(comments);
+    let newEntry = builder.entries(entry, comments);
+    entriesContainer.appendChild(newEntry);
   });
 }
 
