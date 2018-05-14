@@ -18,7 +18,7 @@ const api = (function() {
 
   async function get(route) {
     route = route.toString();
-    let get = await fetch("/api/" + route)
+    let get = await fetch ("/api/" + route)
       .then(response => response.json())
       .then(data => data)
       .catch(err => console.log(err));

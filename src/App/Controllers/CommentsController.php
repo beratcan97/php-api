@@ -18,6 +18,20 @@ class CommentsController
         return $getAll->fetchAll();
     }
 
+    public function getAllByUser($userID)
+    {
+        $getAllByUser = $this->db->prepare('SELECT * FROM comments WHERE createdBy = :userID');
+        $getAllByUser->execute([':userID' => $userID]);
+        return $getAllByUser->fetchAll();
+    }
+
+    public function getAllByEntry($entryID)
+    {
+        $getAllByEntry = $this->db->prepare('SELECT * FROM comments WHERE entryID = :entryID');
+        $getAllByEntry->execute([':entryID' => $entryID]);
+        return $getAllByEntry->fetchAll();
+    }
+
     public function getOne($id)
     {
         $getOne = $this->db->prepare('SELECT * FROM comments WHERE commentID = :id');

@@ -1,7 +1,19 @@
 <?php
 // COMMENTS
 $app->get('/comments', function ($request, $response, $args) {
-    $allEntries = $this->get('comments')->getAll();
+    $allComments = $this->get('comments')->getAll();
+    return $response->withJson(['data' => $allComments]);
+});
+
+$app->get('/comments/user/{id}', function ($request, $response, $args) {
+    $id = $args['id'];
+    $allComments = $this->get('comments')->getAllByUser($id);
+    return $response->withJson(['data' => $allComments]);
+});
+
+$app->get('/comments/entries/{id}', function ($request, $response, $args) {
+    $id = $args['id'];
+    $allComments = $this->get('comments')->getAllByEntry($id);
     return $response->withJson(['data' => $allComments]);
 });
 
