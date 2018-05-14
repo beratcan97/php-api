@@ -6,7 +6,7 @@
 <body>
 	<?php require_once('navbar.php'); ?>
 	
-    <div class="container">
+    <div class="container column box">
         <?php if(isset($_SESSION['userID'])): ?>
         <h1 class="title">Edit your entry</h1>
 
@@ -24,7 +24,9 @@
                     <input class="input" type="hidden" name="entryID" value="<?= $_GET["entryID"]?>">
                 </div>
                 <br>
-                    <button type="submit" class="button">Add changes</button>
+                <div class="control">
+                    <button type="submit">Add changes</button>
+                </div>
             </form> 
         </div>
         <?php endif; ?>

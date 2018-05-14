@@ -6,7 +6,7 @@
 			<a href="edit_post.php?entryID=<?= $entry["entryID"]?>" class="button">Edit</a>	
 			<form action="partials/delete_post.php" class="field" method="POST">
 				<input type="hidden" name="entryID" value="<?= $entry["entryID"] ?>">
-				<button type="submit" class="button">Delete</button>
+				<button type="submit">Delete</button>
 			</form>
 		</div>
 		</div>

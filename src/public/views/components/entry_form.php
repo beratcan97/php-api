@@ -11,6 +11,6 @@
       <textarea class="textarea" id="entry_form" name="content" rows="4" cols="50" placeholder="Enter some text here..." required></textarea>
       </div>
       <input type="hidden" name="createdBy" value=<?= $_SESSION['userID'] ?>>
-      <button type="submit">Add entry</button>
+      <button type="submit" class="button">Add entry</button>
     </div>
   </form>
