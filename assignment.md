@@ -47,7 +47,7 @@ Ni som grupp ska skapa ett API med hjälp av PHP-ramverket [Slim](https://www.sl
 ## Krav
 
 - [ ] Man ska kunna hämta ut de 20 senaste inläggen via `GET /api/entries`.
-- [ ] Man ska kunna skapa ett inlägg via `POST /api/entries`.
+- [x] Man ska kunna skapa ett inlägg via `POST /api/entries`.
 - [ ] Man ska kunna hämta ut ett enskilt specifikt inlägg via `GET /api/entries/{ID}`.
 - [ ] Man ska kunna ta bort ett enskilt specifikt inlägg via `DELETE /api/entries/{ID}`.
 - [ ] Man ska kunna uppdatera ett enskilt specifikt inlägg via `PATCH /api/entries/{ID}`.
