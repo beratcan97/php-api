@@ -1,8 +1,10 @@
 <?php require('head.php'); ?>
 <?php require_once('navbar.php'); ?>
 
-<p class="title">Create new account</p>
 <form action="/api/register" class="box" id="register_form" method="post">
+    <div class="section">
+      <p class="title">Create new account</p>
+    </div>
     <div class="field">
       <label for="register_username" for="username" class="subtitle">Username</label>
       <div class="control has-icons-left">
