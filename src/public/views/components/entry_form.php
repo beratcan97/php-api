@@ -8,8 +8,7 @@
     <div>
       <label for="content" class="subtitle">Content</label>
       <div class="control">
-          <textarea class="input" id="entry_content" name="content" placeholder="Enter some text" rows="4" cols="50">
-          </textarea>
+      <textarea rows="4" cols="50" placeholder="Enter some text here..."></textarea>
       </div>
       <input type="hidden" name="createdBy" value=<?= $_SESSION['userID'] ?>>
       <button type="submit">Add entry</button>
