@@ -5,7 +5,7 @@
   <main class="container">
 		<?php if (!isset($_SESSION['loggedIn'])): ?>
 				<h1 class="title">Welcome!</h1>
-				<h2 class="subtitle">Please sign in or register a new account!</h2>	
+				<h2 class="subtitle">Please sign in or register a new account!</h2>
 		<?php else:
 ?>
   <p class="title">Welcome, <?= $_SESSION['username'] ?> </p>

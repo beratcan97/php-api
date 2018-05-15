@@ -57,7 +57,12 @@ async function buildEntries() {
   loader.classList.add("loader");
   document.body.appendChild(loader);
 
-  let userEntries = await api.get("entries");
+  let userRoute = "entries";
+  if (window.location.pathname === "/profile") {
+    userRoute = "entries/user/" + sessionStorage.getItem("userID");
+  }
+
+  let userEntries = await api.get(userRoute);
 
   for (let i = 0; i < userEntries.data.length; i++) {
     console.log(userEntries.data);
