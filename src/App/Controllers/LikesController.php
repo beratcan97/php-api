@@ -2,19 +2,10 @@
 
 namespace App\Controllers;
 
-class TodoController
+class LikesController
 {
     private $db;
 
-    /**
-     * Dependeny Injection (DI): http://www.phptherightway.com/#dependency_injection
-     * If this class relies on a database-connection via PDO we inject that connection
-     * into the class at start. If we do this TodoController will be able to easily
-     * reference the PDO with '$this->db' in ALL functions INSIDE the class
-     * This class is later being injected into our container inside of 'App/container.php'
-     * This results in we being able to call '$this->get('Todos')' to call this class
-     * inside of our routes.
-     */
     public function __construct(\PDO $pdo)
     {
         $this->db = $pdo;
@@ -29,23 +20,19 @@ class TodoController
 
     public function add($like)
     {
-        /**
-         * Default 'completed' is false so we only need to insert the 'content'
-         */
+        // die(var_dump($like));
         $addOne = $this->db->prepare(
-            'INSERT INTO likes (entryID, userID) VALUES (:entryID, :userID)'
+            'INSERT INTO likes (userID, entryID) VALUES (:userID, :entryID)'
         );
 
-        /**
-         * Insert the value from the parameter into the database
-         */
-        $addOne->execute(
-            [':entryID'  => $like['entryID'],
-             ':userID'  => $like['userID']]
-        );
+        $addOne->execute([
+          ':userID'  => $like['userID'],
+          ':entryID'  => $like['entryID']
+        ]);
     }
 
-    public function delete($likeID){
+    public function delete($likeID)
+    {
         $statement = $db->prepare('DELETE FROM likes WHERE likeID = :likeID');
         $statement->execute(
         [':likeID'  => $likeID]

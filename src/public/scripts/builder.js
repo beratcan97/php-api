@@ -83,6 +83,17 @@ const builder = (function() {
       addCommentInput.classList.toggle("toggle_visible");
     }
 
+    likeButton.onclick = function () {
+      var route = "likes";
+
+      var body = {
+        userID: sessionStorage.getItem("userID"),
+        entryID: entry.entryID
+      }
+
+      api.post(route, body);
+    }
+
     let titleText = create.text(entry.title);
     let editText = create.text("Edit");
     let deleteText = create.text("Delete");
@@ -128,14 +139,5 @@ const builder = (function() {
     entries: entries
   };
 
-  likeButton.onclick = function () {
-    var route = "addLike";
-    
-    var body = {
-      userID : sessionStorage.getItem['userID'],
-      entryID : sessionStorage.getItem['entryID']
-    }
 
-    post(route, body);
-  }
 })();

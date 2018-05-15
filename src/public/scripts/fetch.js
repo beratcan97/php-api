@@ -44,7 +44,7 @@ const api = (function() {
       body: body,
       credentials: "include"
     };
-
+    console.log(postOptions);
     fetch("/api/" + route, postOptions)
       .then(res => res.text())
       .then(data => data)
