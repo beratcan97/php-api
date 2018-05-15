@@ -76,8 +76,8 @@ const api = (function() {
     };
 
     let remove = fetch("/api/" + route + "/" + id, removeOptions)
-      .then(res => res.json())
-      .then(data => data)
+      .then(res => res.text())
+      .then(data => console.log(data))
       .catch(err => console.log(err));
 
     return remove;

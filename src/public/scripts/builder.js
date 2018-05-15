@@ -4,6 +4,57 @@ const builder = (function() {
     text: arg => document.createTextNode(arg.toString())
   };
 
+  async function updateLikes(entryID) {
+    let likesRoute = "likes/" + entryID;
+    let likes = await api.get(likesRoute);
+    return likes;
+  }
+
+  async function likesBuilder() {
+    let amountOfLikes;
+
+    let likeButton = create.elem("button");
+
+    if (!likes) {
+      amountOfLikes = 0;
+    } else {
+      amountOfLikes = likes.length;
+    }
+
+    likeButton.onclick = function() {
+      var route = "likes";
+      let body = new FormData();
+      let checkUserID;
+      let currentLikeID = 0;
+
+      likes.forEach(like => {
+        if (like.userID.includes(sessionStorage.getItem("userID"))) {
+          checkUserID = true;
+          currentLikeID = like.likeID;
+        }
+      });
+
+      console.log(checkUserID);
+
+      if (!hasLiked) {
+        body.append("userID", sessionStorage.getItem("userID"));
+        body.append("entryID", entry.entryID);
+        api.post(route, body);
+        amountOfLikes++;
+        likeButton.innerHTML = amountOfLikes + " Likes";
+      } else {
+        api.remove(route, currentLikeID);
+        amountOfLikes--;
+        likeButton.innerHTML = amountOfLikes + " Likes";
+      }
+    };
+
+    let likeButtonText = create.text(amountOfLikes + " Likes");
+    likeButton.appendChild(likeButtonText);
+
+    return likeButton;
+  }
+
   function commentsBuilder(comment) {
     let commentElement = create.elem("div");
     let createdBy = create.elem("h2");
@@ -28,8 +79,9 @@ const builder = (function() {
     return commentElement;
   }
 
-  function entries(entry, comments) {
+  function entries(entry, comments, likes) {
     let amountOfComments;
+    let amountOfLikes;
 
     let entryWrapper = create.elem("div");
     let title = create.elem("h1");
@@ -51,10 +103,11 @@ const builder = (function() {
     let commentsWrapper = create.elem("div");
     let likeButton = create.elem("button");
     let addComment = create.elem("button");
+    let addCommentInput = create.elem("textarea");
+
     addComment.classList.add("button");
     addComment.classList.add("is-outlined");
     addComment.classList.add("is-info");
-    let addCommentInput = create.elem("textarea");
 
     addCommentInput.cols = "60";
     addCommentInput.rows = "10";
@@ -79,24 +132,43 @@ const builder = (function() {
       };
     }
 
+    if (!likes) {
+      amountOfLikes = 0;
+    } else {
+      amountOfLikes = likes.length;
+    }
+
     addComment.onclick = function() {
       addCommentInput.classList.toggle("toggle_visible");
-    }
+    };
 
-    likeButton.onclick = function () {
+    likeButton.onclick = function() {
       var route = "likes";
-
       let body = new FormData();
-      body.append("userID", sessionStorage.getItem("userID"));
-      body.append("entryID", entry.entryID);
+      let checkUserID;
+      let currentLikeID = 0;
 
-      // var body = {
-      //   userID: sessionStorage.getItem("userID"),
-      //   entryID: entry.entryID
-      // }
+      likes.forEach(like => {
+        if (like.userID.includes(sessionStorage.getItem("userID"))) {
+          checkUserID = true;
+          currentLikeID = like.likeID;
+        }
+      });
 
-      api.post(route, body);
-    }
+      console.log(checkUserID);
+
+      if (!hasLiked) {
+        body.append("userID", sessionStorage.getItem("userID"));
+        body.append("entryID", entry.entryID);
+        api.post(route, body);
+        amountOfLikes++;
+        likeButton.innerHTML = amountOfLikes + " Likes";
+      } else {
+        api.remove(route, currentLikeID);
+        amountOfLikes--;
+        likeButton.innerHTML = amountOfLikes + " Likes";
+      }
+    };
 
     let titleText = create.text(entry.title);
     let editText = create.text("Edit");
@@ -105,7 +177,7 @@ const builder = (function() {
     let dateText = create.text(entry.createdAt);
     let createdByText = create.text("written by: " + entry.entryUsername);
     let commentSpanText = create.text(amountOfComments + " comments");
-    let likeButtonText = create.text("Like");
+    let likeButtonText = create.text(amountOfLikes + " Likes");
     let addCommentText = create.text("Add comment");
 
     entryWrapper.classList.add("entries_wrapper");
@@ -142,6 +214,4 @@ const builder = (function() {
   return {
     entries: entries
   };
-
-
 })();

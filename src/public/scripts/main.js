@@ -53,6 +53,7 @@ if (isset(signOut)) {
 //  build entries
 async function buildEntries() {
   entriesContainer.innerHTML = "";
+
   let loader = document.createElement("DIV");
   loader.classList.add("loader");
   document.body.appendChild(loader);
@@ -62,13 +63,18 @@ async function buildEntries() {
     userRoute = "entries/user/" + sessionStorage.getItem("userID");
   }
 
+
   let userEntries = await api.get(userRoute);
 
   for (let i = 0; i < userEntries.data.length; i++) {
-    console.log(userEntries.data);
     let commentRoute = "comments/entries/" + userEntries.data[i].entryID;
     let comments = await api.get(commentRoute);
-    let newEntry = builder.entries(userEntries.data[i], comments.data);
+
+    let likesRoute = "likes/" + userEntries.data[i].entryID;
+    let likes = await api.get(likesRoute);
+    console.log(likes);
+
+    let newEntry = builder.entries(userEntries.data[i], comments.data, likes.data);
     entriesContainer.appendChild(newEntry);
   }
 

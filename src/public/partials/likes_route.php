@@ -1,19 +1,19 @@
 <?php
 // LIKES
-$app->get('/likes', function ($request, $response, $args) {
-    $allLikes = $this->get('likes')->getAll();
-    return $response->withJson(['data' => $allLikes]);
-});
+// $app->get('/likes', function ($request, $response, $args) {
+//     $allLikes = $this->get('likes')->getAll();
+//     return $response->withJson(['data' => $allLikes]);
+// });
 
 $app->get('/likes/{id}', function ($request, $response, $args) {
     $id = $args['id'];
-    $singleLike = $this->get('likes')->add($id);
+    $singleLike = $this->get('likes')->getAll($id);
     return $response->withJson(['data' => $singleLike]);
 });
 
-$app->delete('/likes', function ($request, $response, $args) {
-    $body = $request->getParsedBody();
-    $deleteLike = $this->get('likes')->delete($body);
+$app->delete('/likes/{id}', function ($request, $response, $args) {
+    $id = $args['id'];
+    $deleteLike = $this->get('likes')->delete($id);
     return $response->withJson(['data' => $deleteLike]);
 });
 

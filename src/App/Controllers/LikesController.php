@@ -6,16 +6,16 @@ class LikesController
 {
     private $db;
 
-    public function __construct(\PDO $pdo)
+    public function __construct($pdo)
     {
         $this->db = $pdo;
     }
 
     public function getAll($entryID)
     {
-        $getAllLikes = $this->db->prepare('SELECT * FROM likes WHERE $entryID = :entryID');
+        $getAllLikes = $this->db->prepare('SELECT * FROM likes WHERE entryID = :entryID');
         $getAllLikes->execute([':entryID' => $entryID]);
-        return $getOne->fetch();
+        return $getAllLikes->fetchAll();
     }
 
     public function add($like)
@@ -33,7 +33,7 @@ class LikesController
 
     public function delete($likeID)
     {
-        $statement = $db->prepare('DELETE FROM likes WHERE likeID = :likeID');
+        $statement = $this->db->prepare('DELETE FROM likes WHERE likeID = :likeID');
         $statement->execute(
         [':likeID'  => $likeID]
         );
