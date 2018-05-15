@@ -37,7 +37,9 @@ const builder = (function() {
     let editBtn = create.elem("button");
     editBtn.classList.add("button");
     let deleteBtn = create.elem("button");
+    editBtn.classList.add("is-success");
     deleteBtn.classList.add("button");
+    deleteBtn.classList.add("is-danger");
     let createdBy = create.elem("h2");
     let date = create.elem("span");
     let content = create.elem("p");
