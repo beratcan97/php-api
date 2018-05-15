@@ -33,8 +33,10 @@ const builder = (function() {
 
     let entryWrapper = create.elem("div");
     let title = create.elem("h1");
+
     let editBtn = create.elem("button");
     editBtn.classList.add("button");
+
     let deleteBtn = create.elem("button");
     editBtn.classList.add("is-success");
     deleteBtn.classList.add("button");
@@ -46,6 +48,12 @@ const builder = (function() {
     let commentSpan = create.elem("p");
     let commentsWrapper = create.elem("div");
     let likeButton = create.elem("button");
+    let addComment = create.elem("button");
+    let addCommentInput = create.elem("textarea");
+
+    addCommentInput.cols = "60";
+    addCommentInput.rows = "10";
+    addCommentInput.classList.add("toggle_visible");
 
     if (!comments) {
       amountOfComments = 0;
@@ -65,6 +73,10 @@ const builder = (function() {
       };
     }
 
+    addComment.onclick = function() {
+      addCommentInput.classList.toggle("toggle_visible");
+    }
+
     let titleText = create.text(entry.title);
     let editText = create.text("Edit");
     let deleteText = create.text("Delete");
@@ -73,6 +85,7 @@ const builder = (function() {
     let createdByText = create.text("written by: " + entry.entryUsername);
     let commentSpanText = create.text(amountOfComments + " comments");
     let likeButtonText = create.text("Like");
+    let addCommentText = create.text("Add comment");
 
     entryWrapper.classList.add("entries_wrapper");
 
@@ -84,6 +97,7 @@ const builder = (function() {
     content.appendChild(contentText);
     commentSpan.appendChild(commentSpanText);
     likeButton.appendChild(likeButtonText);
+    addComment.appendChild(addCommentText);
 
     entryWrapper.appendChild(title);
     entryWrapper.appendChild(editBtn);
@@ -94,6 +108,8 @@ const builder = (function() {
     entryWrapper.appendChild(commentSpan);
     entryWrapper.appendChild(commentsWrapper);
     entryWrapper.appendChild(likeButton);
+    entryWrapper.appendChild(addComment);
+    entryWrapper.appendChild(addCommentInput);
 
     // DELETE THIS WHEN STYLING IS DONE
     entryWrapper.style.borderBottom = "1px solid black";
