@@ -2,12 +2,7 @@
 
 # Gruppuppgift - API
 > Skapa ett API med Slim & PDO
-> 
-> **Valfria grupper av 3 personer**
-> 
-> Betyg: **IG/G/VG**
-
-
+ 
 ## Uppgift
 
 Ni som grupp ska skapa ett API med hjälp av PHP-ramverket [Slim](https://www.slimframework.com/) och databasen MySQL. Till detta API ska ni bygga ett enklare grafiskt gränssnitt. Detta blir som ert eget CMS.
@@ -51,9 +46,9 @@ Ni som grupp ska skapa ett API med hjälp av PHP-ramverket [Slim](https://www.sl
 - [ ] Man ska kunna hämta ut ett enskilt specifikt inlägg via `GET /api/entries/{ID}`.
 - [ ] Man ska kunna ta bort ett enskilt specifikt inlägg via `DELETE /api/entries/{ID}`.
 - [ ] Man ska kunna uppdatera ett enskilt specifikt inlägg via `PATCH /api/entries/{ID}`.
-- [ ] Man ska kunna hämta alla inlägg som en användare har skrivit via en endpoint.
+- [x] Man ska kunna hämta alla inlägg som en användare har skrivit via en endpoint.
 - [ ] Man ska kunna hämta de 20 senaste kommentarerna via `GET /api/comments`.
-- [ ] Man ska kunna skapa en kommentar via `POST /api/comments`
+- [x] Man ska kunna skapa en kommentar via `POST /api/comments`
 - [ ] Man ska kunna hämta ut en enskild specifik kommentar via `GET /api/comments/{ID}`
 - [ ] Man ska kunna ta bort en enskild specifik kommentar via `DELETE /api/comments/{ID}`
 - [ ] Man ska kunna hämta alla kommentarer kopplat till ett inlägg via en endpoint.
@@ -68,7 +63,7 @@ Ni som grupp ska skapa ett API med hjälp av PHP-ramverket [Slim](https://www.sl
 ## Krav för VG
 
 - [ ] Koden är välstrukturerad och håller hög nivå både i gränssnittet och i det bakomliggande APIet. Det ska inte ligga kvar något "utvecklingskod" och produkten ska kännas färdig. Minimal upprepning av kod och det är tydligt vad varje del i applikationen gör. Gränssnittet är användarvänligt och lättförstått.
-- [ ] APIet kan även hantera att man kan gilla ett inlägg.
+- [x] APIet kan även hantera att man kan gilla ett inlägg.
 - [ ] Rollbaserad autentisering. Man kan ha två olika roller som en användare: `admin`/`user` och dessa har olika rättigheter. Ni begränsar användaren på något sätt så att denna inte kan t.ex. ta bort vad som helst medan en `admin` kan göra vad som helst med APIt.
 
 ## Inlämning
@@ -79,4 +74,3 @@ Ni som grupp ska skapa ett API med hjälp av PHP-ramverket [Slim](https://www.sl
 gruppnamn_api.zip
 ```
 
-**Ni ska zippa HELA mappen och inte gå in i mappen och zippa ihop filerna som ligger i mappen. Utan högerklicka på själva mappen och välj "Komprimera" eller liknande alternativ**
