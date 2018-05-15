@@ -86,10 +86,14 @@ const builder = (function() {
     likeButton.onclick = function () {
       var route = "likes";
 
-      var body = {
-        userID: sessionStorage.getItem("userID"),
-        entryID: entry.entryID
-      }
+      let body = new FormData();
+      body.append("userID", sessionStorage.getItem("userID"));
+      body.append("entryID", entry.entryID);
+
+      // var body = {
+      //   userID: sessionStorage.getItem("userID"),
+      //   entryID: entry.entryID
+      // }
 
       api.post(route, body);
     }
