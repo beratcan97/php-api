@@ -22,7 +22,7 @@
             <i class="fas fa-lock"></i>
           </span>
       </div>
-      <button type="submit" name="loginBtn" id="loginBtn" class="button">Log in</button>
+      <button type="submit" name="loginBtn" id="loginBtn" class="button is-outlined is-primary">Log in</button>
     </div>
   </form>
 
