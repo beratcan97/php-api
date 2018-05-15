@@ -38,8 +38,10 @@ const builder = (function() {
     editBtn.classList.add("button");
 
     let deleteBtn = create.elem("button");
+    editBtn.classList.add("is-outlined");
     editBtn.classList.add("is-success");
     deleteBtn.classList.add("button");
+    deleteBtn.classList.add("is-outlined");
     deleteBtn.classList.add("is-danger");
 
     let createdBy = create.elem("h2");
@@ -49,6 +51,9 @@ const builder = (function() {
     let commentsWrapper = create.elem("div");
     let likeButton = create.elem("button");
     let addComment = create.elem("button");
+    addComment.classList.add("button");
+    addComment.classList.add("is-outlined");
+    addComment.classList.add("is-info");
     let addCommentInput = create.elem("textarea");
 
     addCommentInput.cols = "60";
@@ -66,6 +71,7 @@ const builder = (function() {
 
       commentsWrapper.classList.add("toggle_visible");
       likeButton.classList.add("button");
+      likeButton.classList.add("is-outlined");
       likeButton.classList.add("is-info");
 
       commentSpan.onclick = function() {
