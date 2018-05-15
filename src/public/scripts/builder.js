@@ -93,6 +93,7 @@ const builder = (function() {
     entryWrapper.appendChild(date);
     entryWrapper.appendChild(commentSpan);
     entryWrapper.appendChild(commentsWrapper);
+    entryWrapper.appendChild(likeButton);
 
     // DELETE THIS WHEN STYLING IS DONE
     entryWrapper.style.borderBottom = "1px solid black";
