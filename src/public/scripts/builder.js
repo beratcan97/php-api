@@ -59,7 +59,8 @@ const builder = (function() {
       })
 
       commentsWrapper.classList.add("toggle_visible");
-      likeButton.classList.add("button is-info");
+      likeButton.classList.add("button");
+      likeButton.classList.add("is-info");
 
       commentSpan.onclick = function() {
         commentsWrapper.classList.toggle("toggle_visible");
@@ -72,7 +73,7 @@ const builder = (function() {
     let dateText = create.text(entry.createdAt);
     let createdByText = create.text("written by: " + entry.entryUsername);
     let commentSpanText = create.text(amountOfComments + " comments");
-    let likeButton = create.text("Like");
+    let likeButtonText = create.text("Like");
 
     entryWrapper.classList.add("entries_wrapper");
 
@@ -81,6 +82,7 @@ const builder = (function() {
     date.appendChild(dateText);
     content.appendChild(contentText);
     commentSpan.appendChild(commentSpanText);
+    likeButton.appendChild(likeButtonText);
 
 
 
