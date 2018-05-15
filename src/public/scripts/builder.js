@@ -40,11 +40,13 @@ const builder = (function() {
     editBtn.classList.add("is-success");
     deleteBtn.classList.add("button");
     deleteBtn.classList.add("is-danger");
+
     let createdBy = create.elem("h2");
     let date = create.elem("span");
     let content = create.elem("p");
     let commentSpan = create.elem("p");
     let commentsWrapper = create.elem("div");
+    let likeButton = create.elem("button");
 
 
     if (!comments) {
@@ -57,6 +59,7 @@ const builder = (function() {
       })
 
       commentsWrapper.classList.add("toggle_visible");
+      likeButton.classList.add("button is-info");
 
       commentSpan.onclick = function() {
         commentsWrapper.classList.toggle("toggle_visible");
@@ -65,18 +68,15 @@ const builder = (function() {
 
 
     let titleText = create.text(entry.title);
-    let editText = create.text("Edit");
-    let deleteText = create.text("Delete");
     let contentText = create.text(entry.content);
     let dateText = create.text(entry.createdAt);
     let createdByText = create.text("written by: " + entry.entryUsername);
     let commentSpanText = create.text(amountOfComments + " comments");
+    let likeButton = create.text("Like");
 
     entryWrapper.classList.add("entries_wrapper");
 
     title.appendChild(titleText);
-    editBtn.appendChild(editText);
-    deleteBtn.appendChild(deleteText);
     createdBy.appendChild(createdByText);
     date.appendChild(dateText);
     content.appendChild(contentText);
@@ -86,8 +86,6 @@ const builder = (function() {
 
 
     entryWrapper.appendChild(title);
-    entryWrapper.appendChild(editBtn);
-    entryWrapper.appendChild(deleteBtn);
     entryWrapper.appendChild(createdBy);
     entryWrapper.appendChild(content);
     entryWrapper.appendChild(date);

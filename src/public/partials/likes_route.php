@@ -11,8 +11,14 @@ $app->get('/likes/{id}', function ($request, $response, $args) {
     return $response->withJson(['data' => $singleLike]);
 });
 
-$app->delete('/register', function ($request, $response, $args) {
+$app->delete('/deleteLike', function ($request, $response, $args) {
     $body = $request->getParsedBody();
     $deleteLike = $this->get('likes')->delete($body);
     return $response->withJson(['data' => $deleteLike]);
+});
+
+$app->post('/addLike', function ($request, $response, $args) {
+    $body = $request->getParsedBody();
+    $addLike = $this->get('likes')->add($body);
+    return $response->withJson(['data' => $newLike]);
 });
