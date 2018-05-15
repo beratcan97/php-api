@@ -47,7 +47,7 @@ const api = (function() {
     console.log(postOptions);
     fetch("/api/" + route, postOptions)
       .then(res => res.text())
-      .then(data => data)
+      .then(data => console.log(data))
       .catch(err => console.log(err));
   }
 
