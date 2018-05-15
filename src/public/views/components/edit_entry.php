@@ -22,7 +22,7 @@
                 </div>
                 <br>
                 <div class="control">
-                    <button type="submit" class="button">Add changes</button>
+                    <button type="submit" class="button is-outlined is-primary">Add changes</button>
                 </div>
             </form> 
         </div>

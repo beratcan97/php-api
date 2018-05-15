@@ -86,15 +86,21 @@ const builder = (function() {
     let entryWrapper = create.elem("div");
     let title = create.elem("h1");
 
+    //BUTTONS
     let editBtn = create.elem("button");
-    editBtn.classList.add("button");
+    const clsE=["button","is-outlined", "is-success"];
+    editBtn.classList.add(...clsE);
 
     let deleteBtn = create.elem("button");
-    editBtn.classList.add("is-outlined");
-    editBtn.classList.add("is-success");
-    deleteBtn.classList.add("button");
-    deleteBtn.classList.add("is-outlined");
-    deleteBtn.classList.add("is-danger");
+    const clsD=["button","is-outlined", "is-danger"];
+    deleteBtn.classList.add(...clsD);
+
+    let likeBtn = create.elem("button");
+    const clsLC=["button","is-outlined", "is-info"];
+    likeBtn.classList.add(...clsLC);
+    
+    let commentBtn = create.elem("button");
+    commentBtn.classList.add(...clsLC);
 
     let createdBy = create.elem("h2");
     let date = create.elem("span");
@@ -103,15 +109,17 @@ const builder = (function() {
     let commentsWrapper = create.elem("div");
     let likeButton = create.elem("button");
     let addComment = create.elem("button");
-    let addCommentInput = create.elem("textarea");
 
     addComment.classList.add("button");
     addComment.classList.add("is-outlined");
     addComment.classList.add("is-info");
+    
+    let commentInput = create.elem("textarea");
 
-    addCommentInput.cols = "60";
-    addCommentInput.rows = "10";
-    addCommentInput.classList.add("toggle_visible");
+    commentInput.cols = "60";
+    commentInput.rows = "10";
+    let clsCI=["textarea", "toggle_visible"];
+    commentInput.classList.add(...clsCI);
 
     if (!comments) {
       amountOfComments = 0;
@@ -123,9 +131,7 @@ const builder = (function() {
       });
 
       commentsWrapper.classList.add("toggle_visible");
-      likeButton.classList.add("button");
-      likeButton.classList.add("is-outlined");
-      likeButton.classList.add("is-info");
+    
 
       commentSpan.onclick = function() {
         commentsWrapper.classList.toggle("toggle_visible");
@@ -138,11 +144,11 @@ const builder = (function() {
       amountOfLikes = likes.length;
     }
 
-    addComment.onclick = function() {
-      addCommentInput.classList.toggle("toggle_visible");
-    };
+    commentBtn.onclick = function() {
+      commentInput.classList.toggle("toggle_visible");
+    }
 
-    likeButton.onclick = function() {
+    likeBtn.onclick = function () {
       var route = "likes";
       let body = new FormData();
       let checkUserID;
@@ -177,8 +183,8 @@ const builder = (function() {
     let dateText = create.text(entry.createdAt);
     let createdByText = create.text("written by: " + entry.entryUsername);
     let commentSpanText = create.text(amountOfComments + " comments");
-    let likeButtonText = create.text(amountOfLikes + " Likes");
-    let addCommentText = create.text("Add comment");
+    let likeBtnText = create.text(amountOfLikes + "Like");
+    let commentBtnText = create.text("Add comment");
 
     entryWrapper.classList.add("entries_wrapper");
 
@@ -189,8 +195,8 @@ const builder = (function() {
     date.appendChild(dateText);
     content.appendChild(contentText);
     commentSpan.appendChild(commentSpanText);
-    likeButton.appendChild(likeButtonText);
-    addComment.appendChild(addCommentText);
+    likeBtn.appendChild(likeBtnText);
+    commentBtn.appendChild(commentBtnText);
 
     entryWrapper.appendChild(title);
     entryWrapper.appendChild(editBtn);
@@ -200,9 +206,9 @@ const builder = (function() {
     entryWrapper.appendChild(date);
     entryWrapper.appendChild(commentSpan);
     entryWrapper.appendChild(commentsWrapper);
-    entryWrapper.appendChild(likeButton);
-    entryWrapper.appendChild(addComment);
-    entryWrapper.appendChild(addCommentInput);
+    entryWrapper.appendChild(likeBtn);
+    entryWrapper.appendChild(commentBtn);
+    entryWrapper.appendChild(commentInput);
 
     // DELETE THIS WHEN STYLING IS DONE
     entryWrapper.style.borderBottom = "1px solid black";
