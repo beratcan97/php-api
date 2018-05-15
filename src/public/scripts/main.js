@@ -8,7 +8,6 @@ function isset(item) {
   return item !== null;
 }
 
-
 // Declarations
 let registerForm = get.id("register_form");
 let loginForm = get.id("login_form");
@@ -53,26 +52,25 @@ if (isset(signOut)) {
 
 //  build entries
 async function buildEntries() {
+  entriesContainer.innerHTML = "";
   let loader = document.createElement("DIV");
   loader.classList.add("loader");
   document.body.appendChild(loader);
 
-  let userRoute = "entries/user/" + sessionStorage.getItem("userID");
-  let userEntries = await api.get(userRoute);
+  let userEntries = await api.get("entries");
 
   for (let i = 0; i < userEntries.data.length; i++) {
     console.log(userEntries.data);
-      let commentRoute = "comments/entries/" + userEntries.data[i].entryID;
-      let comments = await api.get(commentRoute);
-      console.log(comments.data);
-      let newEntry = builder.entries(userEntries.data[i], comments.data);
-      entriesContainer.appendChild(newEntry);
+    let commentRoute = "comments/entries/" + userEntries.data[i].entryID;
+    let comments = await api.get(commentRoute);
+    let newEntry = builder.entries(userEntries.data[i], comments.data);
+    entriesContainer.appendChild(newEntry);
   }
-  
+
   loader.remove();
 }
 
-if(isset(sessionStorage.getItem("userID"))) {
+if (isset(sessionStorage.getItem("userID"))) {
   buildEntries();
 }
 
