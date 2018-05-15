@@ -13,7 +13,10 @@ class EntriesController
 
     public function getAll()
     {
-        $getAll = $this->db->prepare('SELECT * FROM entries');
+        $getAll = $this->db->prepare('SELECT entries.*,
+          users.username AS "entryUsername"
+          FROM entries
+          INNER JOIN users ON users.userID = entries.createdBy');
         $getAll->execute();
         return $getAll->fetchAll();
     }
