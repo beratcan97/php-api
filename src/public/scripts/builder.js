@@ -127,4 +127,15 @@ const builder = (function() {
   return {
     entries: entries
   };
+
+  likeButton.onclick = function () {
+    var route = "addLike";
+    
+    var body = {
+      userID : sessionStorage.getItem['userID'],
+      entryID : sessionStorage.getItem['entryID']
+    }
+
+    post(route, body);
+  }
 })();
