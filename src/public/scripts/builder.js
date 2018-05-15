@@ -34,6 +34,10 @@ const builder = (function() {
 
     let entryWrapper = create.elem("div");
     let title = create.elem("h1");
+    let editBtn = create.elem("button");
+    editBtn.classList.add("button");
+    let deleteBtn = create.elem("button");
+    deleteBtn.classList.add("button");
     let createdBy = create.elem("h2");
     let date = create.elem("span");
     let content = create.elem("p");
@@ -59,6 +63,8 @@ const builder = (function() {
 
 
     let titleText = create.text(entry.title);
+    let editText = create.text("Edit");
+    let deleteText = create.text("Delete");
     let contentText = create.text(entry.content);
     let dateText = create.text(entry.createdAt);
     let createdByText = create.text("written by: " + entry.entryUsername);
@@ -67,6 +73,8 @@ const builder = (function() {
     entryWrapper.classList.add("entries_wrapper");
 
     title.appendChild(titleText);
+    editBtn.appendChild(editText);
+    deleteBtn.appendChild(deleteText);
     createdBy.appendChild(createdByText);
     date.appendChild(dateText);
     content.appendChild(contentText);
@@ -76,6 +84,8 @@ const builder = (function() {
 
 
     entryWrapper.appendChild(title);
+    entryWrapper.appendChild(editBtn);
+    entryWrapper.appendChild(deleteBtn);
     entryWrapper.appendChild(createdBy);
     entryWrapper.appendChild(content);
     entryWrapper.appendChild(date);
