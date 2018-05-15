@@ -44,10 +44,10 @@ const api = (function() {
       body: body,
       credentials: "include"
     };
-    console.log(postOptions);
+    
     fetch("/api/" + route, postOptions)
-      .then(res => res.text())
-      .then(data => console.log(data))
+      .then(res => res.json())
+      .then(data => data)
       .catch(err => console.log(err));
   }
 
@@ -76,8 +76,8 @@ const api = (function() {
     };
 
     let remove = fetch("/api/" + route + "/" + id, removeOptions)
-      .then(res => res.text())
-      .then(data => console.log(data))
+      .then(res => res.json())
+      .then(data => data)
       .catch(err => console.log(err));
 
     return remove;

@@ -4,57 +4,6 @@ const builder = (function() {
     text: arg => document.createTextNode(arg.toString())
   };
 
-  async function updateLikes(entryID) {
-    let likesRoute = "likes/" + entryID;
-    let likes = await api.get(likesRoute);
-    return likes;
-  }
-
-  async function likesBuilder() {
-    let amountOfLikes;
-
-    let likeButton = create.elem("button");
-
-    if (!likes) {
-      amountOfLikes = 0;
-    } else {
-      amountOfLikes = likes.length;
-    }
-
-    likeButton.onclick = function() {
-      var route = "likes";
-      let body = new FormData();
-      let checkUserID;
-      let currentLikeID = 0;
-
-      likes.forEach(like => {
-        if (like.userID.includes(sessionStorage.getItem("userID"))) {
-          checkUserID = true;
-          currentLikeID = like.likeID;
-        }
-      });
-
-      console.log(checkUserID);
-
-      if (!hasLiked) {
-        body.append("userID", sessionStorage.getItem("userID"));
-        body.append("entryID", entry.entryID);
-        api.post(route, body);
-        amountOfLikes++;
-        likeButton.innerHTML = amountOfLikes + " Likes";
-      } else {
-        api.remove(route, currentLikeID);
-        amountOfLikes--;
-        likeButton.innerHTML = amountOfLikes + " Likes";
-      }
-    };
-
-    let likeButtonText = create.text(amountOfLikes + " Likes");
-    likeButton.appendChild(likeButtonText);
-
-    return likeButton;
-  }
-
   function commentsBuilder(comment) {
     let commentElement = create.elem("div");
     let createdBy = create.elem("h2");
@@ -79,7 +28,7 @@ const builder = (function() {
     return commentElement;
   }
 
-  function entries(entry, comments, likes) {
+  async function entries(entry, comments, likes) {
     let amountOfComments;
     let amountOfLikes;
 
@@ -88,17 +37,17 @@ const builder = (function() {
 
     //BUTTONS
     let editBtn = create.elem("button");
-    const clsE=["button","is-outlined", "is-success"];
+    const clsE = ["button", "is-outlined", "is-success"];
     editBtn.classList.add(...clsE);
 
     let deleteBtn = create.elem("button");
-    const clsD=["button","is-outlined", "is-danger"];
+    const clsD = ["button", "is-outlined", "is-danger"];
     deleteBtn.classList.add(...clsD);
 
     let likeBtn = create.elem("button");
-    const clsLC=["button","is-outlined", "is-info"];
+    const clsLC = ["button", "is-outlined", "is-info"];
     likeBtn.classList.add(...clsLC);
-    
+
     let commentBtn = create.elem("button");
     commentBtn.classList.add(...clsLC);
 
@@ -113,12 +62,12 @@ const builder = (function() {
     addComment.classList.add("button");
     addComment.classList.add("is-outlined");
     addComment.classList.add("is-info");
-    
+
     let commentInput = create.elem("textarea");
 
     commentInput.cols = "60";
     commentInput.rows = "10";
-    let clsCI=["textarea", "toggle_visible"];
+    let clsCI = ["textarea", "toggle_visible"];
     commentInput.classList.add(...clsCI);
 
     if (!comments) {
@@ -131,7 +80,6 @@ const builder = (function() {
       });
 
       commentsWrapper.classList.add("toggle_visible");
-    
 
       commentSpan.onclick = function() {
         commentsWrapper.classList.toggle("toggle_visible");
@@ -146,12 +94,12 @@ const builder = (function() {
 
     commentBtn.onclick = function() {
       commentInput.classList.toggle("toggle_visible");
-    }
+    };
 
-    likeBtn.onclick = function () {
+    likeBtn.onclick = async function() {
       var route = "likes";
       let body = new FormData();
-      let checkUserID;
+      let checkUserID = false;
       let currentLikeID = 0;
 
       likes.forEach(like => {
@@ -161,18 +109,23 @@ const builder = (function() {
         }
       });
 
-      console.log(checkUserID);
-
-      if (!hasLiked) {
+      if (!checkUserID) {
         body.append("userID", sessionStorage.getItem("userID"));
         body.append("entryID", entry.entryID);
         api.post(route, body);
-        amountOfLikes++;
-        likeButton.innerHTML = amountOfLikes + " Likes";
+
+        let newLikes = await api.get("likes/" + entry.entryID);
+
+        amountOfLikes = newLikes.data.length;
+        likeBtn.innerHTML = amountOfLikes + " Likes";
+        likes = newLikes.data;
       } else {
         api.remove(route, currentLikeID);
-        amountOfLikes--;
-        likeButton.innerHTML = amountOfLikes + " Likes";
+        let newLikes = await api.get("likes/" + entry.entryID);
+
+        amountOfLikes = newLikes.data.length;
+        likeBtn.innerHTML = amountOfLikes + " Likes";
+        likes = newLikes.data;
       }
     };
 
@@ -183,7 +136,7 @@ const builder = (function() {
     let dateText = create.text(entry.createdAt);
     let createdByText = create.text("written by: " + entry.entryUsername);
     let commentSpanText = create.text(amountOfComments + " comments");
-    let likeBtnText = create.text(amountOfLikes + "Like");
+    let likeBtnText = create.text(amountOfLikes + " Likes");
     let commentBtnText = create.text("Add comment");
 
     entryWrapper.classList.add("entries_wrapper");

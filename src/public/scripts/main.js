@@ -72,9 +72,8 @@ async function buildEntries() {
 
     let likesRoute = "likes/" + userEntries.data[i].entryID;
     let likes = await api.get(likesRoute);
-    console.log(likes);
 
-    let newEntry = builder.entries(userEntries.data[i], comments.data, likes.data);
+    let newEntry = await builder.entries(userEntries.data[i], comments.data, likes.data);
     entriesContainer.appendChild(newEntry);
   }
 
