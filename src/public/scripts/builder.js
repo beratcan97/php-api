@@ -29,7 +29,6 @@ const builder = (function() {
   }
 
   function entries(entry, comments) {
-
     let amountOfComments;
 
     let entryWrapper = create.elem("div");
@@ -48,7 +47,6 @@ const builder = (function() {
     let commentsWrapper = create.elem("div");
     let likeButton = create.elem("button");
 
-
     if (!comments) {
       amountOfComments = 0;
     } else {
@@ -56,7 +54,7 @@ const builder = (function() {
       comments.forEach(comment => {
         let newComment = commentsBuilder(comment);
         commentsWrapper.appendChild(newComment);
-      })
+      });
 
       commentsWrapper.classList.add("toggle_visible");
       likeButton.classList.add("button");
@@ -64,11 +62,12 @@ const builder = (function() {
 
       commentSpan.onclick = function() {
         commentsWrapper.classList.toggle("toggle_visible");
-      }
+      };
     }
 
-
     let titleText = create.text(entry.title);
+    let editText = create.text("Edit");
+    let deleteText = create.text("Delete");
     let contentText = create.text(entry.content);
     let dateText = create.text(entry.createdAt);
     let createdByText = create.text("written by: " + entry.entryUsername);
@@ -78,22 +77,22 @@ const builder = (function() {
     entryWrapper.classList.add("entries_wrapper");
 
     title.appendChild(titleText);
+    editBtn.appendChild(editText);
+    deleteBtn.appendChild(deleteText);
     createdBy.appendChild(createdByText);
     date.appendChild(dateText);
     content.appendChild(contentText);
     commentSpan.appendChild(commentSpanText);
     likeButton.appendChild(likeButtonText);
 
-
-
-
     entryWrapper.appendChild(title);
+    entryWrapper.appendChild(editBtn);
+    entryWrapper.appendChild(deleteBtn);
     entryWrapper.appendChild(createdBy);
     entryWrapper.appendChild(content);
     entryWrapper.appendChild(date);
     entryWrapper.appendChild(commentSpan);
     entryWrapper.appendChild(commentsWrapper);
-
 
     // DELETE THIS WHEN STYLING IS DONE
     entryWrapper.style.borderBottom = "1px solid black";
