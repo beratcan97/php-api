@@ -138,6 +138,16 @@ const builder = (function() {
         likes = newLikes.data;
       }
     };
+    
+    postCommentButton.onclick = function(){
+      let body = new FormData();
+      let route = "comments";
+      body.append("content", commentInput.value);
+      body.append("createdBy", sessionStorage.getItem("userID"));
+      body.append("entryID", entry.entryID);
+
+      api.post(route, body);
+    }
 
     let titleText = create.text(entry.title);
     let editText = create.text("Edit");

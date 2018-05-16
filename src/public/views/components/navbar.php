@@ -12,9 +12,12 @@
 	<?php else:  ?>
 
 	<li>
-		<a href="../">Home</a>
+		<span class="icon has-text-info">
+  		<i class="fas fa-home"></i>
+			<a href="../" >Home</a>
+		</span>
 	</li>
-
+	
 	<li>
 		<a href="/logout" id="sign_out">Sign out</a>
 	</li>
