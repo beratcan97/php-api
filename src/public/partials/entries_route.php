@@ -23,8 +23,10 @@ $app->post('/entries', function ($request, $response, $args) {
     return $response->withJson(['data' => $newEntry]);
 });
 
-$app->delete('/entries', function ($request, $response, $args) {
-    $this->get('entries')->delete();
+$app->delete('/entries/{id}', function ($request, $response, $args) {
+    $id = $args['id'];
+    $deleteEntry = $this->get('entries')->delete($id);
+    return $response->withJson(['data' => $deleteEntry]);
 });
 
 $app->patch('/entries', function ($request, $response, $args) {
