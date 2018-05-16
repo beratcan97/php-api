@@ -10,12 +10,11 @@
 	</li>
 
 	<?php else:  ?>
-
-	<li>
-		<span class="icon has-text-info">
-  		<i class="fas fa-home"></i>
-			<a href="../" >Home</a>
-		</span>
+	
+	<li>		
+			<a href="../" ><span class="icon has-text-info">
+				<i class="fas fa-home"></i></span>Home
+			</a>
 	</li>
 	
 	<li>

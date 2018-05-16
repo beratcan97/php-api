@@ -21,11 +21,10 @@
     <div class="card">
       <header class="card-header">
         <p class="card-header-title">
-          Component
+          Title
         </p>
-        <a href="#" class="card-header-icon" aria-label="more options"></a>
-        <a href="#" class="card-header-icon">Edit</a>
-        <a href="#" class="card-header-icon">Delete</a>
+        <button type="submit" name="editBtn" id="editBtn" class="button is-outlined is-primary has-margin">Edit</button>
+        <button type="submit" name="deleteBtn" id="deleteBtn" class="button is-outlined is-danger">Delete</button>
       </header>
       <div class="card-content">
         <div class="content">
@@ -35,9 +34,9 @@
           <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
         </div>
       </div>
-      <footer class="card-footer">
-        <a href="#" class="card-footer-item">Like</a>
-        <a href="#" class="card-footer-item">Comment</a>
+      <footer class="card-footer is-right">
+        <button type="submit" name="likeBtn" id="likeBtn" class="button is-outlined is-info">Likes</button>
+        <button type="submit" name="commentBtn" id="commentBtn" class="button is-outlined is-info">Comments</button>
       </footer>
     </div>
    
