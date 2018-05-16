@@ -16,7 +16,7 @@ const builder = (function() {
     let createdByText = create.text("user: " + comment.username);
     let dateText = create.text("date: " + comment.createdAt);
     let contentText = create.text("comment: " + comment.content);
-        let commentDeleteBtnText = create.text("Delete");
+    let commentDeleteBtnText = create.text("Delete");
 
     createdBy.appendChild(createdByText);
     date.appendChild(dateText);
@@ -62,8 +62,10 @@ const builder = (function() {
     let commentBtn = create.elem("button");
     commentBtn.classList.add(...clsLC);
 
+    title.classList.add("title");
+
     let createdBy = create.elem("h2");
-    let date = create.elem("span");
+    let date = create.elem("p");
     let content = create.elem("p");
     let commentSpan = create.elem("p");
     let commentsWrapper = create.elem("div");
@@ -179,6 +181,8 @@ const builder = (function() {
     let postCommentBtnText = create.text("Post");
 
     entryWrapper.classList.add("entries_wrapper");
+    const clsCS = ["button", "is-outlined", "is-info"];
+    commentSpan.classList.add(...clsCS);
 
     title.appendChild(titleText);
     editBtn.appendChild(editText);
@@ -186,20 +190,20 @@ const builder = (function() {
     createdBy.appendChild(createdByText);
     date.appendChild(dateText);
     content.appendChild(contentText);
-    commentSpan.appendChild(commentSpanText);
     likeBtn.appendChild(likeBtnText);
+    commentSpan.appendChild(commentSpanText);
     commentBtn.appendChild(commentBtnText);
     postCommentBtn.appendChild(postCommentBtnText);
 
-    entryWrapper.appendChild(title);
     entryWrapper.appendChild(editBtn);
     entryWrapper.appendChild(deleteBtn);
-    entryWrapper.appendChild(createdBy);
+    entryWrapper.appendChild(title);
     entryWrapper.appendChild(content);
+    entryWrapper.appendChild(createdBy);
     entryWrapper.appendChild(date);
-    entryWrapper.appendChild(commentSpan);
     entryWrapper.appendChild(commentsWrapper);
     entryWrapper.appendChild(likeBtn);
+    entryWrapper.appendChild(commentSpan);
     entryWrapper.appendChild(commentBtn);
     entryWrapper.appendChild(commentInput);
     entryWrapper.appendChild(postCommentBtn);
