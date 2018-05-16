@@ -1,32 +1,28 @@
-<nav class="navbar">
-		<div class="navbar-end">
-			<ul class="navbar">
+<div class="tabs is-right">
+  <ul>
+	<?php if (!isset($_SESSION['userID'])): ?>
 
-				<?php if (!isset($_SESSION['userID'])): ?>
+	<li>
+		<a href="/login">Log in</a>
+	</li>
+	<li>
+		<a href="/register">Register</a>
+	</li>
 
-				<li class="navbar-item">
-					<a href="/login">Log in</a>
-				</li>
-				<li class="navbar-item">
-					<a href="/register">Register</a>
-				</li>
+	<?php else:  ?>
 
-				<?php else:  ?>
+	<li>
+		<a href="../">Home</a>
+	</li>
 
-				<li class="navbar-item">
-					<a href="../">Home</a>
-				</li>
+	<li>
+		<a href="/logout" id="sign_out">Sign out</a>
+	</li>
 
-				<li class="navbar-item">
-					<a href="/logout" id="sign_out">Sign out</a>
-				</li>
+	<li>
+		<a href="/profile">Profile</a>
+	</li>
 
-				<li class="navbar-item">
-					<a href="/profile">Profile</a>
-				</li>
-
-				<?php endif; ?>
-			</ul>
-		</div>
-</nav>
-
+	<?php endif; ?>
+  </ul>
+</div>

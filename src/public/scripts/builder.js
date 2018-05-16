@@ -96,6 +96,12 @@ const builder = (function() {
       commentInput.classList.toggle("toggle_visible");
     };
 
+    /*deleteBtn.onclick = async function() {
+      var route = "entries";
+      let selectedEntry = await api.get("entries/" + entry.entryID);
+      api.remove(route, selectedEntry);
+    }*/
+
     likeBtn.onclick = async function() {
       var route = "likes";
       let body = new FormData();
