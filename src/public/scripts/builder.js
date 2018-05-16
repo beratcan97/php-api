@@ -100,10 +100,14 @@ const builder = (function() {
       postCommentButton.classList.toggle("toggle_visible");
     };
 
-    /*deleteBtn.onclick = async function() {
-      var route = "entries";
-      let selectedEntry = await api.get("entries/" + entry.entryID);
-      api.remove(route, selectedEntry);
+    deleteBtn.onclick = function() {
+      api.remove("entries", entry.entryID);
+      location.reload();
+    }
+
+    /*editBtn.onclick = function() {
+      api.remove("entries", entry.entryID);
+      location.reload();
     }*/
 
     likeBtn.onclick = async function() {
