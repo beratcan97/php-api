@@ -29,8 +29,9 @@ $app->delete('/entries/{id}', function ($request, $response, $args) {
     return $response->withJson(['data' => $deleteEntry]);
 });
 
-$app->patch('/entries', function ($request, $response, $args) {
+$app->patch('/entries/{id}', function ($request, $response, $args) {
     $body = $request->getParsedBody();
-    $selectedEntry = $this->get('entries')->update($title, $newContent, $entryID);
-    return $response->withJson(['data' => $selectedEntry]);
+    $id = $args['id'];
+    $selectedEntry = $this->get('entries')->update($body, $id);
+    return $response->withJson(['data' => $body]);
 });

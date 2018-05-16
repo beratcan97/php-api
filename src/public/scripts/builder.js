@@ -21,7 +21,7 @@ const builder = (function() {
     createdBy.appendChild(createdByText);
     date.appendChild(dateText);
     content.appendChild(contentText);
-    commentDeleteBtn.appendChild(commentDeleteBtnText); 
+    commentDeleteBtn.appendChild(commentDeleteBtnText);
 
     commentElement.appendChild(createdBy);
     commentElement.appendChild(date);
@@ -44,7 +44,16 @@ const builder = (function() {
     let amountOfLikes;
 
     let entryWrapper = create.elem("div");
+    let titleWrapper = create.elem("div");
+    let contentWrapper = create.elem("div");
     let title = create.elem("h1");
+    let createdBy = create.elem("h2");
+    let date = create.elem("p");
+    let content = create.elem("p");
+    let commentSpan = create.elem("p");
+    let commentsWrapper = create.elem("div");
+    let likeButton = create.elem("button");
+    let addComment = create.elem("button");
 
     //BUTTONS
     let editBtn = create.elem("button");
@@ -61,14 +70,6 @@ const builder = (function() {
 
     let commentBtn = create.elem("button");
     commentBtn.classList.add(...clsLC);
-
-    let createdBy = create.elem("h2");
-    let date = create.elem("span");
-    let content = create.elem("p");
-    let commentSpan = create.elem("p");
-    let commentsWrapper = create.elem("div");
-    let likeButton = create.elem("button");
-    let addComment = create.elem("button");
 
     addComment.classList.add("button");
     addComment.classList.add("is-outlined");
@@ -116,11 +117,37 @@ const builder = (function() {
       location.reload();
     }
 
-    /*editBtn.onclick = function() {
+    editBtn.onclick = function() {
 
-      api.update("entries" + entry.entryID, body);
-      location.reload();
-    }*/
+      let editTitle = create.elem("input");
+      let editContent = create.elem("textarea");
+      let sendEditBtn = create.elem("button");
+
+      editTitle.setAttribute("type", "text");
+      editContent.cols = "30";
+      editContent.rows = "10";
+
+      editTitle.value = entry.title;
+      editContent.value = entry.content;
+      sendEditBtn.innerHTML = "Confirm changes";
+
+      title.remove();
+      content.remove();
+
+      titleWrapper.appendChild(editTitle);
+      contentWrapper.appendChild(editContent);
+      contentWrapper.appendChild(sendEditBtn);
+
+      sendEditBtn.onclick = function() {;
+        let body = {
+          title: editTitle.value,
+          content: editContent.value
+        };
+        api.update("entries", entry.entryID, body);
+        location.reload();
+      }
+
+    }
 
     likeBtn.onclick = async function() {
       var route = "likes";
@@ -191,11 +218,14 @@ const builder = (function() {
     commentBtn.appendChild(commentBtnText);
     postCommentBtn.appendChild(postCommentBtnText);
 
-    entryWrapper.appendChild(title);
+    titleWrapper.appendChild(title);
+    contentWrapper.appendChild(content);
+
+    entryWrapper.appendChild(titleWrapper);
     entryWrapper.appendChild(editBtn);
     entryWrapper.appendChild(deleteBtn);
     entryWrapper.appendChild(createdBy);
-    entryWrapper.appendChild(content);
+    entryWrapper.appendChild(contentWrapper);
     entryWrapper.appendChild(date);
     entryWrapper.appendChild(commentSpan);
     entryWrapper.appendChild(commentsWrapper);

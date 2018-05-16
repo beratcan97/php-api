@@ -44,7 +44,7 @@ const api = (function() {
       body: body,
       credentials: "include"
     };
-    
+
     fetch("/api/" + route, postOptions)
       .then(res => res.json())
       .then(data => data)
@@ -53,19 +53,22 @@ const api = (function() {
 
   async function update(route, id, body) {
     route = route.toString();
+    let content = body.content;
+    let title = body.title;
 
     const patchOptions = {
       method: "PATCH",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: body
+      body: "content=" + content + "&title=" + title
     };
 
-    let patch = fetch("/api/" + route + "/" + id, patchOptions)
+
+    fetch("/api/" + route + "/" + id, patchOptions)
       .then(res => res.json())
-      .then(data => data)
+      .then(data => console.log(data))
       .catch(err => console.log(err));
 
-    return patch;
+    // return patch;
   }
 
   async function remove(route, id) {

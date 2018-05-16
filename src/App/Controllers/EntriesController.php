@@ -75,13 +75,13 @@ class EntriesController
         ]);
     }
 
-    public function update($title, $newContent, $entryID)
+    public function update($entry, $id)
     {
         $statement = $this->db->prepare('UPDATE entries SET title = :title, content = :content WHERE entryID = :entryID');
         $statement->execute([
-        ":title" => $title,
-        ":content" => $newContent,
-        ":entryID" => $entryID
+        ":title" => $entry['title'],
+        ":content" => $entry['content'],
+        ":entryID" => $id
       ]);
     }
 }
