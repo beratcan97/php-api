@@ -47,12 +47,13 @@ class CommentsController
         $date = date('Y-m-d, H:i:s');
 
         $addOne = $this->db->prepare(
-            'INSERT INTO comments (content, createdAt, createdBy) VALUES (:content, :createdAt, :createdBy)'
+            'INSERT INTO comments (content, createdAt, entryID, createdBy) VALUES (:content, :createdAt, :entryID, :createdBy)'
         );
 
         $addOne->execute([
           ':content'  => $comment['content'],
           ':createdAt' => $date,
+          ':entryID' => $comment['entryID'],
           ':createdBy' => $comment['createdBy']
         ]);
         
