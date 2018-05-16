@@ -31,6 +31,6 @@ $app->delete('/entries/{id}', function ($request, $response, $args) {
 
 $app->patch('/entries', function ($request, $response, $args) {
     $body = $request->getParsedBody();
-    $newEntry = $this->get('entries')->update($body);
-    return $response->withJson(['data' => $newEntry]);
+    $selectedEntry = $this->get('entries')->update($title, $newContent, $entryID);
+    return $response->withJson(['data' => $selectedEntry]);
 });
