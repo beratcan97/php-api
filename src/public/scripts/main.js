@@ -1,3 +1,5 @@
+import { api } from "./fetch.js";
+
 // Helpers
 const get = {
   id: arg => document.getElementById(arg),
@@ -59,10 +61,12 @@ async function buildEntries() {
   document.body.appendChild(loader);
 
   let userRoute = "entries";
-  if (window.location.pathname === "/profile") {
+  if (
+    window.location.pathname ===
+    "/profile/" + sessionStorage.getItem("username")
+  ) {
     userRoute = "entries/user/" + sessionStorage.getItem("userID");
   }
-
 
   let userEntries = await api.get(userRoute);
 
@@ -73,7 +77,11 @@ async function buildEntries() {
     let likesRoute = "likes/" + userEntries.data[i].entryID;
     let likes = await api.get(likesRoute);
 
-    let newEntry = await builder.entries(userEntries.data[i], comments.data, likes.data);
+    let newEntry = await builder.entries(
+      userEntries.data[i],
+      comments.data,
+      likes.data
+    );
     entriesContainer.appendChild(newEntry);
   }
 

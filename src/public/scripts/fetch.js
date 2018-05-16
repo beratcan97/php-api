@@ -1,5 +1,4 @@
-const api = (function() {
-
+export default function api() {
   async function login(body) {
     const postOptions = {
       method: "POST",
@@ -18,7 +17,7 @@ const api = (function() {
 
   async function get(route) {
     route = route.toString();
-    let get = await fetch ("/api/" + route)
+    let get = await fetch("/api/" + route)
       .then(response => response.json())
       .then(data => data)
       .catch(err => console.log(err));
@@ -62,7 +61,6 @@ const api = (function() {
       body: "content=" + content + "&title=" + title
     };
 
-
     let patch = fetch("/api/" + route + "/" + id, patchOptions)
       .then(res => res.json())
       .then(data => data)
@@ -85,13 +83,4 @@ const api = (function() {
 
     return remove;
   }
-
-  return {
-    login: login,
-    get: get,
-    getOne: getOne,
-    post: post,
-    update: update,
-    remove: remove
-  };
-})();
+}
