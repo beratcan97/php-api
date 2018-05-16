@@ -10,13 +10,14 @@ const builder = (function() {
     let date = create.elem("span");
     let content = create.elem("p");
     let commentDeleteBtn = create.elem("button");
-   const clsCDB = ["button", "is-outlined", "is-danger"];
+
+    const clsCDB = ["button", "is-outlined", "is-danger"];
    commentDeleteBtn.classList.add(...clsCDB);
 
     let createdByText = create.text("user: " + comment.username);
     let dateText = create.text("date: " + comment.createdAt);
     let contentText = create.text("comment: " + comment.content);
-        let commentDeleteBtnText = create.text("Delete");
+    let commentDeleteBtnText = create.text("Delete");
 
     createdBy.appendChild(createdByText);
     date.appendChild(dateText);
@@ -46,6 +47,8 @@ const builder = (function() {
     let entryWrapper = create.elem("div");
     let titleWrapper = create.elem("div");
     let contentWrapper = create.elem("div");
+    let entryWrapperHeader = create.elem("div");
+    let entryWrapperBody = create.elem("div");
     let title = create.elem("h1");
     let createdBy = create.elem("h2");
     let date = create.elem("p");
@@ -70,6 +73,12 @@ const builder = (function() {
 
     let commentBtn = create.elem("button");
     commentBtn.classList.add(...clsLC);
+
+    title.classList.add("title");
+
+    entryWrapper.classList.add("message");
+    entryWrapperHeader.classList.add("message-header");
+    entryWrapperBody.classList.add("message-body");
 
     addComment.classList.add("button");
     addComment.classList.add("is-outlined");
@@ -236,6 +245,8 @@ const builder = (function() {
     let postCommentBtnText = create.text("Post");
 
     entryWrapper.classList.add("entries_wrapper");
+    const clsCS = ["button", "is-outlined", "is-info"];
+    commentSpan.classList.add(...clsCS);
 
     title.appendChild(titleText);
     editBtn.appendChild(editText);
@@ -243,26 +254,28 @@ const builder = (function() {
     createdBy.appendChild(createdByText);
     date.appendChild(dateText);
     content.appendChild(contentText);
-    commentSpan.appendChild(commentSpanText);
     likeBtn.appendChild(likeBtnText);
+    commentSpan.appendChild(commentSpanText);
     commentBtn.appendChild(commentBtnText);
     postCommentBtn.appendChild(postCommentBtnText);
-
     titleWrapper.appendChild(title);
     contentWrapper.appendChild(content);
 
-    entryWrapper.appendChild(titleWrapper);
-    entryWrapper.appendChild(editBtn);
-    entryWrapper.appendChild(deleteBtn);
-    entryWrapper.appendChild(createdBy);
-    entryWrapper.appendChild(contentWrapper);
-    entryWrapper.appendChild(date);
-    entryWrapper.appendChild(commentSpan);
-    entryWrapper.appendChild(commentsWrapper);
-    entryWrapper.appendChild(likeBtn);
-    entryWrapper.appendChild(commentBtn);
-    entryWrapper.appendChild(commentInput);
-    entryWrapper.appendChild(postCommentBtn);
+    entryWrapperHeader.appendChild(titleWrapper);
+    entryWrapperHeader.appendChild(createdBy);
+    entryWrapperHeader.appendChild(editBtn);
+    entryWrapperHeader.appendChild(deleteBtn);
+    entryWrapperBody.appendChild(contentWrapper);
+    entryWrapperBody.appendChild(date);
+    entryWrapperBody.appendChild(commentsWrapper);
+    entryWrapperBody.appendChild(likeBtn);
+    entryWrapperBody.appendChild(commentSpan);
+    entryWrapperBody.appendChild(commentBtn);
+    entryWrapperBody.appendChild(commentInput);
+    entryWrapperBody.appendChild(postCommentBtn);
+
+    entryWrapper.appendChild(entryWrapperHeader);
+    entryWrapper.appendChild(entryWrapperBody);
 
     // DELETE THIS WHEN STYLING IS DONE
     entryWrapper.style.borderBottom = "1px solid black";
