@@ -10,9 +10,10 @@ const builder = (function() {
     let date = create.elem("span");
     let content = create.elem("p");
     let commentDeleteBtn = create.elem("button");
-   const clsCDB = ["button", "is-outlined", "is-danger"];
+   
+    const clsCDB = ["button", "is-outlined", "is-danger"];
    commentDeleteBtn.classList.add(...clsCDB);
-
+    
     let createdByText = create.text("user: " + comment.username);
     let dateText = create.text("date: " + comment.createdAt);
     let contentText = create.text("comment: " + comment.content);
@@ -44,6 +45,8 @@ const builder = (function() {
     let amountOfLikes;
 
     let entryWrapper = create.elem("div");
+    let entryWrapperHeader = create.elem("div");
+    let entryWrapperBody = create.elem("div");
     let title = create.elem("h1");
 
     //BUTTONS
@@ -63,6 +66,10 @@ const builder = (function() {
     commentBtn.classList.add(...clsLC);
 
     title.classList.add("title");
+
+    entryWrapper.classList.add("message");
+    entryWrapperHeader.classList.add("message-header");
+    entryWrapperBody.classList.add("message-body");
 
     let createdBy = create.elem("h2");
     let date = create.elem("p");
@@ -195,18 +202,21 @@ const builder = (function() {
     commentBtn.appendChild(commentBtnText);
     postCommentBtn.appendChild(postCommentBtnText);
 
-    entryWrapper.appendChild(editBtn);
-    entryWrapper.appendChild(deleteBtn);
-    entryWrapper.appendChild(title);
-    entryWrapper.appendChild(content);
-    entryWrapper.appendChild(createdBy);
-    entryWrapper.appendChild(date);
-    entryWrapper.appendChild(commentsWrapper);
-    entryWrapper.appendChild(likeBtn);
-    entryWrapper.appendChild(commentSpan);
-    entryWrapper.appendChild(commentBtn);
-    entryWrapper.appendChild(commentInput);
-    entryWrapper.appendChild(postCommentBtn);
+    entryWrapperHeader.appendChild(title);
+    entryWrapperHeader.appendChild(createdBy);    
+    entryWrapperHeader.appendChild(editBtn);
+    entryWrapperHeader.appendChild(deleteBtn);
+    entryWrapperBody.appendChild(content);
+    entryWrapperBody.appendChild(date);
+    entryWrapperBody.appendChild(commentsWrapper);
+    entryWrapperBody.appendChild(likeBtn);
+    entryWrapperBody.appendChild(commentSpan);
+    entryWrapperBody.appendChild(commentBtn);
+    entryWrapperBody.appendChild(commentInput);
+    entryWrapperBody.appendChild(postCommentBtn);
+
+    entryWrapper.appendChild(entryWrapperHeader);
+    entryWrapper.appendChild(entryWrapperBody);
 
     // DELETE THIS WHEN STYLING IS DONE
     entryWrapper.style.borderBottom = "1px solid black";
