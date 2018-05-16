@@ -64,11 +64,14 @@ const builder = (function() {
     addComment.classList.add("is-info");
 
     let commentInput = create.elem("textarea");
+    let postCommentButton = create.elem("button");
 
     commentInput.cols = "60";
     commentInput.rows = "10";
     let clsCI = ["textarea", "toggle_visible"];
     commentInput.classList.add(...clsCI);
+    let clsP = ["button", "is-outlined", "is-info", "toggle_visible"];
+    postCommentButton.classList.add(...clsP);
 
     if (!comments) {
       amountOfComments = 0;
@@ -94,6 +97,7 @@ const builder = (function() {
 
     commentBtn.onclick = function() {
       commentInput.classList.toggle("toggle_visible");
+      postCommentButton.classList.toggle("toggle_visible");
     };
 
     /*deleteBtn.onclick = async function() {
@@ -144,6 +148,7 @@ const builder = (function() {
     let commentSpanText = create.text(amountOfComments + " comments");
     let likeBtnText = create.text(amountOfLikes + " Likes");
     let commentBtnText = create.text("Add comment");
+    let postCommentButtonText = create.text("Post");
 
     entryWrapper.classList.add("entries_wrapper");
 
@@ -156,6 +161,7 @@ const builder = (function() {
     commentSpan.appendChild(commentSpanText);
     likeBtn.appendChild(likeBtnText);
     commentBtn.appendChild(commentBtnText);
+    postCommentButton.appendChild(postCommentButtonText);
 
     entryWrapper.appendChild(title);
     entryWrapper.appendChild(editBtn);
@@ -168,6 +174,7 @@ const builder = (function() {
     entryWrapper.appendChild(likeBtn);
     entryWrapper.appendChild(commentBtn);
     entryWrapper.appendChild(commentInput);
+    entryWrapper.appendChild(postCommentButton);
 
     // DELETE THIS WHEN STYLING IS DONE
     entryWrapper.style.borderBottom = "1px solid black";
