@@ -44,14 +44,14 @@ Ni som grupp ska skapa ett API med hjälp av PHP-ramverket [Slim](https://www.sl
 - [ ] Man ska kunna hämta ut de 20 senaste inläggen via `GET /api/entries`.
 - [x] Man ska kunna skapa ett inlägg via `POST /api/entries`.
 - [ ] Man ska kunna hämta ut ett enskilt specifikt inlägg via `GET /api/entries/{ID}`.
-- [ ] Man ska kunna ta bort ett enskilt specifikt inlägg via `DELETE /api/entries/{ID}`.
+- [x] Man ska kunna ta bort ett enskilt specifikt inlägg via `DELETE /api/entries/{ID}`.
 - [ ] Man ska kunna uppdatera ett enskilt specifikt inlägg via `PATCH /api/entries/{ID}`.
 - [x] Man ska kunna hämta alla inlägg som en användare har skrivit via en endpoint.
 - [ ] Man ska kunna hämta de 20 senaste kommentarerna via `GET /api/comments`.
 - [x] Man ska kunna skapa en kommentar via `POST /api/comments`
 - [ ] Man ska kunna hämta ut en enskild specifik kommentar via `GET /api/comments/{ID}`
-- [ ] Man ska kunna ta bort en enskild specifik kommentar via `DELETE /api/comments/{ID}`
-- [ ] Man ska kunna hämta alla kommentarer kopplat till ett inlägg via en endpoint.
+- [x] Man ska kunna ta bort en enskild specifik kommentar via `DELETE /api/comments/{ID}`
+- [x] Man ska kunna hämta alla kommentarer kopplat till ett inlägg via en endpoint.
 - [ ] Man ska kunna hämta alla användare via `GET /api/users`.
 - [x] Man ska kunna skapa en användare via `POST /register`.
 - [ ] Man ska kunna söka efter ett viss inlägg via vad dess titel är.
