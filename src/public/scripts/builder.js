@@ -151,6 +151,8 @@ const builder = (function() {
       body.append("entryID", entry.entryID);
 
       api.post(route, body);
+
+      location.reload();
     }
 
     let titleText = create.text(entry.title);
