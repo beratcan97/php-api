@@ -29,8 +29,10 @@ $app->post('/comments', function ($request, $response, $args) {
     return $response->withJson(['data' => $newComment]);
 });
 
-$app->delete('/comments', function ($request, $response, $args) {
-    $this->get('comments')->delete();
+$app->delete('/comments/{id}', function ($request, $response, $args) {
+    $id = $args['id'];
+    $deleteComment = $this->get('comments')->delete($id);
+    return $response->withJson(['data' => $deleteComment]);
 });
 
 $app->patch('/comments', function ($request, $response, $args) {

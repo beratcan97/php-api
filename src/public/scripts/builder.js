@@ -29,6 +29,10 @@ const builder = (function() {
     commentElement.appendChild(content);
     commentElement.appendChild(commentDeleteBtn);
     
+    commentDeleteBtn.onclick = function() {
+      api.remove("comments", comment.commentID);
+      location.reload();
+    }
 
     // DELETE THIS WHEN STYLING IS DONE
     commentElement.style.border = "1px solid black";
