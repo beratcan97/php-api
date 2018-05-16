@@ -97,7 +97,7 @@ const builder = (function() {
 
     commentBtn.onclick = function() {
       commentInput.classList.toggle("toggle_visible");
-      postCommentButton.classList.toggle("toggle_visible");
+      postCommentBtn.classList.toggle("toggle_visible");
     };
 
     deleteBtn.onclick = function() {
