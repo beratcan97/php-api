@@ -1,14 +1,7 @@
-import { api } from "./fetch.js";
-
-// Helpers
-const get = {
-  id: arg => document.getElementById(arg),
-  class: arg => document.getElementsByClassName(arg)
-};
-
-function isset(item) {
-  return item !== null;
-}
+import * as api from "./fetch";
+import { get } from "./utils";
+import { isset } from "./utils";
+import { BuildEntries } from "./buildEntries";
 
 // Declarations
 let registerForm = get.id("register_form");
@@ -52,44 +45,8 @@ if (isset(signOut)) {
   });
 }
 
-//  build entries
-async function buildEntries() {
-  entriesContainer.innerHTML = "";
-
-  let loader = document.createElement("DIV");
-  loader.classList.add("loader");
-  document.body.appendChild(loader);
-
-  let userRoute = "entries";
-  if (
-    window.location.pathname ===
-    "/profile/" + sessionStorage.getItem("username")
-  ) {
-    userRoute = "entries/user/" + sessionStorage.getItem("userID");
-  }
-
-  let userEntries = await api.get(userRoute);
-
-  for (let i = 0; i < userEntries.data.length; i++) {
-    let commentRoute = "comments/entries/" + userEntries.data[i].entryID;
-    let comments = await api.get(commentRoute);
-
-    let likesRoute = "likes/" + userEntries.data[i].entryID;
-    let likes = await api.get(likesRoute);
-
-    let newEntry = await builder.entries(
-      userEntries.data[i],
-      comments.data,
-      likes.data
-    );
-    entriesContainer.appendChild(newEntry);
-  }
-
-  loader.remove();
-}
-
 if (isset(sessionStorage.getItem("userID"))) {
-  buildEntries();
+  let build = BuildEntries();
 }
 
 console.log(sessionStorage);
