@@ -9,18 +9,26 @@ const builder = (function() {
     let createdBy = create.elem("h2");
     let date = create.elem("span");
     let content = create.elem("p");
+    let commentDeleteBtn = create.elem("button");
+    const clsCDB = ["button", "is-outlined", "is-danger"];
+    commentDeleteBtn.classList.add(...clsCDB);
 
     let createdByText = create.text("user: " + comment.username);
     let dateText = create.text("date: " + comment.createdAt);
     let contentText = create.text("comment: " + comment.content);
+    let commentDeleteBtnText = create.text("Delete");
+    
 
     createdBy.appendChild(createdByText);
     date.appendChild(dateText);
     content.appendChild(contentText);
+    commentDeleteBtn.appendChild(commentDeleteBtnText);
 
     commentElement.appendChild(createdBy);
     commentElement.appendChild(date);
     commentElement.appendChild(content);
+    commentElement.appendChild(commentDeleteBtn);
+    
 
     // DELETE THIS WHEN STYLING IS DONE
     commentElement.style.border = "1px solid black";
