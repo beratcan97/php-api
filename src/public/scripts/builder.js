@@ -106,7 +106,7 @@ const builder = (function() {
     }
 
     /*editBtn.onclick = function() {
-      api.update("entries", entry.entryID);
+      api.update("entries" + entry.entryID, );
       location.reload();
     }*/
 
