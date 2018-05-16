@@ -1,8 +1,9 @@
 import * as api from "./fetch.js";
 import { Entries } from "./entries/entries.js";
+import { entriesContainer } from "./main.js";
 
 //  build entries
-export default async function BuildEntries() {
+export async function BuildEntries() {
   let loader = document.createElement("DIV");
   loader.classList.add("loader");
   document.body.appendChild(loader);
@@ -10,10 +11,11 @@ export default async function BuildEntries() {
   let userRoute = "entries";
   entriesContainer.innerHTML = "";
 
-  if (
-    window.location.pathname ===
-    "/profile/" + sessionStorage.getItem("username")
-  ) {
+  // if (
+  //   window.location.pathname ===
+  //   "/profile/" + sessionStorage.getItem("username")
+  // ) {
+  if (window.location.pathname === "/profile/") {
     userRoute = "entries/user/" + sessionStorage.getItem("userID");
   }
 

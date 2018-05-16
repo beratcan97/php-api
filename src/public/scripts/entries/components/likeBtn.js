@@ -1,6 +1,7 @@
 import * as api from "../../fetch.js";
+import { create } from "../../utils";
 
-export default async function LikeBtn(entry, likes) {
+export async function LikeBtn(entry, likes) {
   let amountOfLikes;
   let likeBtn = create.elem("button");
 
@@ -23,6 +24,7 @@ export default async function LikeBtn(entry, likes) {
 
     likes.forEach(like => {
       if (like.userID.includes(sessionStorage.getItem("userID"))) {
+        // THIS MUST BE CHANGED FROM "includes" TO "===" !!!
         checkUserID = true;
         currentLikeID = like.likeID;
       }
@@ -49,4 +51,6 @@ export default async function LikeBtn(entry, likes) {
   };
 
   likeBtn.appendChild(likeBtnText);
+
+  return likeBtn;
 }

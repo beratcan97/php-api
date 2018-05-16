@@ -1,6 +1,7 @@
 import * as api from "../../fetch.js";
+import { create } from "../../utils";
 
-export default async function DeleteBtn(entry) {
+export async function DeleteBtn(entry) {
   let deleteBtn = create.elem("button");
 
   const clsD = ["button", "is-outlined", "is-danger"];

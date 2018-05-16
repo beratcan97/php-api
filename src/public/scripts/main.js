@@ -46,7 +46,9 @@ if (isset(signOut)) {
 }
 
 if (isset(sessionStorage.getItem("userID"))) {
-  let build = BuildEntries();
+  BuildEntries();
 }
 
 console.log(sessionStorage);
+
+export { entriesContainer };

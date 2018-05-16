@@ -1,14 +1,34 @@
 import * as api from "../../fetch.js";
+import { create } from "../../utils";
 
-export default async function Comments(comments) {
+export async function Comments(comments, entryID) {
   let amountOfComments;
-  let commentSpan = create.elem("p");
+  let commentsContainer = create.elem("div");
   let commentsWrapper = create.elem("div");
+  let commentSpan = create.elem("p");
   let commentInput = create.elem("textarea");
   let postCommentBtn = create.elem("button");
 
   let addComment = create.elem("button");
   let commentBtn = create.elem("button");
+
+  if (!comments) {
+    amountOfComments = 0;
+  } else {
+    amountOfComments = comments.length;
+    comments.forEach(comment => {
+      let newComment = commentsBuilder(comment);
+      commentsWrapper.appendChild(newComment);
+    });
+
+    commentsWrapper.classList.add("toggle_visible");
+
+    commentSpan.onclick = function() {
+      commentsWrapper.classList.toggle("toggle_visible");
+    };
+  }
+
+  const clsLC = ["button", "is-outlined", "is-info"];
   commentBtn.classList.add(...clsLC);
 
   addComment.classList.add("button");
@@ -28,26 +48,11 @@ export default async function Comments(comments) {
 
   let commentBtnText = create.text("Add comment");
   let postCommentBtnText = create.text("Post");
+  let commentSpanText = create.text(amountOfComments + " comments");
 
   commentSpan.appendChild(commentSpanText);
   commentBtn.appendChild(commentBtnText);
   postCommentBtn.appendChild(postCommentBtnText);
-
-  if (!comments) {
-    amountOfComments = 0;
-  } else {
-    amountOfComments = comments.length;
-    comments.forEach(comment => {
-      let newComment = commentsBuilder(comment);
-      commentsWrapper.appendChild(newComment);
-    });
-
-    commentsWrapper.classList.add("toggle_visible");
-
-    commentSpan.onclick = function() {
-      commentsWrapper.classList.toggle("toggle_visible");
-    };
-  }
 
   commentBtn.onclick = function() {
     commentInput.classList.toggle("toggle_visible");
@@ -59,13 +64,19 @@ export default async function Comments(comments) {
     let route = "comments";
     body.append("content", commentInput.value);
     body.append("createdBy", sessionStorage.getItem("userID"));
-    body.append("entryID", entry.entryID);
+    body.append("entryID", entryID);
 
     api.post(route, body);
 
     location.reload();
   };
-  let commentSpanText = create.text(amountOfComments + " comments");
+
+  commentsContainer.appendChild(commentSpan);
+  commentsContainer.appendChild(commentBtn);
+  commentsContainer.appendChild(commentInput);
+  commentsContainer.appendChild(postCommentBtn);
+  commentsContainer.appendChild(commentsWrapper);
+  return commentsContainer;
 }
 
 function commentsBuilder(comment) {

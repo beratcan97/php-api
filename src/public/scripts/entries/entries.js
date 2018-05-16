@@ -2,15 +2,13 @@ import * as api from "../fetch.js";
 import { create } from "../utils.js";
 import { LikeBtn } from "./components/likeBtn.js";
 import { Comments } from "./components/comments.js";
-import { EditBtn } from "./components/editBtn.js";
 import { DeleteBtn } from "./components/deleteBtn.js";
 
-export default async function Entries(entry, comments, likes) {
+export async function Entries(entry, comments, likes) {
   // Imports
-  let likeBtnComp = LikeBtn(entry, likes);
-  let commentsComp = Comments(comments);
-  let editBtnComp = EditBtn(entry);
-  let deleteBtnComp = DeleteBtn(entry);
+  let likeBtnComp = await LikeBtn(entry, likes);
+  let commentsComp = await Comments(comments, entry.entryID);
+  let deleteBtnComp = await DeleteBtn(entry);
 
   // Wrappers
   let entryWrapper = create.elem("div");
@@ -24,6 +22,7 @@ export default async function Entries(entry, comments, likes) {
   let createdBy = create.elem("h2");
   let date = create.elem("p");
   let content = create.elem("p");
+  let editBtn = await EditBtn();
 
   // Styling
   entryWrapper.classList.add("message");
@@ -50,21 +49,87 @@ export default async function Entries(entry, comments, likes) {
   entryWrapperHeader.appendChild(titleWrapper);
   entryWrapperHeader.appendChild(createdBy);
   entryWrapperHeader.appendChild(editBtn);
-  entryWrapperHeader.appendChild(deleteBtn);
+  entryWrapperHeader.appendChild(deleteBtnComp);
 
   // Append body components
   entryWrapperBody.appendChild(contentWrapper);
   entryWrapperBody.appendChild(date);
-  entryWrapperBody.appendChild(commentsWrapper);
-  entryWrapperBody.appendChild(likeBtn);
-  entryWrapperBody.appendChild(commentSpan);
-  entryWrapperBody.appendChild(commentBtn);
-  entryWrapperBody.appendChild(commentInput);
-  entryWrapperBody.appendChild(postCommentBtn);
+  entryWrapperBody.appendChild(commentsComp);
+  entryWrapperBody.appendChild(likeBtnComp);
 
   // Append to content divs
   entryWrapper.appendChild(entryWrapperHeader);
   entryWrapper.appendChild(entryWrapperBody);
+
+  // EDIT BUTTON
+  function EditBtn() {
+    let editBtn = create.elem("button");
+    const clsE = ["button", "is-outlined", "is-success"];
+    editBtn.classList.add(...clsE);
+
+    let editText = create.text("Edit");
+    editBtn.appendChild(editText);
+
+    editBtn.onclick = function() {
+      let editTitle = create.elem("input");
+      let editContent = create.elem("textarea");
+      let sendEditBtn = create.elem("button");
+      let cancelEditBtn = create.elem("button");
+
+      editTitle.setAttribute("type", "text");
+      editContent.cols = "30";
+      editContent.rows = "10";
+
+      editTitle.value = titleText.textContent;
+      editContent.value = contentText.textContent;
+      sendEditBtn.innerHTML = "Confirm changes";
+      cancelEditBtn.innerHTML = "Cancel edit";
+
+      title.remove();
+      content.remove();
+
+      titleWrapper.appendChild(editTitle);
+      contentWrapper.appendChild(editContent);
+      contentWrapper.appendChild(sendEditBtn);
+      contentWrapper.appendChild(cancelEditBtn);
+
+      sendEditBtn.onclick = async function() {
+        let body = {
+          title: editTitle.value,
+          content: editContent.value
+        };
+        let patchedEntry = await api.update("entries", entry.entryID, body);
+        console.log(patchedEntry.data);
+        cancelEdit(patchedEntry.data);
+      };
+
+      cancelEditBtn.onclick = async function() {
+        let earlierData = await api.getOne("entries", entry.entryID);
+        cancelEdit(earlierData.data);
+      };
+
+      async function cancelEdit(patchedEntry) {
+        title = create.elem("h2");
+        content = create.elem("p");
+
+        titleText = create.text(patchedEntry.title);
+        contentText = create.text(patchedEntry.content);
+
+        title.appendChild(titleText);
+        content.appendChild(contentText);
+
+        editTitle.remove();
+        editContent.remove();
+        sendEditBtn.remove();
+        cancelEditBtn.remove();
+
+        titleWrapper.appendChild(title);
+        contentWrapper.appendChild(content);
+      }
+    };
+
+    return editBtn;
+  }
 
   return entryWrapper;
 }
