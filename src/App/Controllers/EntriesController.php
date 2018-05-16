@@ -36,8 +36,8 @@ class EntriesController
 
     public function getOne($id)
     {
-        $getOne = $this->db->prepare('SELECT * FROM entries WHERE id = :id');
-        $getOne->execute([':id' => $id]);
+        $getOne = $this->db->prepare('SELECT * FROM entries WHERE entryID = :entryID');
+        $getOne->execute([':entryID' => $id]);
         return $getOne->fetch();
     }
 

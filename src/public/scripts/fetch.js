@@ -63,12 +63,12 @@ const api = (function() {
     };
 
 
-    fetch("/api/" + route + "/" + id, patchOptions)
+    let patch = fetch("/api/" + route + "/" + id, patchOptions)
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => data)
       .catch(err => console.log(err));
 
-    // return patch;
+    return patch;
   }
 
   async function remove(route, id) {
