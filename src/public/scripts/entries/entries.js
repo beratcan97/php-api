@@ -27,7 +27,9 @@ export async function Entries(entry, comments, likes) {
   // Styling
   entryWrapper.classList.add("card");
   entryWrapperHeader.classList.add("card-header");
+  entryWrapperHeader.classList.add("box");
   entryWrapperBody.classList.add("card-body");
+  entryWrapperBody.classList.add("box");
   entryWrapper.classList.add("entries_wrapper");
   title.classList.add("title");
 
@@ -132,7 +134,9 @@ export async function Entries(entry, comments, likes) {
 
       async function cancelEdit(patchedEntry) {
         title = create.elem("h2");
+        title.classList.add("title");
         content = create.elem("p");
+        content.classList.add("content")
 
         titleText = create.text(patchedEntry.title);
         contentText = create.text(patchedEntry.content);
