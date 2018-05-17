@@ -23,7 +23,7 @@
 #### Profile:
 - [ ] Ett förslag bara. Om vi hinner
 - [ ] en profilsida som är baserat på /users
-- [ ] Man kan se användarens entries och läsa de kommentarer denne har fått.
+- [x] Man kan se användarens entries och läsa de kommentarer denne har fått.
 
 
 ---
@@ -52,29 +52,29 @@
 - [ ] Hämta ett specifikt entry efter ID med `GET` (/api/entries/{id})
 - [ ] Hämta alla entries en user har skrivit via en endpoint. med `GET` via endpoint (/api/entries nånting)
 - [x] Skapa ett inlägg med `POST` (/api/entries)
-- [ ] Ta bort ett specifikt entry efter ID med `DELETE` (/api/entries)
-- [ ] Uppdatera ett specifikt entry efter ID med `PATCH` (/api/entries)
-- [ ] Man ska kunna söka efter en entry via dess titel (/api/entries/{title} kanske)
+- [x] Ta bort ett specifikt entry efter ID med `DELETE` (/api/entries)
+- [x] Uppdatera ett specifikt entry efter ID med `PATCH` (/api/entries)
+- [x] Man ska kunna söka efter en entry via dess titel (/api/entries/{title} kanske)
 
 #### Comments:  
 - [ ] Hämta 20 senaste kommentarerna med `GET` (/api/comments)
 - [ ] Hämta en specifik kommentar med `GET` (/api/comments/{id})
-- [ ] Hämta alla kommentarerna som tillhör ett inlägg med `GET` via endpoint (/api/comments nånting)
-- [ ] Skapa en kommentar med `POST` (/api/comments/{id})
-- [ ] Ta bort en kommentar med `DELETE` (/api/comments/{id})
+- [x] Hämta alla kommentarerna som tillhör ett inlägg med `GET` via endpoint (/api/comments nånting)
+- [x] Skapa en kommentar med `POST` (/api/comments/{id})
+- [x] Ta bort en kommentar med `DELETE` (/api/comments/{id})
 - [ ] Uppdatera en kommentar med `PATCH` (Om vi får tid)
 
 
 #### Users:
 - [ ] Hämta alla användare med `GET` (/api/users)
-- [ ] Hämta en specifik användare med `GET` (/api/users/{id})
+- [x] Hämta en specifik användare med `GET` (/api/users/{id})
 - [x] Skapa en användare med `POST` (/register)
 
 
 #### Likes:
-- [ ] Hämta alla likes länkade till en entry med `GET` (/api/likes/{entryId})
-- [ ] Skapa en like länkad till användaren som "Like":at och entryt som "Like":as med `POST` (/api/likes)
-- [ ] Ta bort en like med `DELETE`(/api/likes/{id})
+- [x] Hämta alla likes länkade till en entry med `GET` (/api/likes/{entryId})
+- [x] Skapa en like länkad till användaren som "Like":at och entryt som "Like":as med `POST` (/api/likes)
+- [x] Ta bort en like med `DELETE`(/api/likes/{id})
 
 ---
 

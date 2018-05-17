@@ -5,7 +5,7 @@ export async function LikeBtn(entry, likes) {
   let amountOfLikes;
   let likeBtn = create.elem("button");
 
-  const clsLC = ["button", "is-outlined", "is-info"];
+  const clsLC = ["button", "is-outlined", "is-info", "is-small"];
   likeBtn.classList.add(...clsLC);
 
   if (!likes) {

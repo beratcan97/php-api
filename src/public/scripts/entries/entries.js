@@ -27,7 +27,9 @@ export async function Entries(entry, comments, likes) {
   // Styling
   entryWrapper.classList.add("card");
   entryWrapperHeader.classList.add("card-header");
+  entryWrapperHeader.classList.add("box");
   entryWrapperBody.classList.add("card-body");
+  entryWrapperBody.classList.add("box");
   entryWrapper.classList.add("entries_wrapper");
   title.classList.add("title");
 
@@ -36,7 +38,7 @@ export async function Entries(entry, comments, likes) {
   let contentText = create.text(entry.content);
   let dateText = create.text(entry.createdAt);
   let createdByText = create.text("written by: " + entry.entryUsername);
-
+  
   // Append Text
   title.appendChild(titleText);
   createdBy.appendChild(createdByText);
@@ -90,6 +92,11 @@ export async function Entries(entry, comments, likes) {
       editContent.classList.add("textarea");
       let sendEditBtn = create.elem("button");
       let cancelEditBtn = create.elem("button");
+      const clsE = ["button", "is-outlined", "is-success"];
+      sendEditBtn.classList.add(...clsE);
+      sendEditBtn.classList.add("is-small");
+      cancelEditBtn.classList.add(...clsE);
+      cancelEditBtn.classList.add("is-small");
 
       editTitle.setAttribute("type", "text");
       editContent.cols = "30";
@@ -127,7 +134,9 @@ export async function Entries(entry, comments, likes) {
 
       async function cancelEdit(patchedEntry) {
         title = create.elem("h2");
+        title.classList.add("title");
         content = create.elem("p");
+        content.classList.add("content")
 
         titleText = create.text(patchedEntry.title);
         contentText = create.text(patchedEntry.content);

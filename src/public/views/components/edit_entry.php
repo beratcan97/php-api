@@ -1,4 +1,5 @@
 <form action="/api/entries" class="container box" id="entry_form" method="post">
+    <h2>Add new entries</h2>
     <div class="field">
       <label for="title" class="subtitle">Title</label>
       <div class="control">
