@@ -31,6 +31,12 @@ $app->get('/profile', function ($request, $response, $args) {
     return $this->view->render($response, 'profile.php');
 });
 
+$app->get('/entries/{id}', function ($request, $response, $args) {
+    if (!$request->isXhr()) {
+        return $this->view->render($response, 'entries.php');
+    }
+});
+
 
 $app->post('/login', function ($request, $response, $args) {
     $body = $request->getParsedBody();
@@ -46,7 +52,7 @@ $app->post('/login', function ($request, $response, $args) {
         $_SESSION['admin'] = $user['admin'];
 
         return $response->withJson(['data' => [ $user['userID'], $user['username'], $user['admin'] ]]);
-    }
+    };
     return $response->withJson(['error' => 'wrong password']);
 });
 
