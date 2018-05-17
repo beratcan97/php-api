@@ -8,6 +8,7 @@ async function login(body) {
   fetch("/login", postOptions)
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       sessionStorage.setItem("userID", data.data[0]);
       sessionStorage.setItem("username", data.data[1]);
     })
