@@ -34,7 +34,6 @@ export async function Comments(comments, entryID) {
   commentBtn.classList.add(...clsLC);
   addCommentBtn.classList.add(...clsLC);
 
-
   commentInput.cols = "60";
   commentInput.rows = "10";
 
@@ -48,20 +47,20 @@ export async function Comments(comments, entryID) {
 
   let commentBtnText = create.text("Add comment");
   let postCommentBtnText = create.text("Post");
-  let commentSpanText = create.text("See comments: " + amountOfComments );
+  let commentSpanText = create.text("See comments: " + amountOfComments);
 
   commentSpan.appendChild(commentSpanText);
   commentBtn.appendChild(commentBtnText);
   postCommentBtn.appendChild(postCommentBtnText);
 
   postCommentBtn.disabled = true;
-  commentInput.onkeyup = function(){
-    if(commentInput.value !== ""){
+  commentInput.onkeyup = function() {
+    if (commentInput.value !== "") {
       postCommentBtn.disabled = false;
     } else {
       postCommentBtn.disabled = true;
     }
-  }
+  };
 
   commentBtn.onclick = function() {
     commentInput.classList.toggle("toggle_visible");
@@ -80,13 +79,12 @@ export async function Comments(comments, entryID) {
     location.reload();
   };
 
-  commentsContainer.appendChild(commentsWrapper);
   commentsContainer.appendChild(commentSpan);
+  commentsContainer.appendChild(commentsWrapper);
   commentsContainer.appendChild(commentBtn);
   commentsContainer.appendChild(commentInput);
   commentsContainer.appendChild(postCommentBtn);
 
-  
   return commentsContainer;
 }
 
@@ -116,8 +114,11 @@ function commentsBuilder(comment) {
   commentElement.appendChild(content);
 
   // Appends delete button if the user is the creator of the comment or admin
-  
-  if((sessionStorage['admin'] == 1) || (sessionStorage['userID'] == comment.createdBy)) {
+
+  if (
+    sessionStorage["admin"] == 1 ||
+    sessionStorage["userID"] == comment.createdBy
+  ) {
     commentElement.appendChild(commentDeleteBtn);
   }
 
