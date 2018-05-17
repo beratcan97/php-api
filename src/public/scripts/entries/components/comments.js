@@ -5,7 +5,9 @@ export async function Comments(comments, entryID) {
   let amountOfComments;
   let commentsContainer = create.elem("div");
   let commentsWrapper = create.elem("div");
+  commentsWrapper.classList.add("box");
   let commentSpan = create.elem("p");
+  commentSpan.classList.add("box");
   let commentInput = create.elem("textarea");
   let postCommentBtn = create.elem("button");
 
@@ -46,7 +48,7 @@ export async function Comments(comments, entryID) {
 
   let commentBtnText = create.text("Add comment");
   let postCommentBtnText = create.text("Post");
-  let commentSpanText = create.text(amountOfComments + " comments");
+  let commentSpanText = create.text("See comments: " + amountOfComments );
 
   commentSpan.appendChild(commentSpanText);
   commentBtn.appendChild(commentBtnText);
@@ -78,11 +80,13 @@ export async function Comments(comments, entryID) {
     location.reload();
   };
 
+  commentsContainer.appendChild(commentsWrapper);
   commentsContainer.appendChild(commentSpan);
   commentsContainer.appendChild(commentBtn);
   commentsContainer.appendChild(commentInput);
   commentsContainer.appendChild(postCommentBtn);
-  commentsContainer.appendChild(commentsWrapper);
+
+  
   return commentsContainer;
 }
 
