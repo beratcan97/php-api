@@ -3,3 +3,4 @@ node_modules
 .DS_Store
 *.log
 ConfigHandler.php
+src/public/bundle.js
