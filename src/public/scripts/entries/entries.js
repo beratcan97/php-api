@@ -50,9 +50,17 @@ export async function Entries(entry, comments, likes) {
   entryWrapperHeader.appendChild(createdBy);
   entryWrapperHeader.appendChild(editBtn);
 
+  // Clicking title will bring user to individual entry
+  title.onclick = function() {
+    window.location.href = "/entries/" + entry.entryID;
+  };
+
   // Appends delete button if the user is the creator of the entry or admin
-  if((sessionStorage['admin'] == 1) || (sessionStorage['userID'] == entry.createdBy)) {
-    entryWrapperHeader.appendChild(deleteBtnComp);    
+  if (
+    sessionStorage["admin"] == 1 ||
+    sessionStorage["userID"] == entry.createdBy
+  ) {
+    entryWrapperHeader.appendChild(deleteBtnComp);
   }
 
   // Append body components
@@ -116,7 +124,7 @@ export async function Entries(entry, comments, likes) {
         cancelEdit(earlierData.data);
         editBtn.disabled = false;
       };
-     
+
       async function cancelEdit(patchedEntry) {
         title = create.elem("h2");
         content = create.elem("p");
