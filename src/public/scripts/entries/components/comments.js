@@ -9,7 +9,7 @@ export async function Comments(comments, entryID) {
   let commentInput = create.elem("textarea");
   let postCommentBtn = create.elem("button");
 
-  let addComment = create.elem("button");
+  let addCommentBtn = create.elem("button");
   let commentBtn = create.elem("button");
 
   if (!comments) {
@@ -31,9 +31,9 @@ export async function Comments(comments, entryID) {
   const clsLC = ["button", "is-outlined", "is-info"];
   commentBtn.classList.add(...clsLC);
 
-  addComment.classList.add("button");
-  addComment.classList.add("is-outlined");
-  addComment.classList.add("is-info");
+  addCommentBtn.classList.add("button");
+  addCommentBtn.classList.add("is-outlined");
+  addCommentBtn.classList.add("is-info");
 
   commentInput.cols = "60";
   commentInput.rows = "10";
@@ -53,6 +53,15 @@ export async function Comments(comments, entryID) {
   commentSpan.appendChild(commentSpanText);
   commentBtn.appendChild(commentBtnText);
   postCommentBtn.appendChild(postCommentBtnText);
+
+  postCommentBtn.disabled = true;
+  commentInput.onkeyup = function(){
+    if(commentInput.value !== ""){
+      postCommentBtn.disabled = false;
+    } else {
+      postCommentBtn.disabled = true;
+    }
+  }
 
   commentBtn.onclick = function() {
     commentInput.classList.toggle("toggle_visible");
