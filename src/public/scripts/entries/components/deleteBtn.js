@@ -1,5 +1,5 @@
 import * as api from "../../fetch.js";
-import { create } from "../../utils";
+import { create, isset } from "../../utils";
 
 export async function DeleteBtn(entry) {
   let deleteBtn = create.elem("button");
@@ -10,9 +10,15 @@ export async function DeleteBtn(entry) {
   let deleteText = create.text("Delete");
   deleteBtn.appendChild(deleteText);
 
-  deleteBtn.onclick = function() {
-    api.remove("entries", entry.entryID);
-    location.reload();
+  deleteBtn.onclick = function(){
+
+    if((sessionStorage['admin'] == 1) || (sessionStorage['userID'] == entry.createdBy)) {
+      api.remove("entries", entry.entryID);
+      location.reload();
+    }
+    else {
+      alert("FAIL");
+    }
   };
 
   return deleteBtn;
