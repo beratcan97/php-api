@@ -49,7 +49,11 @@ export async function Entries(entry, comments, likes) {
   entryWrapperHeader.appendChild(titleWrapper);
   entryWrapperHeader.appendChild(createdBy);
   entryWrapperHeader.appendChild(editBtn);
-  entryWrapperHeader.appendChild(deleteBtnComp);
+
+  // Appends delete button if the user is the creator of the entry or admin
+  if((sessionStorage['admin'] == 1) || (sessionStorage['userID'] == entry.createdBy)) {
+    entryWrapperHeader.appendChild(deleteBtnComp);    
+  }
 
   // Append body components
   entryWrapperBody.appendChild(contentWrapper);

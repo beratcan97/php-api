@@ -111,7 +111,12 @@ function commentsBuilder(comment) {
   commentElement.appendChild(createdBy);
   commentElement.appendChild(date);
   commentElement.appendChild(content);
-  commentElement.appendChild(commentDeleteBtn);
+
+  // Appends delete button if the user is the creator of the comment or admin
+  
+  if((sessionStorage['admin'] == 1) || (sessionStorage['userID'] == comment.createdBy)) {
+    commentElement.appendChild(commentDeleteBtn);
+  }
 
   commentDeleteBtn.onclick = function() {
     api.remove("comments", comment.commentID);

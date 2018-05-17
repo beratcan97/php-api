@@ -10,13 +10,21 @@
 	</li>
 
 	<?php else:  ?>
-	
-	<li>		
+
+  <li>
+    <div class="search_container">
+      <div id="search_wrapper">
+        <input type="text" name="searchbar" placeholder="Search entries by title" id="searchbar">
+      </div>
+    </div>
+  </li>
+
+	<li>
 			<a href="../" ><span class="icon has-text-info">
 				<i class="fas fa-home"></i></span>Home
 			</a>
 	</li>
-	
+
 	<li>
 		<a href="/logout" id="sign_out">Sign out</a>
 	</li>

@@ -11,14 +11,8 @@ export async function DeleteBtn(entry) {
   deleteBtn.appendChild(deleteText);
 
   deleteBtn.onclick = function(){
-
-    if((sessionStorage['admin'] == 1) || (sessionStorage['userID'] == entry.createdBy)) {
-      api.remove("entries", entry.entryID);
-      location.reload();
-    }
-    else {
-      alert("FAIL");
-    }
+    api.remove("entries", entry.entryID);
+    location.reload();
   };
 
   return deleteBtn;
