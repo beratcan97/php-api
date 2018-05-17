@@ -2,6 +2,7 @@ import * as api from "./fetch";
 import { get } from "./utils";
 import { isset } from "./utils";
 import { BuildEntries } from "./buildEntries";
+import { Searchbar } from "./searchbar";
 
 // Declarations
 let registerForm = get.id("register_form");
@@ -46,6 +47,7 @@ if (isset(signOut)) {
 }
 
 if (isset(sessionStorage.getItem("userID"))) {
+  Searchbar();
   BuildEntries();
 }
 
