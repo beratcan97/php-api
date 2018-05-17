@@ -40,3 +40,8 @@ body, html {
     transform: rotateZ(360);
   }
 }
+
+.search_container {
+  z-index: 100;
+  position: relative;
+}

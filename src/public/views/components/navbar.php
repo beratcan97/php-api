@@ -12,7 +12,11 @@
 	<?php else:  ?>
 
   <li>
-    <input type="text" name="searchbar" placeholder="Search entries by title" id="searchbar">
+    <div class="search_container">
+      <div id="search_wrapper">
+        <input type="text" name="searchbar" placeholder="Search entries by title" id="searchbar">
+      </div>
+    </div>
   </li>
 
 	<li>
