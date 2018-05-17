@@ -28,12 +28,10 @@ export async function Comments(comments, entryID) {
     };
   }
 
-  const clsLC = ["button", "is-outlined", "is-info"];
+  const clsLC = ["button", "is-outlined", "is-info", "is-small"];
   commentBtn.classList.add(...clsLC);
+  addCommentBtn.classList.add(...clsLC);
 
-  addCommentBtn.classList.add("button");
-  addCommentBtn.classList.add("is-outlined");
-  addCommentBtn.classList.add("is-info");
 
   commentInput.cols = "60";
   commentInput.rows = "10";
@@ -95,11 +93,12 @@ function commentsBuilder(comment) {
   let content = create.elem("p");
   let commentDeleteBtn = create.elem("button");
 
-  const clsCDB = ["button", "is-outlined", "is-danger"];
+  const clsCDB = ["button", "is-outlined", "is-danger", "is-small"];
   commentDeleteBtn.classList.add(...clsCDB);
 
   let createdByText = create.text("user: " + comment.username);
   let dateText = create.text("date: " + comment.createdAt);
+  date.classList.add("is-small");
   let contentText = create.text("comment: " + comment.content);
   let commentDeleteBtnText = create.text("Delete");
 

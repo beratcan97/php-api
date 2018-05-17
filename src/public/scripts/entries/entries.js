@@ -36,7 +36,7 @@ export async function Entries(entry, comments, likes) {
   let contentText = create.text(entry.content);
   let dateText = create.text(entry.createdAt);
   let createdByText = create.text("written by: " + entry.entryUsername);
-
+  
   // Append Text
   title.appendChild(titleText);
   createdBy.appendChild(createdByText);
@@ -90,6 +90,11 @@ export async function Entries(entry, comments, likes) {
       editContent.classList.add("textarea");
       let sendEditBtn = create.elem("button");
       let cancelEditBtn = create.elem("button");
+      const clsE = ["button", "is-outlined", "is-success"];
+      sendEditBtn.classList.add(...clsE);
+      sendEditBtn.classList.add("is-small");
+      cancelEditBtn.classList.add(...clsE);
+      cancelEditBtn.classList.add("is-small");
 
       editTitle.setAttribute("type", "text");
       editContent.cols = "30";
