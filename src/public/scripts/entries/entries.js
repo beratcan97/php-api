@@ -25,9 +25,9 @@ export async function Entries(entry, comments, likes) {
   let editBtn = await EditBtn();
 
   // Styling
-  entryWrapper.classList.add("message");
-  entryWrapperHeader.classList.add("message-header");
-  entryWrapperBody.classList.add("message-body");
+  entryWrapper.classList.add("card");
+  entryWrapperHeader.classList.add("card-header");
+  entryWrapperBody.classList.add("card-body");
   entryWrapper.classList.add("entries_wrapper");
   title.classList.add("title");
 
@@ -71,8 +71,11 @@ export async function Entries(entry, comments, likes) {
     editBtn.appendChild(editText);
 
     editBtn.onclick = function() {
+      editBtn.disabled = true;
       let editTitle = create.elem("input");
+      editTitle.classList.add("input");
       let editContent = create.elem("textarea");
+      editContent.classList.add("textarea");
       let sendEditBtn = create.elem("button");
       let cancelEditBtn = create.elem("button");
 
@@ -101,11 +104,13 @@ export async function Entries(entry, comments, likes) {
         let patchedEntry = await api.update("entries", entry.entryID, body);
         console.log(patchedEntry.data);
         cancelEdit(patchedEntry.data);
+        editBtn.disabled = false;
       };
 
       cancelEditBtn.onclick = async function() {
         let earlierData = await api.getOne("entries", entry.entryID);
         cancelEdit(earlierData.data);
+        editBtn.disabled = false;
       };
 
       async function cancelEdit(patchedEntry) {
