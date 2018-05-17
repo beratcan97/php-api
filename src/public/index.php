@@ -43,8 +43,9 @@ $app->post('/login', function ($request, $response, $args) {
         $_SESSION['loggedIn'] = true;
         $_SESSION['userID'] = $user['userID'];
         $_SESSION['username'] = $user['username'];
+        $_SESSION['admin'] = $user['admin'];
 
-        return $response->withJson(['data' => [ $user['userID'], $user['username'] ]]);
+        return $response->withJson(['data' => [ $user['userID'], $user['username'], $user['admin'] ]]);
     }
     return $response->withJson(['error' => 'wrong password']);
 });

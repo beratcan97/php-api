@@ -11,6 +11,7 @@ async function login(body) {
       console.log(data);
       sessionStorage.setItem("userID", data.data[0]);
       sessionStorage.setItem("username", data.data[1]);
+      sessionStorage.setItem("admin", data.data[4]);
     })
     .catch(err => console.log(err));
 }
