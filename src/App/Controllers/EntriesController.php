@@ -36,7 +36,11 @@ class EntriesController
 
     public function getOne($id)
     {
-        $getOne = $this->db->prepare('SELECT * FROM entries WHERE entryID = :entryID');
+        $getOne = $this->db->prepare('SELECT entries.*,
+          users.username AS "entryUsername"
+          FROM entries
+          INNER JOIN users ON users.userID = entries.createdBy
+          WHERE entries.entryID = :entryID');
         $getOne->execute([':entryID' => $id]);
         return $getOne->fetch();
     }
