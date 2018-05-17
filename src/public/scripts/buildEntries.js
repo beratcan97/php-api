@@ -15,8 +15,11 @@ export async function BuildEntries() {
   //   window.location.pathname ===
   //   "/profile/" + sessionStorage.getItem("username")
   // ) {
-  if (window.location.pathname === "/profile/") {
-    userRoute = "entries/user/" + sessionStorage.getItem("userID");
+  if (window.location.pathname.includes("/profile/")) {
+    // userRoute = "entries/user/" + sessionStorage.getItem("userID");
+    let newPathName = window.location.pathname;
+    newPathName = newPathName.split("/");
+    userRoute = "entries/user/" + newPathName[2];
   }
 
   if (window.location.pathname.includes("/entries/")) {
