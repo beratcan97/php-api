@@ -1,47 +1,50 @@
-import * as api from "../fetch.js";
-import { create } from "../utils.js";
-import { LikeBtn } from "./components/likeBtn.js";
-import { Comments } from "./components/comments.js";
-import { DeleteBtn } from "./components/deleteBtn.js";
+import * as api from '../fetch.js';
+import { create } from '../utils.js';
+import { LikeBtn } from './components/likeBtn.js';
+import { Comments } from './components/comments.js';
+import { DeleteBtn } from './components/deleteBtn.js';
 
 export async function Entries(entry, comments, likes) {
   // Imports
-  let likeBtnComp = await LikeBtn(entry, likes);
-  let commentsComp = await Comments(comments, entry.entryID);
-  let deleteBtnComp = await DeleteBtn(entry);
+  const likeBtnComp = await LikeBtn(entry, likes);
+  const commentsComp = await Comments(comments, entry.entryID);
+  const deleteBtnComp = await DeleteBtn(entry);
+  const editBtn = await EditBtn();
 
   // Wrappers
-  let entryWrapper = create.elem("div");
-  let titleWrapper = create.elem("div");
-  let contentWrapper = create.elem("div");
-  let entryWrapperHeader = create.elem("div");
-  let entryWrapperBody = create.elem("div");
-  entryWrapperHeader.classList.add("title-style");
+  const entryWrapper = create.elem('div');
+  const titleWrapper = create.elem('div');
+  const contentWrapper = create.elem('div');
+  const entryWrapperHeader = create.elem('div');
+  const entryWrapperBody = create.elem('div');
 
   // Elements
-  let title = create.elem("h1");
-  let createdBy = create.elem("a");
-  let date = create.elem("p");
-  let content = create.elem("p");
-  let editBtn = await EditBtn();
+  let title = create.elem('h1');
+  const createdBy = create.elem('a');
+  const date = create.elem('p');
+  let content = create.elem('p');
 
-  // Styling
-  entryWrapper.classList.add("card");
-  entryWrapperHeader.classList.add("card-header");
-  entryWrapperHeader.classList.add("box");
-  entryWrapperBody.classList.add("card-body");
-  entryWrapperBody.classList.add("box");
-  entryWrapper.classList.add("entries_wrapper");
+  // get classes
+  const clEWH = ['title-style', 'card-header', 'box'];
+  const clEWB = ['card-body', 'box'];
+  const clEW = ['card', 'entries_wrapper'];
+  const clT = ['entry_title', 'title'];
 
-  let clT = ["entry_title", "title"];
+  // apply classes
+  entryWrapperHeader.classList.add(...clEWH);
+  entryWrapperBody.classList.add(...clEWB);
+  entryWrapper.classList.add(...clEW);
   title.classList.add(...clT);
+
+  date.classList.add('entries-date-style');
+  contentWrapper.classList.add('content-style');
+  createdBy.classList.add('entry_createdBy');
 
   // Text
   let titleText = create.text(entry.title);
   let contentText = create.text(entry.content);
-  let dateText = create.text(entry.createdAt);
-  let createdByText = create.text("written by: " + entry.entryUsername);
-  date.classList.add("entries-date-style");
+  const dateText = create.text(entry.createdAt);
+  const createdByText = create.text(`written by: ${entry.entryUsername}`);
 
   // Append Text
   title.appendChild(titleText);
@@ -50,30 +53,24 @@ export async function Entries(entry, comments, likes) {
   content.appendChild(contentText);
   titleWrapper.appendChild(title);
   contentWrapper.appendChild(content);
-  contentWrapper.classList.add("content-style");
-  createdBy.classList.add("entry_createdBy");
-
-  createdBy.setAttribute("href", "/profile/" + entry.createdBy);
 
   // Append header components
   entryWrapperHeader.appendChild(titleWrapper);
   entryWrapperHeader.appendChild(editBtn);
 
-  // Clicking title will bring user to individual entry
+  // Click events
+  createdBy.setAttribute('href', `/profile/${entry.createdBy}`);
+
   title.onclick = function() {
-    window.location.href = "/entries/" + entry.entryID;
+    window.location.href = `/entries/${entry.entryID}`;
   };
 
   // Appends delete button if the user is the creator of the entry or admin
-  if (
-    sessionStorage["admin"] == 1 ||
-    sessionStorage["userID"] == entry.createdBy
-  ) {
+  if (sessionStorage.admin == 1 || sessionStorage.userID == entry.createdBy) {
     entryWrapperHeader.appendChild(deleteBtnComp);
   }
 
   // Append body components
-
   entryWrapperBody.appendChild(date);
   entryWrapperBody.appendChild(createdBy);
   entryWrapperBody.appendChild(contentWrapper);
@@ -86,35 +83,35 @@ export async function Entries(entry, comments, likes) {
 
   // EDIT BUTTON
   function EditBtn() {
-    let editBtn = create.elem("button");
-    const clsE = ["button", "is-outlined", "is-success"];
+    const editBtn = create.elem('button');
+    const clsE = ['button', 'is-outlined', 'is-success'];
     editBtn.classList.add(...clsE);
 
-    let editText = create.text("Edit");
+    const editText = create.text('Edit');
     editBtn.appendChild(editText);
 
     editBtn.onclick = function() {
       editBtn.disabled = true;
-      let editTitle = create.elem("input");
-      editTitle.classList.add("input");
-      let editContent = create.elem("textarea");
-      editContent.classList.add("textarea");
-      let sendEditBtn = create.elem("button");
-      let cancelEditBtn = create.elem("button");
-      const clsE = ["button", "is-outlined", "is-success"];
+      const editTitle = create.elem('input');
+      editTitle.classList.add('input');
+      const editContent = create.elem('textarea');
+      editContent.classList.add('textarea');
+      const sendEditBtn = create.elem('button');
+      const cancelEditBtn = create.elem('button');
+      const clsE = ['button', 'is-outlined', 'is-success'];
       sendEditBtn.classList.add(...clsE);
-      sendEditBtn.classList.add("is-small");
+      sendEditBtn.classList.add('is-small');
       cancelEditBtn.classList.add(...clsE);
-      cancelEditBtn.classList.add("is-small");
+      cancelEditBtn.classList.add('is-small');
 
-      editTitle.setAttribute("type", "text");
-      editContent.cols = "30";
-      editContent.rows = "10";
+      editTitle.setAttribute('type', 'text');
+      editContent.cols = '30';
+      editContent.rows = '10';
 
       editTitle.value = titleText.textContent;
       editContent.value = contentText.textContent;
-      sendEditBtn.innerHTML = "Confirm changes";
-      cancelEditBtn.innerHTML = "Cancel edit";
+      sendEditBtn.innerHTML = 'Confirm changes';
+      cancelEditBtn.innerHTML = 'Cancel edit';
 
       title.remove();
       content.remove();
@@ -125,27 +122,27 @@ export async function Entries(entry, comments, likes) {
       contentWrapper.appendChild(cancelEditBtn);
 
       sendEditBtn.onclick = async function() {
-        let body = {
+        const body = {
           title: editTitle.value,
-          content: editContent.value
+          content: editContent.value,
         };
-        let patchedEntry = await api.update("entries", entry.entryID, body);
+        const patchedEntry = await api.update('entries', entry.entryID, body);
         console.log(patchedEntry.data);
         cancelEdit(patchedEntry.data);
         editBtn.disabled = false;
       };
 
       cancelEditBtn.onclick = async function() {
-        let earlierData = await api.getOne("entries", entry.entryID);
+        const earlierData = await api.getOne('entries', entry.entryID);
         cancelEdit(earlierData.data);
         editBtn.disabled = false;
       };
 
       async function cancelEdit(patchedEntry) {
-        title = create.elem("h2");
-        title.classList.add("title");
-        content = create.elem("p");
-        content.classList.add("content");
+        title = create.elem('h2');
+        title.classList.add('title');
+        content = create.elem('p');
+        content.classList.add('content');
 
         titleText = create.text(patchedEntry.title);
         contentText = create.text(patchedEntry.content);

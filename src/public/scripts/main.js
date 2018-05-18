@@ -16,13 +16,15 @@ if (sessionStorage.getItem('userID')) {
   Searchbar();
   BuildEntries();
 
-  entryForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const formData = new FormData(this);
-    formData.forEach((item) => console.log(item));
-    api.post('entries', formData);
-    location.reload();
-  });
+  if (isset(entryForm)) {
+    entryForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      formData.forEach((item) => console.log(item));
+      api.post('entries', formData);
+      location.reload();
+    });
+  }
 
   signOut.addEventListener('click', () => {
     sessionStorage.clear();
