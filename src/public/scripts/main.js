@@ -1,84 +1,50 @@
-import * as api from "./fetch";
-import { get } from "./utils";
-import { isset } from "./utils";
-import { BuildEntries } from "./buildEntries";
-import { Searchbar } from "./searchbar";
+import * as api from './fetch';
+import { get } from './utils';
+import { isset } from './utils';
+import { BuildEntries } from './buildEntries';
+import { Searchbar } from './searchbar';
 
 // Declarations
-let registerForm = get.id("register_form");
-let loginForm = get.id("login_form");
-let entryForm = get.id("entry_form");
-let entriesContainer = get.id("entries_container");
-let signOut = get.id("sign_out");
+const registerForm = get.id('register_form');
+const loginForm = get.id('login_form');
+const entryForm = get.id('entry_form');
+const entriesContainer = get.id('entries_container');
+const signOut = get.id('sign_out');
 
 // Check session timer if session has timed
-if (sessionStorage.getItem("userID")) {
+if (sessionStorage.getItem('userID')) {
   Searchbar();
   BuildEntries();
 
-  entryForm.addEventListener("submit", function(event) {
+  entryForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    let formData = new FormData(this);
-    formData.forEach(item => console.log(item));
-    api.post("entries", formData);
+    const formData = new FormData(this);
+    formData.forEach((item) => console.log(item));
+    api.post('entries', formData);
     location.reload();
   });
 
-  signOut.addEventListener("click", function() {
+  signOut.addEventListener('click', () => {
     sessionStorage.clear();
   });
 } else {
-  if (window.location.pathname == "/register") {
-    registerForm.addEventListener("submit", function(event) {
+  if (window.location.pathname == '/register') {
+    registerForm.addEventListener('submit', function(event) {
       event.preventDefault();
-      let formData = new FormData(this);
-      api.post("register", formData);
+      const formData = new FormData(this);
+      api.post('register', formData);
       location.reload();
     });
   }
 
-  if (window.location.pathname == "/login") {
-    loginForm.addEventListener("submit", function(event) {
+  if (window.location.pathname == '/login') {
+    loginForm.addEventListener('submit', function(event) {
       event.preventDefault();
-      let formData = new FormData(this);
+      const formData = new FormData(this);
       api.login(formData);
     });
   }
 }
-
-// login & register
-// if (isset(registerForm)) {
-//   registerForm.addEventListener("submit", function(event) {
-//     event.preventDefault();
-//     let formData = new FormData(this);
-//     api.post("register", formData);
-//     location.reload();
-//   });
-// }
-//
-// if (isset(loginForm)) {
-//   loginForm.addEventListener("submit", function(event) {
-//     event.preventDefault();
-//     let formData = new FormData(this);
-//     api.login(formData);
-//   });
-// }
-//
-// if (isset(entryForm)) {
-//   entryForm.addEventListener("submit", function(event) {
-//     event.preventDefault();
-//     let formData = new FormData(this);
-//     formData.forEach(item => console.log(item));
-//     api.post("entries", formData);
-//     location.reload();
-//   });
-// }
-//
-// if (isset(signOut)) {
-//   signOut.addEventListener("click", function() {
-//     sessionStorage.clear();
-//   });
-// }
 
 console.log(sessionStorage);
 
