@@ -16,7 +16,8 @@ class EntriesController
         $getAll = $this->db->prepare('SELECT entries.*,
           users.username AS "entryUsername"
           FROM entries
-          INNER JOIN users ON users.userID = entries.createdBy');
+          INNER JOIN users ON users.userID = entries.createdBy
+          ORDER BY entries.entryID DESC LIMIT 20');
         $getAll->execute();
         return $getAll->fetchAll();
     }
@@ -27,7 +28,8 @@ class EntriesController
           users.username AS "entryUsername"
           FROM entries
           INNER JOIN users ON users.userID = entries.createdBy
-          WHERE entries.createdBy = :createdBy');
+          WHERE entries.createdBy = :createdBy
+          ORDER BY entries.entryID DESC');
         $getAll->execute([
           ':createdBy' => $createdBy
         ]);
