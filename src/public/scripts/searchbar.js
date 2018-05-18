@@ -24,6 +24,7 @@ export async function Searchbar() {
 
     timer = setTimeout(async function() {
       if (searchbar.value.length > 0) {
+        searchResults.innerHTML = "";
         let entries = await api.get("entries");
         let filteredEntries = entries.data.filter(entry => {
           if (entry.title.includes(searchbar.value)) {
@@ -36,6 +37,10 @@ export async function Searchbar() {
         searchWrapper.appendChild(searchResults);
       }
     }, 700);
+
+    if (searchbar.value.length === 0) {
+      searchResults.innerHTML = "";
+    }
   };
 }
 
