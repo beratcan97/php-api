@@ -20,7 +20,9 @@ $app->get('/', function ($request, $response, $args) {
 });
 
 $app->get('/register', function ($request, $response, $args) {
-    return $this->view->render($response, 'components/register.php');
+    if (!$request->isXhr()) {
+        return $this->view->render($response, 'components/register.php');
+    }
 });
 
 $app->get('/login', function ($request, $response, $args) {
@@ -56,6 +58,25 @@ $app->post('/login', function ($request, $response, $args) {
     return $response->withJson(['error' => 'wrong password']);
 });
 
+$app->post('/register', function ($request, $response, $args) {
+    $body = $request->getParsedBody();
+    $registerUser = $this->db->prepare(
+    'INSERT INTO users (username, password, createdAt, admin) VALUES (:username, :password, :createdAt, :admin)'
+  );
+    $hashed = password_hash($body["password"], PASSWORD_BCRYPT);
+    $date = date('Y-m-d, H:i:s');
+
+    $registerUser->execute(
+    [
+      ':username'  => $body['username'],
+      ':password'  => $hashed,
+      ':createdAt'  => $date,
+      ':admin' => false
+    ]
+  );
+
+    return $response->withJson(['data' => $body['username'] . " has been registered!"]);
+});
 
 $app->get('/logout', function ($request, $response, $args) {
     session_destroy();
