@@ -53,7 +53,6 @@ body, html {
 .comments-date-style {
   color: rgb(120, 196, 196);
   font-size: 0.8em;
-  padding: 2em;
   float: right;
 }
 
@@ -63,9 +62,19 @@ body, html {
   font-style: italic;
 }
 
+.content-style{
+  padding: 2em 0;
 .search_results {
   position: relative;
   display: block;
   background-color: white;
   padding: 4px 0;
+}
+
+.comments-box{
+  background: rgb(245, 245, 245);
+}
+
+.title-style{
+  background: rgb(203, 236, 247);
 }
