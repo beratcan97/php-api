@@ -55,9 +55,8 @@ export async function Entries(entry, comments, likes) {
 
   // Append header components
   entryWrapperHeader.appendChild(titleWrapper);
-  entryWrapperHeader.appendChild(createdBy);
   entryWrapperHeader.appendChild(editBtn);
-
+  
   // Clicking title will bring user to individual entry
   title.onclick = function() {
     window.location.href = "/entries/" + entry.entryID;
@@ -70,9 +69,11 @@ export async function Entries(entry, comments, likes) {
   ) {
     entryWrapperHeader.appendChild(deleteBtnComp);
   }
-
+  
   // Append body components
+
   entryWrapperBody.appendChild(date);
+  entryWrapperBody.appendChild(createdBy);
   entryWrapperBody.appendChild(contentWrapper);
   entryWrapperBody.appendChild(commentsComp);
   entryWrapperBody.appendChild(likeBtnComp);

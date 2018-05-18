@@ -100,7 +100,7 @@ function commentsBuilder(comment) {
   commentDeleteBtn.classList.add(...clsCDB);
 
   let createdByText = create.text("user: " + comment.username);
-  let dateText = create.text("date: " + comment.createdAt);
+  let dateText = create.text(comment.createdAt);
   date.classList.add("comments-date-style");
   let contentText = create.text("comment: " + comment.content);
   let commentDeleteBtnText = create.text("Delete");
