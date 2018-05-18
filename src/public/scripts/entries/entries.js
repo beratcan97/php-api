@@ -15,12 +15,12 @@ export async function Entries(entry, comments, likes) {
   let titleWrapper = create.elem("div");
   let contentWrapper = create.elem("div");
   let entryWrapperHeader = create.elem("div");
-  entryWrapperHeader.classList.add("title-style");
   let entryWrapperBody = create.elem("div");
+  entryWrapperHeader.classList.add("title-style");
 
   // Elements
   let title = create.elem("h1");
-  let createdBy = create.elem("h2");
+  let createdBy = create.elem("a");
   let date = create.elem("p");
   let content = create.elem("p");
   let editBtn = await EditBtn();
@@ -38,9 +38,9 @@ export async function Entries(entry, comments, likes) {
   let titleText = create.text(entry.title);
   let contentText = create.text(entry.content);
   let dateText = create.text(entry.createdAt);
-  date.classList.add("entries-date-style");
   let createdByText = create.text("written by: " + entry.entryUsername);
-  
+  date.classList.add("entries-date-style");
+
   // Append Text
   title.appendChild(titleText);
   createdBy.appendChild(createdByText);
@@ -49,6 +49,9 @@ export async function Entries(entry, comments, likes) {
   titleWrapper.appendChild(title);
   contentWrapper.appendChild(content);
   contentWrapper.classList.add("content-style");
+  createdBy.classList.add("entry_createdBy");
+
+  createdBy.setAttribute("href", "profile/" + entry.createdBy);
 
   // Append header components
   entryWrapperHeader.appendChild(titleWrapper);
@@ -139,7 +142,7 @@ export async function Entries(entry, comments, likes) {
         title = create.elem("h2");
         title.classList.add("title");
         content = create.elem("p");
-        content.classList.add("content")
+        content.classList.add("content");
 
         titleText = create.text(patchedEntry.title);
         contentText = create.text(patchedEntry.content);
