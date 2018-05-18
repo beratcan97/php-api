@@ -102,7 +102,7 @@ function commentsBuilder(comment) {
 
   let createdByText = create.text("user: " + comment.username);
   let dateText = create.text("date: " + comment.createdAt);
-  date.classList.add("is-small");
+  date.classList.add("comments-date-style");
   let contentText = create.text("comment: " + comment.content);
   let commentDeleteBtnText = create.text("Delete");
 
@@ -125,9 +125,6 @@ function commentsBuilder(comment) {
     api.remove("comments", comment.commentID);
     location.reload();
   };
-
-  // DELETE THIS WHEN STYLING IS DONE
-  commentElement.style.border = "1px solid black";
 
   return commentElement;
 }

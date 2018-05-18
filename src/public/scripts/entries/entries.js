@@ -37,6 +37,7 @@ export async function Entries(entry, comments, likes) {
   let titleText = create.text(entry.title);
   let contentText = create.text(entry.content);
   let dateText = create.text(entry.createdAt);
+  date.classList.add("entries-date-style");
   let createdByText = create.text("written by: " + entry.entryUsername);
   
   // Append Text

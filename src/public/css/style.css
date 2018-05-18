@@ -49,3 +49,17 @@ body, html {
 .title:hover {
   cursor: pointer;
 }
+
+.comments-date-style{
+  color: rgb(120, 196, 196);
+  font-size: 0.8em;
+  padding:2em;
+  float: right;
+}
+
+.entries-date-style{
+  color: rgb(120, 196, 196);
+  font-size: 1.2em;
+  font-style: italic;
+
+}
