@@ -16,7 +16,7 @@
       </div>
     </div>
     </section>
-   
+
     <?php else: ?>
       <div class="container">
         <p class="title">Welcome, <?= $_SESSION['username'] ?> </p>

@@ -15,6 +15,9 @@
     </section>
 
 		<?php else: ?>
+      <span id="search_wrapper" class="searchbar-style">
+        <input type="text" class="input" name="searchbar" placeholder="Search entries by title" id="searchbar">
+      </span>
       <div id="entries_container" class="entries_container">
       </div>
     <?php endif; ?>
