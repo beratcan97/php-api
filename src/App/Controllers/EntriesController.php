@@ -73,7 +73,9 @@ class EntriesController
     public function delete($id)
     {
         $addOne = $this->db->prepare(
-            'DELETE FROM entries WHERE entryID = :entryID '
+            "DELETE FROM entries WHERE entryID = :entryID;
+            DELETE FROM likes WHERE entryID = :entryID;
+            DELETE FROM comments WHERE entryID = :entryID" 
         );
 
         $addOne->execute([
