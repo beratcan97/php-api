@@ -32,7 +32,6 @@ if (isset(loginForm)) {
     event.preventDefault();
     let formData = new FormData(this);
     api.login(formData);
-    window.location.href = "/";
   });
 }
 

@@ -8,10 +8,15 @@ async function login(body) {
   fetch("/login", postOptions)
     .then(response => response.json())
     .then(data => {
-      // console.log(data);
-      sessionStorage.setItem("userID", data.data[0]);
-      sessionStorage.setItem("username", data.data[1]);
-      sessionStorage.setItem("admin", data.data[2]);
+      if (data.hasOwnProperty("data")) {
+        console.log(data);
+        sessionStorage.setItem("userID", data.data[0]);
+        sessionStorage.setItem("username", data.data[1]);
+        sessionStorage.setItem("admin", data.data[2]);
+        window.location.href = "/";
+      } else {
+        alert(data.error);
+      }
     })
     .catch(err => console.log(err));
 }
