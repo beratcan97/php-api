@@ -12,7 +12,6 @@ async function login(body) {
       sessionStorage.setItem("userID", data.data[0]);
       sessionStorage.setItem("username", data.data[1]);
       sessionStorage.setItem("admin", data.data[2]);
-      sessionStorage.setItem("sessionTimer", new Date().getTime());
     })
     .catch(err => console.log(err));
 }
