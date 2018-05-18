@@ -1,3 +1,11 @@
+<?php
+  if (session_status() == PHP_SESSION_NONE) {
+      ?>
+      <script>sessionStorage.clear();</script> 
+    <?php
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -7,7 +15,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
-  <link rel="stylesheet" href="../../css/style.css"> 
+  <link rel="stylesheet" href="../../css/style.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <title>PHP-API</title>
 </head>

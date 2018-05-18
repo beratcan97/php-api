@@ -12,15 +12,7 @@ let entriesContainer = get.id("entries_container");
 let signOut = get.id("sign_out");
 
 // Check session timer if session has timed
-if (sessionStorage.getItem("sessionTimer")) {
-  let now = new Date().getTime();
-  let sessionTimer = sessionStorage.getItem("sessionTimer");
-  console.log(now - sessionTimer);
-  // 3600ms * 1000ms = 3600 seconds = 1hour
-  if (now - sessionTimer > 3600 * 1000) {
-    sessionStorage.clear();
-  }
-
+if (sessionStorage.getItem("userID")) {
   Searchbar();
   BuildEntries();
 }
@@ -40,7 +32,6 @@ if (isset(loginForm)) {
     event.preventDefault();
     let formData = new FormData(this);
     api.login(formData);
-    window.location.href = "/";
   });
 }
 
