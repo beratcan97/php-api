@@ -31,7 +31,7 @@ export async function Comments(comments, entryID) {
     };
   }
 
-  const clsLC = ["button",  "is-info", "is-small"];
+  const clsLC = ["button", "is-info", "is-small"];
   commentBtn.classList.add(...clsLC);
   addCommentBtn.classList.add(...clsLC);
 

@@ -26,7 +26,8 @@ export async function Entries(entry, comments, likes) {
   let editBtn = await EditBtn();
 
   // Styling
-  entryWrapper.classList.add("card");
+  entryWrapper.classList.add("box");
+  entryWrapper.classList.add("container-entry-style");
   entryWrapperHeader.classList.add("card-header");
   entryWrapperHeader.classList.add("box");
   entryWrapperBody.classList.add("card-body");
@@ -101,9 +102,11 @@ export async function Entries(entry, comments, likes) {
       editContent.classList.add("textarea");
       let sendEditBtn = create.elem("button");
       let cancelEditBtn = create.elem("button");
-      sendEditBtn.classList.add(...clsE);
+      const clsEd = ["button","is-outlined", "is-primary"];
+      const clsD = ["button","is-outlined", "is-danger"];
+      sendEditBtn.classList.add(...clsEd);
       sendEditBtn.classList.add("is-small");
-      cancelEditBtn.classList.add(...clsE);
+      cancelEditBtn.classList.add(...clsD);
       cancelEditBtn.classList.add("is-small");
 
       editTitle.setAttribute("type", "text");
