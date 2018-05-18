@@ -32,7 +32,9 @@ export async function Entries(entry, comments, likes) {
   entryWrapperBody.classList.add("card-body");
   entryWrapperBody.classList.add("box");
   entryWrapper.classList.add("entries_wrapper");
-  title.classList.add("title");
+
+  let clT = ["entry_title", "title"];
+  title.classList.add(...clT);
 
   // Text
   let titleText = create.text(entry.title);
@@ -56,7 +58,7 @@ export async function Entries(entry, comments, likes) {
   // Append header components
   entryWrapperHeader.appendChild(titleWrapper);
   entryWrapperHeader.appendChild(editBtn);
-  
+
   // Clicking title will bring user to individual entry
   title.onclick = function() {
     window.location.href = "/entries/" + entry.entryID;
@@ -69,7 +71,7 @@ export async function Entries(entry, comments, likes) {
   ) {
     entryWrapperHeader.appendChild(deleteBtnComp);
   }
-  
+
   // Append body components
 
   entryWrapperBody.appendChild(date);
