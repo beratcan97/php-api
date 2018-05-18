@@ -82,7 +82,7 @@ export async function Entries(entry, comments, likes) {
   // EDIT BUTTON
   function EditBtn() {
     let editBtn = create.elem("button");
-    const clsE = ["button", "is-outlined", "is-success"];
+    const clsE = ["button", "is-primary"];
     editBtn.classList.add(...clsE);
 
     let editText = create.text("Edit");
@@ -96,7 +96,6 @@ export async function Entries(entry, comments, likes) {
       editContent.classList.add("textarea");
       let sendEditBtn = create.elem("button");
       let cancelEditBtn = create.elem("button");
-      const clsE = ["button", "is-outlined", "is-success"];
       sendEditBtn.classList.add(...clsE);
       sendEditBtn.classList.add("is-small");
       cancelEditBtn.classList.add(...clsE);

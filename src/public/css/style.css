@@ -64,6 +64,8 @@ body, html {
 
 .content-style{
   padding: 2em 0;
+}
+
 .search_results {
   position: relative;
   display: block;
@@ -82,5 +84,13 @@ body, html {
 .btn-style{
   margin:1em 0;
   float:right;
+}
+
+.searchbar-style{
+  margin-left: 60em;
+}
+
+.container-entry-style{
+  margin-top: 5em;
 }
 

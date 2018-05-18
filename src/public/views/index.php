@@ -17,8 +17,13 @@
     </div>
     </section>
    
-		<?php else: ?>
-      <p class="title">Welcome, <?= $_SESSION['username'] ?> </p>
+    <?php else: ?>
+      <div class="container">
+        <p class="title">Welcome, <?= $_SESSION['username'] ?> </p>
+        <span id="search_wrapper" class="searchbar-style">
+          <input type="text" class="input" name="searchbar" placeholder="Search entries by title" id="searchbar">
+        </span>
+      </div>
       <?php include_once('components/entry_form.php'); ?>
       <div id="entries_container" class="entries_container">
       </div>
