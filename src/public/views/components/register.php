@@ -23,7 +23,7 @@
           </span>
       </div>
       <div class="control">
-        <button type="submit" name="registerBtn" id="registerBtn" class="button is-outlined is-primary">Register</button>
+        <button type="submit" name="registerBtn" id="registerBtn" class="button is-outlined is-primary btn-style">Register</button>
       </div>
     </div>
   </form>

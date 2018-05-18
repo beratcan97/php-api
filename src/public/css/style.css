@@ -73,3 +73,9 @@ body, html {
 .title-style{
   background: rgb(203, 236, 247);
 }
+
+.btn-style{
+  margin:1em 0;
+  float:right;
+}
+
