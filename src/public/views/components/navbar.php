@@ -24,8 +24,18 @@
 	</li>
 
 	<li>
-		<a href="/profile/<?= $_SESSION['userID'] ?>">Profile</a>
+		<a href="/profile/<?= $_SESSION['userID'] ?>"><?= $_SESSION['username'] ?></a>
 	</li>
+
+	<?php
+		if($_SESSION['admin'] == 1) {
+			?>
+			<li>
+				<a href="/admin/">Admin</a>
+			</li>
+			<?php
+		}
+	?>
 
 	<?php endif; ?>
   </ul>

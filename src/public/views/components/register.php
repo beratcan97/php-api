@@ -1,7 +1,7 @@
 <?php require('head.php'); ?>
 <?php require_once('navbar.php'); ?>
 
-<form action="/api/register" class="box" id="register_form" method="post">
+<form action="/register" class="box" id="register_form" method="post">
     <div class="section">
       <p class="title">Create a new account</p>
     </div>
