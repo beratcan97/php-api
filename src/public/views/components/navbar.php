@@ -1,8 +1,3 @@
-<div>
-  <div id="search_wrapper">
-    <input type="text" class="input" name="searchbar" placeholder="Search entries by title" id="searchbar">
-	</div>
-</div>
 
 <div class="tabs is-right">
   <ul>
@@ -19,7 +14,7 @@
 	<?php else:  ?>
 
 	<li>
-			<a href="../" ><span class="icon has-text-info">
+			<a href="../" ><span class="icon has-text-primary">
 				<i class="fas fa-home"></i></span>Home
 			</a>
 	</li>

@@ -25,9 +25,9 @@ export async function Entries(entry, comments, likes) {
   let content = create.elem('p');
 
   // get classes
-  const clEWH = ['title-style', 'card-header', 'box'];
+  const clEWH = ['card-header', 'box'];
   const clEWB = ['card-body', 'box'];
-  const clEW = ['card', 'entries_wrapper'];
+  const clEW = ['card', 'container-entry-style', 'entries_wrapper'];
   const clT = ['entry_title', 'title'];
 
   // apply classes
@@ -83,8 +83,8 @@ export async function Entries(entry, comments, likes) {
 
   // EDIT BUTTON
   function EditBtn() {
-    const editBtn = create.elem('button');
-    const clsE = ['button', 'is-outlined', 'is-success'];
+    let editBtn = create.elem("button");
+    const clsE = ["button", "is-primary"];
     editBtn.classList.add(...clsE);
 
     const editText = create.text('Edit');
@@ -92,17 +92,18 @@ export async function Entries(entry, comments, likes) {
 
     editBtn.onclick = function() {
       editBtn.disabled = true;
-      const editTitle = create.elem('input');
-      editTitle.classList.add('input');
-      const editContent = create.elem('textarea');
-      editContent.classList.add('textarea');
-      const sendEditBtn = create.elem('button');
-      const cancelEditBtn = create.elem('button');
-      const clsE = ['button', 'is-outlined', 'is-success'];
-      sendEditBtn.classList.add(...clsE);
-      sendEditBtn.classList.add('is-small');
-      cancelEditBtn.classList.add(...clsE);
-      cancelEditBtn.classList.add('is-small');
+      let editTitle = create.elem("input");
+      editTitle.classList.add("input");
+      let editContent = create.elem("textarea");
+      editContent.classList.add("textarea");
+      let sendEditBtn = create.elem("button");
+      let cancelEditBtn = create.elem("button");
+      const clsEd = ["button","is-outlined", "is-primary"];
+      const clsD = ["button","is-outlined", "is-danger"];
+      sendEditBtn.classList.add(...clsEd);
+      sendEditBtn.classList.add("is-small");
+      cancelEditBtn.classList.add(...clsD);
+      cancelEditBtn.classList.add("is-small");
 
       editTitle.setAttribute('type', 'text');
       editContent.cols = '30';

@@ -1,4 +1,5 @@
-<form action="/api/entries" class="container box grey-lighter-background" id="entry_form" method="post">
+
+<form action="/api/entries" class="container box container-entry-style" id="entry_form" method="post">
     <div class="field">
       <label for="title" class="subtitle">Title</label>
       <div class="control">

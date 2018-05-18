@@ -86,6 +86,14 @@ body, html {
   float: right;
 }
 
+.searchbar-style{
+  margin-left: 60em;
+}
+
+.container-entry-style{
+  margin-top: 5em;
+}
+
 .grey-lighter-background {
   background-color: #f1f1f1;
 }
