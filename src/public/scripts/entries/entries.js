@@ -15,6 +15,7 @@ export async function Entries(entry, comments, likes) {
   let titleWrapper = create.elem("div");
   let contentWrapper = create.elem("div");
   let entryWrapperHeader = create.elem("div");
+  entryWrapperHeader.classList.add("title-style");
   let entryWrapperBody = create.elem("div");
 
   // Elements
@@ -47,6 +48,7 @@ export async function Entries(entry, comments, likes) {
   content.appendChild(contentText);
   titleWrapper.appendChild(title);
   contentWrapper.appendChild(content);
+  contentWrapper.classList.add("content-style");
 
   // Append header components
   entryWrapperHeader.appendChild(titleWrapper);
@@ -67,8 +69,8 @@ export async function Entries(entry, comments, likes) {
   }
 
   // Append body components
-  entryWrapperBody.appendChild(contentWrapper);
   entryWrapperBody.appendChild(date);
+  entryWrapperBody.appendChild(contentWrapper);
   entryWrapperBody.appendChild(commentsComp);
   entryWrapperBody.appendChild(likeBtnComp);
 

@@ -6,6 +6,7 @@ export async function Comments(comments, entryID) {
   let commentsContainer = create.elem("div");
   let commentsWrapper = create.elem("div");
   commentsWrapper.classList.add("box");
+  commentsWrapper.classList.add("comments-box");
   let commentSpan = create.elem("p");
   commentSpan.classList.add("box");
   let commentInput = create.elem("textarea");
