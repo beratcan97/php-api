@@ -85,3 +85,7 @@ body, html {
   margin: 1em 0;
   float: right;
 }
+
+.grey-lighter-background {
+  background-color: #f1f1f1;
+}
