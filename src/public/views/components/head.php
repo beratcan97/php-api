@@ -1,7 +1,9 @@
 <?php
   if (session_status() == PHP_SESSION_NONE) {
       ?>
-      <script>sessionStorage.clear();</script> 
+      <script>window.onload = function() {
+        sessionStorage.clear();
+      }</script> 
     <?php
   }
 ?>
