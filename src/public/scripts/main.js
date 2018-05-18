@@ -11,6 +11,20 @@ let entryForm = get.id("entry_form");
 let entriesContainer = get.id("entries_container");
 let signOut = get.id("sign_out");
 
+// Check session timer if session has timed
+if (sessionStorage.getItem("sessionTimer")) {
+  let now = new Date().getTime();
+  let sessionTimer = sessionStorage.getItem("sessionTimer");
+  console.log(now - sessionTimer);
+  // 3600ms * 1000ms = 3600 seconds = 1hour
+  if (now - sessionTimer > 3600 * 1000) {
+    sessionStorage.clear();
+  }
+
+  Searchbar();
+  BuildEntries();
+}
+
 // login & register
 if (isset(registerForm)) {
   registerForm.addEventListener("submit", function(event) {
@@ -44,11 +58,6 @@ if (isset(signOut)) {
   signOut.addEventListener("click", function() {
     sessionStorage.clear();
   });
-}
-
-if (isset(sessionStorage.getItem("userID"))) {
-  Searchbar();
-  BuildEntries();
 }
 
 console.log(sessionStorage);

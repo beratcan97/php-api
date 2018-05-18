@@ -29,7 +29,7 @@
 	</li>
 
 	<li>
-		<a href="/profile">Profile</a>
+		<a href="/profile/<?= $_SESSION['userID'] ?>">Profile</a>
 	</li>
 
 	<?php endif; ?>

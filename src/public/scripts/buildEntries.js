@@ -11,12 +11,10 @@ export async function BuildEntries() {
   let userRoute = "entries";
   entriesContainer.innerHTML = "";
 
-  // if (
-  //   window.location.pathname ===
-  //   "/profile/" + sessionStorage.getItem("username")
-  // ) {
-  if (window.location.pathname === "/profile/") {
-    userRoute = "entries/user/" + sessionStorage.getItem("userID");
+  if (window.location.pathname.includes("/profile/")) {
+    let newPathName = window.location.pathname;
+    newPathName = newPathName.split("/");
+    userRoute = "entries/user/" + newPathName[2];
   }
 
   if (window.location.pathname.includes("/entries/")) {
@@ -27,29 +25,32 @@ export async function BuildEntries() {
 
   let userEntries = await api.get(userRoute);
 
-  if (!userEntries.data.length) {
-    let commentRoute = "comments/entries/" + userEntries.data.entryID;
-    let comments = await api.get(commentRoute);
-
-    let likesRoute = "likes/" + userEntries.data.entryID;
-    let likes = await api.get(likesRoute);
-
-    let newEntry = await Entries(userEntries.data, comments.data, likes.data);
-    entriesContainer.appendChild(newEntry);
-  } else {
-    for (let i = 0; i < userEntries.data.length; i++) {
-      let commentRoute = "comments/entries/" + userEntries.data[i].entryID;
+  // Checks if entries are returned as 0, {} or []
+  if (userEntries.data.length !== 0) {
+    if (!userEntries.data.length) {
+      let commentRoute = "comments/entries/" + userEntries.data.entryID;
       let comments = await api.get(commentRoute);
 
-      let likesRoute = "likes/" + userEntries.data[i].entryID;
+      let likesRoute = "likes/" + userEntries.data.entryID;
       let likes = await api.get(likesRoute);
 
-      let newEntry = await Entries(
-        userEntries.data[i],
-        comments.data,
-        likes.data
-      );
+      let newEntry = await Entries(userEntries.data, comments.data, likes.data);
       entriesContainer.appendChild(newEntry);
+    } else {
+      for (let i = 0; i < userEntries.data.length; i++) {
+        let commentRoute = "comments/entries/" + userEntries.data[i].entryID;
+        let comments = await api.get(commentRoute);
+
+        let likesRoute = "likes/" + userEntries.data[i].entryID;
+        let likes = await api.get(likesRoute);
+
+        let newEntry = await Entries(
+          userEntries.data[i],
+          comments.data,
+          likes.data
+        );
+        entriesContainer.appendChild(newEntry);
+      }
     }
   }
 
