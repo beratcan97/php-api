@@ -50,13 +50,13 @@ body, html {
   cursor: pointer;
 }
 
-.comments-date-style{
+.comments-date-style {
   color: rgb(120, 196, 196);
   font-size: 0.8em;
   float: right;
 }
 
-.entries-date-style{
+.entries-date-style {
   color: rgb(120, 196, 196);
   font-size: 1.2em;
   font-style: italic;
@@ -64,6 +64,11 @@ body, html {
 
 .content-style{
   padding: 2em 0;
+.search_results {
+  position: relative;
+  display: block;
+  background-color: white;
+  padding: 4px 0;
 }
 
 .comments-box{

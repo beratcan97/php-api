@@ -47,7 +47,7 @@ export async function Searchbar() {
 function searchbarResults(entry) {
   let listOption = create.elem("a");
   let listOptionText = create.text(entry.title);
-  listOption.style.position = "relative";
+  listOption.classList.add("search_results");
 
   listOption.appendChild(listOptionText);
 
