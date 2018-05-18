@@ -53,7 +53,7 @@ export async function Entries(entry, comments, likes) {
   contentWrapper.classList.add("content-style");
   createdBy.classList.add("entry_createdBy");
 
-  createdBy.setAttribute("href", "profile/" + entry.createdBy);
+  createdBy.setAttribute("href", "/profile/" + entry.createdBy);
 
   // Append header components
   entryWrapperHeader.appendChild(titleWrapper);

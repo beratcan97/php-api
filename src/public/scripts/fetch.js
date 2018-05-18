@@ -21,6 +21,22 @@ async function login(body) {
     .catch(err => console.log(err));
 }
 
+async function register(body) {
+  const postOptions = {
+    method: "POST",
+    body: body,
+    credentials: "include"
+  };
+
+  fetch("/register", postOptions)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data.data);
+      window.location.href = "/login";
+    })
+    .catch(err => console.log(err));
+}
+
 async function get(route) {
   route = route.toString();
   let get = await fetch("/api/" + route)
@@ -90,4 +106,4 @@ async function remove(route, id) {
   return remove;
 }
 
-export { login, get, getOne, post, update, remove };
+export { login, get, getOne, post, update, remove, register };

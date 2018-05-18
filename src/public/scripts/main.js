@@ -16,13 +16,15 @@ if (sessionStorage.getItem("userID")) {
   Searchbar();
   BuildEntries();
 
-  entryForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-    let formData = new FormData(this);
-    formData.forEach(item => console.log(item));
-    api.post("entries", formData);
-    location.reload();
-  });
+  if (isset(entryForm)) {
+    entryForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      let formData = new FormData(this);
+      formData.forEach(item => console.log(item));
+      api.post("entries", formData);
+      location.reload();
+    });
+  }
 
   signOut.addEventListener("click", function() {
     sessionStorage.clear();
@@ -32,8 +34,8 @@ if (sessionStorage.getItem("userID")) {
     registerForm.addEventListener("submit", function(event) {
       event.preventDefault();
       let formData = new FormData(this);
-      api.post("register", formData);
-      location.reload();
+      api.register(formData);
+      window.location.href("/login");
     });
   }
 
