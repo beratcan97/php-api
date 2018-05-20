@@ -56,7 +56,6 @@ export async function Entries(entry, comments, likes) {
 
   // Append header components
   entryWrapperHeader.appendChild(titleWrapper);
-  entryWrapperHeader.appendChild(editBtn);
 
   // Click events
   createdBy.setAttribute('href', `/profile/${entry.entryUsername}`);
@@ -68,6 +67,7 @@ export async function Entries(entry, comments, likes) {
   // Appends delete button if the user is the creator of the entry or admin
   if (sessionStorage.admin == 1 || sessionStorage.userID == entry.createdBy) {
     entryWrapperHeader.appendChild(deleteBtnComp);
+    entryWrapperHeader.appendChild(editBtn);
   }
 
   // Append body components
