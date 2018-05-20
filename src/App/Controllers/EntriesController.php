@@ -24,12 +24,21 @@ class EntriesController
 
     public function getAllByUser($createdBy)
     {
+      if (gettype($createdBy) === string) {
+        $getAll = $this->db->prepare('SELECT entries.*,
+          users.username AS "entryUsername"
+          FROM entries
+          INNER JOIN users ON users.userID = entries.createdBy
+          WHERE users.username = :createdBy
+          ORDER BY entries.entryID DESC');
+      } else {
         $getAll = $this->db->prepare('SELECT entries.*,
           users.username AS "entryUsername"
           FROM entries
           INNER JOIN users ON users.userID = entries.createdBy
           WHERE entries.createdBy = :createdBy
           ORDER BY entries.entryID DESC');
+      }
         $getAll->execute([
           ':createdBy' => $createdBy
         ]);
@@ -75,7 +84,7 @@ class EntriesController
         $addOne = $this->db->prepare(
             "DELETE FROM entries WHERE entryID = :entryID;
             DELETE FROM likes WHERE entryID = :entryID;
-            DELETE FROM comments WHERE entryID = :entryID" 
+            DELETE FROM comments WHERE entryID = :entryID"
         );
 
         $addOne->execute([

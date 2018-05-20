@@ -24,7 +24,7 @@
 	</li>
 
 	<li>
-		<a href="/profile/<?= $_SESSION['userID'] ?>"><?= $_SESSION['username'] ?></a>
+		<a href="/profile/<?= $_SESSION['username'] ?>"><?= $_SESSION['username'] ?></a>
 	</li>
 
 	<?php

@@ -35,7 +35,6 @@ if (sessionStorage.getItem('userID')) {
       event.preventDefault();
       const formData = new FormData(this);
       api.post('register', formData);
-      location.reload();
     });
   }
 

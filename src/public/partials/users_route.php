@@ -7,7 +7,7 @@ $app->get('/users', function ($request, $response, $args) {
 
 $app->get('/users/{id}', function ($request, $response, $args) {
     $id = $args['id'];
-    $singleUser = $this->get('users')->getOne($id);
+    $singleUser = $this->get('users')->getOneByName($id);
     return $response->withJson(['data' => $singleComment]);
 });
 

@@ -59,7 +59,7 @@ export async function Entries(entry, comments, likes) {
   entryWrapperHeader.appendChild(editBtn);
 
   // Click events
-  createdBy.setAttribute('href', `/profile/${entry.createdBy}`);
+  createdBy.setAttribute('href', `/profile/${entry.entryUsername}`);
 
   title.onclick = function() {
     window.location.href = `/entries/${entry.entryID}`;
@@ -83,8 +83,8 @@ export async function Entries(entry, comments, likes) {
 
   // EDIT BUTTON
   function EditBtn() {
-    let editBtn = create.elem("button");
-    const clsE = ["button", "is-primary"];
+    const editBtn = create.elem('button');
+    const clsE = ['button', 'is-primary'];
     editBtn.classList.add(...clsE);
 
     const editText = create.text('Edit');
@@ -92,18 +92,18 @@ export async function Entries(entry, comments, likes) {
 
     editBtn.onclick = function() {
       editBtn.disabled = true;
-      let editTitle = create.elem("input");
-      editTitle.classList.add("input");
-      let editContent = create.elem("textarea");
-      editContent.classList.add("textarea");
-      let sendEditBtn = create.elem("button");
-      let cancelEditBtn = create.elem("button");
-      const clsEd = ["button","is-outlined", "is-primary"];
-      const clsD = ["button","is-outlined", "is-danger"];
+      const editTitle = create.elem('input');
+      editTitle.classList.add('input');
+      const editContent = create.elem('textarea');
+      editContent.classList.add('textarea');
+      const sendEditBtn = create.elem('button');
+      const cancelEditBtn = create.elem('button');
+      const clsEd = ['button', 'is-outlined', 'is-primary'];
+      const clsD = ['button', 'is-outlined', 'is-danger'];
       sendEditBtn.classList.add(...clsEd);
-      sendEditBtn.classList.add("is-small");
+      sendEditBtn.classList.add('is-small');
       cancelEditBtn.classList.add(...clsD);
-      cancelEditBtn.classList.add("is-small");
+      cancelEditBtn.classList.add('is-small');
 
       editTitle.setAttribute('type', 'text');
       editContent.cols = '30';
