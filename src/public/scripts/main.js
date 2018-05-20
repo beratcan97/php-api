@@ -34,7 +34,7 @@ if (sessionStorage.getItem('userID')) {
     registerForm.addEventListener('submit', function(event) {
       event.preventDefault();
       const formData = new FormData(this);
-      api.post('register', formData);
+      api.register(formData);
     });
   }
 

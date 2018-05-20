@@ -75,7 +75,7 @@ $app->post('/register', function ($request, $response, $args) {
     ]
   );
 
-    return $response->withJson(['data' => $body['username'] . " has been registered!"]);
+  return $response->withJson(['data' => $body['username']]);
 });
 
 $app->get('/logout', function ($request, $response, $args) {
