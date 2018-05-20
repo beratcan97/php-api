@@ -18,7 +18,6 @@ export async function LikeBtn(entry, likes) {
 
   likes.forEach((like) => {
     if (like.userID === sessionStorage.getItem('userID')) {
-      console.log('This user has liked something!');
       likeBtn.classList.remove('is-outlined');
       likeBtn.classList.add('is-primary');
     }
