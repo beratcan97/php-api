@@ -1,5 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
+    session_unset();
+    // session_set_cookie_params(30); TEST TIMER
     session_set_cookie_params(3600);
     session_start();
 }
