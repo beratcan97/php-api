@@ -1,6 +1,5 @@
 import * as api from './fetch';
-import { get } from './utils';
-import { isset } from './utils';
+import { get, isset } from './utils';
 import { BuildEntries } from './buildEntries';
 import { Searchbar } from './searchbar';
 

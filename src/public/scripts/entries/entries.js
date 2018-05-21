@@ -14,6 +14,7 @@ export async function Entries(entry, comments, likes) {
   // Wrappers
   const entryWrapper = create.elem('div');
   const titleWrapper = create.elem('div');
+  const deleteEditWrapper = create.elem('div');
   const contentWrapper = create.elem('div');
   const entryWrapperHeader = create.elem('div');
   const entryWrapperBody = create.elem('div');
@@ -66,8 +67,9 @@ export async function Entries(entry, comments, likes) {
 
   // Appends delete button if the user is the creator of the entry or admin
   if (sessionStorage.admin == 1 || sessionStorage.userID == entry.createdBy) {
-    entryWrapperHeader.appendChild(deleteBtnComp);
-    entryWrapperHeader.appendChild(editBtn);
+    deleteEditWrapper.appendChild(deleteBtnComp);
+    deleteEditWrapper.appendChild(editBtn);
+    entryWrapperHeader.appendChild(deleteEditWrapper);
   }
 
   // Append body components
@@ -86,13 +88,12 @@ export async function Entries(entry, comments, likes) {
     const editBtn = create.elem('button');
     const clsE = ['button', 'is-primary'];
     editBtn.classList.add(...clsE);
- 
-    let editIcon = create.elem("i");
-    editIcon.classList.add("fas");
-    editIcon.classList.add("fa-pencil-alt");
-    editIcon.classList.add("icons");
-    editBtn.appendChild(editIcon);
 
+    const editIcon = create.elem('i');
+    editIcon.classList.add('fas');
+    editIcon.classList.add('fa-pencil-alt');
+    editIcon.classList.add('icons');
+    editBtn.appendChild(editIcon);
 
     editBtn.onclick = function() {
       editBtn.disabled = true;
@@ -118,16 +119,16 @@ export async function Entries(entry, comments, likes) {
       sendEditBtn.innerHTML = 'Confirm changes';
       cancelEditBtn.innerHTML = 'Cancel edit';
 
-      let sendIcon = create.elem("i");
-      sendIcon.classList.add("fas");
-      sendIcon.classList.add("fa-paper-plane");
-      sendIcon.classList.add("icons");
+      const sendIcon = create.elem('i');
+      sendIcon.classList.add('fas');
+      sendIcon.classList.add('fa-paper-plane');
+      sendIcon.classList.add('icons');
       sendEditBtn.appendChild(sendIcon);
 
-      let cancelIcon = create.elem("i");
-      cancelIcon.classList.add("fas");
-      cancelIcon.classList.add("fa-times");
-      cancelIcon.classList.add("icons");
+      const cancelIcon = create.elem('i');
+      cancelIcon.classList.add('fas');
+      cancelIcon.classList.add('fa-times');
+      cancelIcon.classList.add('icons');
       cancelEditBtn.appendChild(cancelIcon);
 
       title.remove();
