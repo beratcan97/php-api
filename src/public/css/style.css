@@ -101,3 +101,8 @@ body, html {
 .icons{
   margin:0.3em;
 }
+
+.entries_wrapper {
+  margin-bottom: 1em;
+}
+

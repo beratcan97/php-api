@@ -1,9 +1,9 @@
 <?php
-  if (session_status() == PHP_SESSION_NONE) {
+  if (count($_SESSION) == 0) {
       ?>
-      <script>window.onload = function() {
-        sessionStorage.clear();
-      }</script> 
+      <script>
+          sessionStorage.clear();
+      </script>
     <?php
   }
 ?>

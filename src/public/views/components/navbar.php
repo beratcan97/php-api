@@ -14,7 +14,7 @@
 	<?php else:  ?>
 
 	<li>
-			<a href="../" ><span class="icon has-text-primary">
+			<a href="/" ><span class="icon has-text-primary">
 				<i class="fas fa-home"></i></span>Home
 			</a>
 	</li>
@@ -24,14 +24,14 @@
 	</li>
 
 	<li>
-		<a href="/profile/<?= $_SESSION['userID'] ?>"><?= $_SESSION['username'] ?></a>
+		<a href="/profile/<?= $_SESSION['username'] ?>"><?= $_SESSION['username'] ?></a>
 	</li>
 
 	<?php
 		if($_SESSION['admin'] == 1) {
 			?>
 			<li>
-				<a href="/admin/">Admin</a>
+				<a href="/admin">Admin</a>
 			</li>
 			<?php
 		}

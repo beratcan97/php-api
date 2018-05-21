@@ -1,5 +1,7 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
+    session_unset();
+    // session_set_cookie_params(30); TEST TIMER
     session_set_cookie_params(3600);
     session_start();
 }
@@ -29,8 +31,12 @@ $app->get('/login', function ($request, $response, $args) {
     return $this->view->render($response, 'components/login.php');
 });
 
-$app->get('/profile/{id}', function ($request, $response, $args) {
+$app->get('/profile/{username}', function ($request, $response, $args) {
     return $this->view->render($response, 'profile.php');
+});
+
+$app->get('/admin', function ($request, $response, $args) {
+    return $this->view->render($response, 'admin.php');
 });
 
 $app->get('/entries/{id}', function ($request, $response, $args) {
@@ -75,7 +81,7 @@ $app->post('/register', function ($request, $response, $args) {
     ]
   );
 
-    return $response->withJson(['data' => $body['username'] . " has been registered!"]);
+  return $response->withJson(['data' => $body['username']]);
 });
 
 $app->get('/logout', function ($request, $response, $args) {

@@ -1,37 +1,37 @@
-import * as api from "../../fetch.js";
-import { create } from "../../utils";
+import * as api from '../../fetch.js';
+import { create } from '../../utils';
 
 export async function Comments(comments, entryID) {
   let amountOfComments;
-  let commentsContainer = create.elem("div");
-  let commentsWrapper = create.elem("div");
-  commentsWrapper.classList.add("box");
-  commentsWrapper.classList.add("comments-box");
-  let commentSpan = create.elem("p");
-  commentSpan.classList.add("box");
-  let commentInput = create.elem("textarea");
-  let postCommentBtn = create.elem("button");
+  const commentsContainer = create.elem('div');
+  const commentsWrapper = create.elem('div');
+  commentsWrapper.classList.add('box');
+  commentsWrapper.classList.add('comments-box');
+  const commentSpan = create.elem('p');
+  commentSpan.classList.add('box');
+  const commentInput = create.elem('textarea');
+  const postCommentBtn = create.elem('button');
 
-  let addCommentBtn = create.elem("button");
-  let commentBtn = create.elem("button");
+  const addCommentBtn = create.elem('button');
+  const commentBtn = create.elem('button');
 
   if (!comments) {
     amountOfComments = 0;
   } else {
     amountOfComments = comments.length;
-    comments.forEach(comment => {
-      let newComment = commentsBuilder(comment);
+    comments.forEach((comment) => {
+      const newComment = commentsBuilder(comment);
       commentsWrapper.appendChild(newComment);
     });
 
-    commentsWrapper.classList.add("toggle_visible");
+    commentsWrapper.classList.add('toggle_visible');
 
     commentSpan.onclick = function() {
-      commentsWrapper.classList.toggle("toggle_visible");
+      commentsWrapper.classList.toggle('toggle_visible');
     };
   }
 
-  const clsLC = ["button", "is-info", "is-small"];
+  const clsLC = ['button', 'is-info', 'is-small'];
   commentBtn.classList.add(...clsLC);
   addCommentBtn.classList.add(...clsLC);
 
@@ -45,13 +45,14 @@ export async function Comments(comments, entryID) {
   commentInput.cols = "60";
   commentInput.rows = "10";
 
-  let clsCI = ["textarea", "toggle_visible"];
+  const clsCI = ['textarea', 'toggle_visible'];
   commentInput.classList.add(...clsCI);
-  let clsP = ["button", "is-outlined", "is-info", "toggle_visible"];
+  const clsP = ['button', 'is-outlined', 'is-info', 'toggle_visible'];
   postCommentBtn.classList.add(...clsP);
 
-  const clsCS = ["button", "is-outlined", "is-info"];
+  const clsCS = ['button', 'is-outlined', 'is-info'];
   commentSpan.classList.add(...clsCS);
+
 
   let commentBtnText = create.text("Add comment");
   let postIcon = create.elem("i");
@@ -59,8 +60,12 @@ export async function Comments(comments, entryID) {
   postIcon.classList.add("fa-paper-plane");
   postIcon.classList.add("icons");
   postCommentBtn.appendChild(postIcon);
-  //let postCommentBtnText = create.text("Post");
+
   let commentSpanText = create.text("See comments: " + amountOfComments);
+
+  const commentBtnText = create.text('Add comment');
+  const postCommentBtnText = create.text('Post');
+  const commentSpanText = create.text(`See comments: ${amountOfComments}`);
 
   commentSpan.appendChild(commentSpanText);
   commentBtn.appendChild(commentBtnText);
@@ -68,7 +73,7 @@ export async function Comments(comments, entryID) {
 
   postCommentBtn.disabled = true;
   commentInput.onkeyup = function() {
-    if (commentInput.value !== "") {
+    if (commentInput.value !== '') {
       postCommentBtn.disabled = false;
     } else {
       postCommentBtn.disabled = true;
@@ -76,16 +81,16 @@ export async function Comments(comments, entryID) {
   };
 
   commentBtn.onclick = function() {
-    commentInput.classList.toggle("toggle_visible");
-    postCommentBtn.classList.toggle("toggle_visible");
+    commentInput.classList.toggle('toggle_visible');
+    postCommentBtn.classList.toggle('toggle_visible');
   };
 
   postCommentBtn.onclick = function() {
-    let body = new FormData();
-    let route = "comments";
-    body.append("content", commentInput.value);
-    body.append("createdBy", sessionStorage.getItem("userID"));
-    body.append("entryID", entryID);
+    const body = new FormData();
+    const route = 'comments';
+    body.append('content', commentInput.value);
+    body.append('createdBy', sessionStorage.getItem('userID'));
+    body.append('entryID', entryID);
 
     api.post(route, body);
 
@@ -102,13 +107,13 @@ export async function Comments(comments, entryID) {
 }
 
 function commentsBuilder(comment) {
-  let commentElement = create.elem("div");
-  let createdBy = create.elem("h2");
-  let date = create.elem("span");
-  let content = create.elem("p");
-  let commentDeleteBtn = create.elem("button");
+  const commentElement = create.elem('div');
+  const createdBy = create.elem('a');
+  const date = create.elem('span');
+  const content = create.elem('p');
+  const commentDeleteBtn = create.elem('button');
 
-  const clsCDB = ["button", "is-outlined", "is-danger", "is-small"];
+  const clsCDB = ['button', 'is-outlined', 'is-danger', 'is-small'];
   commentDeleteBtn.classList.add(...clsCDB);
 
   let createdByText = create.text("user: " + comment.username);
@@ -121,6 +126,14 @@ function commentsBuilder(comment) {
   deleteIcon.classList.add("icons");
   commentDeleteBtn.appendChild(deleteIcon);
 
+  const createdByText = create.text(`user: ${comment.username}`);
+  const dateText = create.text(comment.createdAt);
+  date.classList.add('comments-date-style');
+  const contentText = create.text(`comment: ${comment.content}`);
+  const commentDeleteBtnText = create.text('Delete');
+
+  createdBy.setAttribute('href', `/profile/${comment.username}`);
+
   createdBy.appendChild(createdByText);
   date.appendChild(dateText);
   content.appendChild(contentText);
@@ -132,15 +145,12 @@ function commentsBuilder(comment) {
 
   // Appends delete button if the user is the creator of the comment or admin
 
-  if (
-    sessionStorage["admin"] == 1 ||
-    sessionStorage["userID"] == comment.createdBy
-  ) {
+  if (sessionStorage.admin == 1 || sessionStorage.userID == comment.createdBy) {
     commentElement.appendChild(commentDeleteBtn);
   }
 
   commentDeleteBtn.onclick = function() {
-    api.remove("comments", comment.commentID);
+    api.remove('comments', comment.commentID);
     location.reload();
   };
 

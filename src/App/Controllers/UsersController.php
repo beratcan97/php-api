@@ -25,6 +25,13 @@ class UsersController
         return $getOne->fetch();
     }
 
+    public function getOneByName($username)
+    {
+        $getOne = $this->db->prepare('SELECT * FROM users WHERE username = :username');
+        $getOne->execute([':username' => $username]);
+        return $getOne->fetch();
+    }
+
     public function add($user)
     {
         $hashed = password_hash($user["password"], PASSWORD_BCRYPT);
