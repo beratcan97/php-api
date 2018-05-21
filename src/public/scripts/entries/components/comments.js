@@ -35,15 +35,15 @@ export async function Comments(comments, entryID) {
   commentBtn.classList.add(...clsLC);
   addCommentBtn.classList.add(...clsLC);
 
-  let commentIcon = create.elem("i");
-  commentIcon.classList.add("far");
-  commentIcon.classList.add("fa-comment");
-  commentIcon.classList.add("icons");
-  commentIcon.classList.add("medium");
+  const commentIcon = create.elem('i');
+  commentIcon.classList.add('far');
+  commentIcon.classList.add('fa-comment');
+  commentIcon.classList.add('icons');
+  commentIcon.classList.add('medium');
   commentBtn.appendChild(commentIcon);
 
-  commentInput.cols = "60";
-  commentInput.rows = "10";
+  commentInput.cols = '60';
+  commentInput.rows = '10';
 
   const clsCI = ['textarea', 'toggle_visible'];
   commentInput.classList.add(...clsCI);
@@ -53,23 +53,19 @@ export async function Comments(comments, entryID) {
   const clsCS = ['button', 'is-outlined', 'is-info'];
   commentSpan.classList.add(...clsCS);
 
-
-  let commentBtnText = create.text("Add comment");
-  let postIcon = create.elem("i");
-  postIcon.classList.add("fas");
-  postIcon.classList.add("fa-paper-plane");
-  postIcon.classList.add("icons");
+  const commentBtnText = create.text('Add comment');
+  const postIcon = create.elem('i');
+  postIcon.classList.add('fas');
+  postIcon.classList.add('fa-paper-plane');
+  postIcon.classList.add('icons');
   postCommentBtn.appendChild(postIcon);
 
-  let commentSpanText = create.text("See comments: " + amountOfComments);
-
-  const commentBtnText = create.text('Add comment');
   const postCommentBtnText = create.text('Post');
   const commentSpanText = create.text(`See comments: ${amountOfComments}`);
 
   commentSpan.appendChild(commentSpanText);
   commentBtn.appendChild(commentBtnText);
-  //postCommentBtn.appendChild(postCommentBtnText);
+  // postCommentBtn.appendChild(postCommentBtnText);
 
   postCommentBtn.disabled = true;
   commentInput.onkeyup = function() {
@@ -116,28 +112,24 @@ function commentsBuilder(comment) {
   const clsCDB = ['button', 'is-outlined', 'is-danger', 'is-small'];
   commentDeleteBtn.classList.add(...clsCDB);
 
-  let createdByText = create.text("user: " + comment.username);
-  let dateText = create.text(comment.createdAt);
-  date.classList.add("comments-date-style");
-  let contentText = create.text("comment: " + comment.content);
-  let deleteIcon = create.elem("i");
-  deleteIcon.classList.add("fas");
-  deleteIcon.classList.add("fa-trash-alt");
-  deleteIcon.classList.add("icons");
-  commentDeleteBtn.appendChild(deleteIcon);
-
   const createdByText = create.text(`user: ${comment.username}`);
   const dateText = create.text(comment.createdAt);
-  date.classList.add('comments-date-style');
   const contentText = create.text(`comment: ${comment.content}`);
-  const commentDeleteBtnText = create.text('Delete');
+  date.classList.add('comments-date-style');
+  const deleteIcon = create.elem('i');
+  deleteIcon.classList.add('fas');
+  deleteIcon.classList.add('fa-trash-alt');
+  deleteIcon.classList.add('icons');
+  commentDeleteBtn.appendChild(deleteIcon);
+
+  date.classList.add('comments-date-style');
 
   createdBy.setAttribute('href', `/profile/${comment.username}`);
 
   createdBy.appendChild(createdByText);
   date.appendChild(dateText);
   content.appendChild(contentText);
-  //commentDeleteBtn.appendChild(commentDeleteBtnText);
+  // commentDeleteBtn.appendChild(commentDeleteBtnText);
 
   commentElement.appendChild(createdBy);
   commentElement.appendChild(date);
@@ -145,7 +137,10 @@ function commentsBuilder(comment) {
 
   // Appends delete button if the user is the creator of the comment or admin
 
-  if (sessionStorage.admin == 1 || sessionStorage.userID == comment.createdBy) {
+  if (
+    sessionStorage.admin === '1' ||
+    sessionStorage.userID === comment.createdBy
+  ) {
     commentElement.appendChild(commentDeleteBtn);
   }
 

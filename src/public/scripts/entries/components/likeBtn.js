@@ -14,14 +14,11 @@ export async function LikeBtn(entry, likes) {
     amountOfLikes = likes.length;
   }
 
-  
-  let likeIcon = create.elem("i");
-  likeIcon.classList.add("far");
-  likeIcon.classList.add("fa-thumbs-up");
-  likeIcon.classList.add("icons");
-  let likeBtnText = create.text(amountOfLikes);
-
-  const likeBtnText = create.text(`${amountOfLikes} Likes`);
+  const likeIcon = create.elem('i');
+  likeIcon.classList.add('far');
+  likeIcon.classList.add('fa-thumbs-up');
+  likeIcon.classList.add('icons');
+  const likeBtnText = create.text(amountOfLikes);
 
   likes.forEach((like) => {
     if (like.userID === sessionStorage.getItem('userID')) {
@@ -48,15 +45,11 @@ export async function LikeBtn(entry, likes) {
       body.append('entryID', entry.entryID);
       api.post(route, body);
 
-      let newLikes = await api.get("likes/" + entry.entryID);
-      amountOfLikes = newLikes.data.length;
-      likeBtn.innerHTML = amountOfLikes;
-      likeBtn.appendChild(likeIcon);
-
       const newLikes = await api.get(`likes/${entry.entryID}`);
 
       amountOfLikes = newLikes.data.length;
-      likeBtn.innerHTML = `${amountOfLikes} Likes`;
+      likeBtn.innerHTML = amountOfLikes;
+      likeBtn.appendChild(likeIcon);
       likes = newLikes.data;
 
       likeBtn.classList.remove('is-outlined');
@@ -64,15 +57,13 @@ export async function LikeBtn(entry, likes) {
     } else {
       api.remove(route, currentLikeID);
 
-      let newLikes = await api.get("likes/" + entry.entryID);
-      amountOfLikes = newLikes.data.length;
-      likeBtn.innerHTML = amountOfLikes;
-      likeBtn.appendChild(likeIcon);
       const newLikes = await api.get(`likes/${entry.entryID}`);
 
       amountOfLikes = newLikes.data.length;
-      likeBtn.innerHTML = `${amountOfLikes} Likes`;
+      likeBtn.innerHTML = amountOfLikes;
+      likeBtn.innerHTML = `${amountOfLikes}`;
       likes = newLikes.data;
+      likeBtn.appendChild(likeIcon);
 
       likeBtn.classList.add('is-outlined');
       likeBtn.classList.remove('is-primary');
@@ -81,7 +72,6 @@ export async function LikeBtn(entry, likes) {
 
   likeBtn.appendChild(likeBtnText);
   likeBtn.appendChild(likeIcon);
-
 
   return likeBtn;
 }
