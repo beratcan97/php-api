@@ -91,8 +91,12 @@ export async function Entries(entry, comments, likes) {
     const clsE = ["button", "is-primary"];
     editBtn.classList.add(...clsE);
 
-    let editText = create.text("Edit");
-    editBtn.appendChild(editText);
+    let editIcon = create.elem("i");
+    editIcon.classList.add("fas");
+    editIcon.classList.add("fa-pencil-alt");
+    editIcon.classList.add("icons");
+    editBtn.appendChild(editIcon);
+
 
     editBtn.onclick = function() {
       editBtn.disabled = true;
@@ -117,6 +121,18 @@ export async function Entries(entry, comments, likes) {
       editContent.value = contentText.textContent;
       sendEditBtn.innerHTML = "Confirm changes";
       cancelEditBtn.innerHTML = "Cancel edit";
+
+      let sendIcon = create.elem("i");
+      sendIcon.classList.add("fas");
+      sendIcon.classList.add("fa-paper-plane");
+      sendIcon.classList.add("icons");
+      sendEditBtn.appendChild(sendIcon);
+
+      let cancelIcon = create.elem("i");
+      cancelIcon.classList.add("fas");
+      cancelIcon.classList.add("fa-times");
+      cancelIcon.classList.add("icons");
+      cancelEditBtn.appendChild(cancelIcon);
 
       title.remove();
       content.remove();

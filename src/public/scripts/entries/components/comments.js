@@ -35,6 +35,13 @@ export async function Comments(comments, entryID) {
   commentBtn.classList.add(...clsLC);
   addCommentBtn.classList.add(...clsLC);
 
+  let commentIcon = create.elem("i");
+  commentIcon.classList.add("far");
+  commentIcon.classList.add("fa-comment");
+  commentIcon.classList.add("icons");
+  commentIcon.classList.add("medium");
+  commentBtn.appendChild(commentIcon);
+
   commentInput.cols = "60";
   commentInput.rows = "10";
 
@@ -47,12 +54,17 @@ export async function Comments(comments, entryID) {
   commentSpan.classList.add(...clsCS);
 
   let commentBtnText = create.text("Add comment");
-  let postCommentBtnText = create.text("Post");
+  let postIcon = create.elem("i");
+  postIcon.classList.add("fas");
+  postIcon.classList.add("fa-paper-plane");
+  postIcon.classList.add("icons");
+  postCommentBtn.appendChild(postIcon);
+  //let postCommentBtnText = create.text("Post");
   let commentSpanText = create.text("See comments: " + amountOfComments);
 
   commentSpan.appendChild(commentSpanText);
   commentBtn.appendChild(commentBtnText);
-  postCommentBtn.appendChild(postCommentBtnText);
+  //postCommentBtn.appendChild(postCommentBtnText);
 
   postCommentBtn.disabled = true;
   commentInput.onkeyup = function() {
@@ -103,12 +115,16 @@ function commentsBuilder(comment) {
   let dateText = create.text(comment.createdAt);
   date.classList.add("comments-date-style");
   let contentText = create.text("comment: " + comment.content);
-  let commentDeleteBtnText = create.text("Delete");
+  let deleteIcon = create.elem("i");
+  deleteIcon.classList.add("fas");
+  deleteIcon.classList.add("fa-trash-alt");
+  deleteIcon.classList.add("icons");
+  commentDeleteBtn.appendChild(deleteIcon);
 
   createdBy.appendChild(createdByText);
   date.appendChild(dateText);
   content.appendChild(contentText);
-  commentDeleteBtn.appendChild(commentDeleteBtnText);
+  //commentDeleteBtn.appendChild(commentDeleteBtnText);
 
   commentElement.appendChild(createdBy);
   commentElement.appendChild(date);

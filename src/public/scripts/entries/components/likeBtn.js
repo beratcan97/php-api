@@ -13,8 +13,12 @@ export async function LikeBtn(entry, likes) {
   } else {
     amountOfLikes = likes.length;
   }
-
-  let likeBtnText = create.text(amountOfLikes + " Likes");
+  
+  let likeIcon = create.elem("i");
+  likeIcon.classList.add("far");
+  likeIcon.classList.add("fa-thumbs-up");
+  likeIcon.classList.add("icons");
+  let likeBtnText = create.text(amountOfLikes);
 
   likeBtn.onclick = async function() {
     var route = "likes";
@@ -36,21 +40,23 @@ export async function LikeBtn(entry, likes) {
       api.post(route, body);
 
       let newLikes = await api.get("likes/" + entry.entryID);
-
       amountOfLikes = newLikes.data.length;
-      likeBtn.innerHTML = amountOfLikes + " Likes";
+      likeBtn.innerHTML = amountOfLikes;
+      likeBtn.appendChild(likeIcon);
       likes = newLikes.data;
     } else {
       api.remove(route, currentLikeID);
       let newLikes = await api.get("likes/" + entry.entryID);
-
       amountOfLikes = newLikes.data.length;
-      likeBtn.innerHTML = amountOfLikes + " Likes";
+      likeBtn.innerHTML = amountOfLikes;
+      likeBtn.appendChild(likeIcon);
       likes = newLikes.data;
     }
   };
 
   likeBtn.appendChild(likeBtnText);
+  likeBtn.appendChild(likeIcon);
+
 
   return likeBtn;
 }

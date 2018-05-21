@@ -7,8 +7,11 @@ export async function DeleteBtn(entry) {
   const clsD = ["button", "is-outlined", "is-danger"];
   deleteBtn.classList.add(...clsD);
 
-  let deleteText = create.text("Delete");
-  deleteBtn.appendChild(deleteText);
+  let deleteIcon = create.elem("i");
+  deleteIcon.classList.add("fas");
+  deleteIcon.classList.add("fa-trash-alt");
+  deleteIcon.classList.add("icons");
+  deleteBtn.appendChild(deleteIcon);
 
   deleteBtn.onclick = function(){
     api.remove("entries", entry.entryID);
