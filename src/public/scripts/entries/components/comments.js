@@ -143,7 +143,8 @@ function commentsBuilder(comment) {
   ) {
     commentElement.appendChild(commentDeleteBtn);
   }
-
+  const hr = create.elem('hr');
+  commentElement.appendChild(hr);
   commentDeleteBtn.onclick = function() {
     api.remove('comments', comment.commentID);
     location.reload();

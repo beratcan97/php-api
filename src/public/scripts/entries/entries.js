@@ -26,7 +26,7 @@ export async function Entries(entry, comments, likes) {
   let content = create.elem('p');
 
   // get classes
-  const clEWH = ['card-header', 'box'];
+  const clEWH = ['card-header', 'box', 'title-style'];
   const clEWB = ['card-body', 'box'];
   const clEW = ['card', 'container-entry-style', 'entries_wrapper'];
   const clT = ['entry_title', 'title'];

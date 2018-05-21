@@ -4,7 +4,7 @@ import { get, create } from './utils';
 export async function Searchbar() {
   const searchWrapper = get.id('search_wrapper');
   const searchbar = get.id('searchbar');
-
+  let searchVal = searchbar.value.toLowerCase();
   const searchResults = create.elem('div');
 
   searchWrapper.style.position = 'absolute';
@@ -27,7 +27,7 @@ export async function Searchbar() {
         searchResults.innerHTML = '';
         const entries = await api.get('entries');
         const filteredEntries = entries.data.filter((entry) => {
-          if (entry.title.includes(searchbar.value)) {
+          if (entry.title.includes(searchVal)) {
             return entry;
           }
         });
