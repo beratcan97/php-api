@@ -35,6 +35,10 @@ $app->get('/profile/{username}', function ($request, $response, $args) {
     return $this->view->render($response, 'profile.php');
 });
 
+$app->get('/admin', function ($request, $response, $args) {
+    return $this->view->render($response, 'admin.php');
+});
+
 $app->get('/entries/{id}', function ($request, $response, $args) {
     if (!$request->isXhr()) {
         return $this->view->render($response, 'entries.php');
