@@ -76,8 +76,8 @@ export async function Entries(entry, comments, likes) {
   entryWrapperBody.appendChild(date);
   entryWrapperBody.appendChild(createdBy);
   entryWrapperBody.appendChild(contentWrapper);
-  entryWrapperBody.appendChild(commentsComp);
   entryWrapperBody.appendChild(likeBtnComp);
+  entryWrapperBody.appendChild(commentsComp);
 
   // Append to content divs
   entryWrapper.appendChild(entryWrapperHeader);

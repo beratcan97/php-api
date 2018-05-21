@@ -31,7 +31,7 @@ export async function Comments(comments, entryID) {
     };
   }
 
-  const clsLC = ['button', 'is-info', 'is-small'];
+  const clsLC = ['button', 'is-info', 'is-small', 'comment-btn-style'];
   commentBtn.classList.add(...clsLC);
   addCommentBtn.classList.add(...clsLC);
 
@@ -93,9 +93,9 @@ export async function Comments(comments, entryID) {
     location.reload();
   };
 
+  commentsContainer.appendChild(commentBtn);
   commentsContainer.appendChild(commentSpan);
   commentsContainer.appendChild(commentsWrapper);
-  commentsContainer.appendChild(commentBtn);
   commentsContainer.appendChild(commentInput);
   commentsContainer.appendChild(postCommentBtn);
 

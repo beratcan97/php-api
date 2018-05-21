@@ -88,6 +88,10 @@ html {
   float: right;
 }
 
+.comment-btn-style{
+  margin: 1em 0;
+}
+
 .searchbar-style {
   margin-left: 60em;
 }
@@ -111,3 +115,4 @@ html {
 .card-header {
   justify-content: space-between;
 }
+
