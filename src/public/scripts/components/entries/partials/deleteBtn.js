@@ -1,5 +1,5 @@
-import * as api from '../../../modules/fetch';
-import { create, isset } from '../../../modules/utils';
+import { remove } from '../../../modules/fetch';
+import { create } from '../../../modules/utils';
 
 export async function DeleteBtn(entry) {
   const deleteBtn = create.elem('button');
@@ -14,7 +14,7 @@ export async function DeleteBtn(entry) {
   deleteBtn.appendChild(deleteIcon);
 
   deleteBtn.onclick = function() {
-    api.remove('entries', entry.entryID);
+    remove('entries', entry.entryID);
     location.reload();
   };
 
