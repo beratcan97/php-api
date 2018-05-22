@@ -2,18 +2,45 @@ import * as api from '../../../modules/fetch';
 import { create } from '../../../modules/utils';
 
 export async function Comments(comments, entryID) {
-  let amountOfComments;
+  // create wrappers
   const commentsContainer = create.elem('div');
   const commentsWrapper = create.elem('div');
-  commentsWrapper.classList.add('box');
-  commentsWrapper.classList.add('comments-box');
-  const commentSpan = create.elem('p');
-  commentSpan.classList.add('box');
-  const commentInput = create.elem('textarea');
-  const postCommentBtn = create.elem('button');
 
+  // create elements
+  const commentSpan = create.elem('p');
+  const commentInput = create.elem('textarea');
+  const commentIcon = create.elem('i');
+  const postCommentBtn = create.elem('button');
   const addCommentBtn = create.elem('button');
   const commentBtn = create.elem('button');
+  const postIcon = create.elem('i');
+
+  // set attributes
+  commentInput.cols = '60';
+  commentInput.rows = '10';
+  postCommentBtn.disabled = true;
+
+  // get classes
+  const clsLC = ['button', 'is-info', 'is-small', 'comment-btn-style'];
+  const clsCIcon = ['far', 'fa-comment', 'icons', 'medium'];
+  const clsCW = ['box', 'comments-box'];
+  const clsCI = ['textarea', 'toggle_visible'];
+  const clsP = ['button', 'is-outlined', 'is-info', 'toggle_visible'];
+  const clsCS = ['button', 'is-outlined', 'is-info', 'box'];
+  const clsPI = ['fas', 'fa-paper-plane', 'icons'];
+
+  // apply classes
+  commentsWrapper.classList.add(...clsCW);
+  postCommentBtn.classList.add(...clsP);
+  addCommentBtn.classList.add(...clsLC);
+  commentBtn.classList.add(...clsLC);
+  commentIcon.classList.add(...clsCIcon);
+  commentInput.classList.add(...clsCI);
+  commentSpan.classList.add(...clsCS);
+  postIcon.classList.add(...clsPI);
+
+  // init amount of comments per entry
+  let amountOfComments;
 
   if (!comments) {
     amountOfComments = 0;
@@ -31,43 +58,11 @@ export async function Comments(comments, entryID) {
     };
   }
 
-  const clsLC = ['button', 'is-info', 'is-small', 'comment-btn-style'];
-  commentBtn.classList.add(...clsLC);
-  addCommentBtn.classList.add(...clsLC);
-
-  const commentIcon = create.elem('i');
-  commentIcon.classList.add('far');
-  commentIcon.classList.add('fa-comment');
-  commentIcon.classList.add('icons');
-  commentIcon.classList.add('medium');
-  commentBtn.appendChild(commentIcon);
-
-  commentInput.cols = '60';
-  commentInput.rows = '10';
-
-  const clsCI = ['textarea', 'toggle_visible'];
-  commentInput.classList.add(...clsCI);
-  const clsP = ['button', 'is-outlined', 'is-info', 'toggle_visible'];
-  postCommentBtn.classList.add(...clsP);
-
-  const clsCS = ['button', 'is-outlined', 'is-info'];
-  commentSpan.classList.add(...clsCS);
-
+  // create Text
   const commentBtnText = create.text('Add comment');
-  const postIcon = create.elem('i');
-  postIcon.classList.add('fas');
-  postIcon.classList.add('fa-paper-plane');
-  postIcon.classList.add('icons');
-  postCommentBtn.appendChild(postIcon);
-
-  const postCommentBtnText = create.text('Post');
   const commentSpanText = create.text(`See comments: ${amountOfComments}`);
 
-  commentSpan.appendChild(commentSpanText);
-  commentBtn.appendChild(commentBtnText);
-  // postCommentBtn.appendChild(postCommentBtnText);
-
-  postCommentBtn.disabled = true;
+  // Event listeners
   commentInput.onkeyup = function() {
     if (commentInput.value !== '') {
       postCommentBtn.disabled = false;
@@ -93,6 +88,15 @@ export async function Comments(comments, entryID) {
     location.reload();
   };
 
+  // append text
+  commentBtn.appendChild(commentBtnText);
+  commentSpan.appendChild(commentSpanText);
+
+  // append icons
+  commentBtn.appendChild(commentIcon);
+  postCommentBtn.appendChild(postIcon);
+
+  // append stuff
   commentsContainer.appendChild(commentBtn);
   commentsContainer.appendChild(commentSpan);
   commentsContainer.appendChild(commentsWrapper);
@@ -103,52 +107,56 @@ export async function Comments(comments, entryID) {
 }
 
 function commentsBuilder(comment) {
+  // create elements
   const commentElement = create.elem('div');
   const createdBy = create.elem('a');
   const date = create.elem('span');
   const content = create.elem('p');
   const commentDeleteBtn = create.elem('button');
-
-  const clsCDB = ['button', 'is-outlined', 'is-danger', 'is-small'];
-  commentDeleteBtn.classList.add(...clsCDB);
-
-  const createdByText = create.text(`user: ${comment.username}`);
-  const dateText = create.text(comment.createdAt);
-  const contentText = create.text(`comment: ${comment.content}`);
-  date.classList.add('comments-date-style');
   const deleteIcon = create.elem('i');
-  deleteIcon.classList.add('fas');
-  deleteIcon.classList.add('fa-trash-alt');
-  deleteIcon.classList.add('icons');
-  commentDeleteBtn.appendChild(deleteIcon);
+  const hr = create.elem('hr');
 
-  date.classList.add('comments-date-style');
-
+  // set attributes
   createdBy.setAttribute('href', `/profile/${comment.username}`);
 
+  // create text
+  const createdByText = create.text(comment.username);
+  const contentText = create.text(comment.content);
+  const dateText = create.text(comment.createdAt);
+
+  // get classes
+  const clsCDB = ['button', 'is-outlined', 'is-danger', 'is-small'];
+  const clsDI = ['fas', 'fa-trash-alt', 'icons'];
+
+  // apply classes
+  deleteIcon.classList.add(...clsDI);
+  commentDeleteBtn.classList.add(...clsCDB);
+  date.classList.add('comments-date-style');
+
+  // append text
   createdBy.appendChild(createdByText);
   date.appendChild(dateText);
   content.appendChild(contentText);
-  // commentDeleteBtn.appendChild(commentDeleteBtnText);
 
+  // append stuff
   commentElement.appendChild(createdBy);
   commentElement.appendChild(date);
   commentElement.appendChild(content);
+  commentElement.appendChild(hr);
 
-  // Appends delete button if the user is the creator of the comment or admin
-
+  // only OP or admin may delete comments
   if (
     sessionStorage.admin === '1' ||
     sessionStorage.userID === comment.createdBy
   ) {
+    commentDeleteBtn.onclick = function() {
+      api.remove('comments', comment.commentID);
+      location.reload();
+    };
+
+    commentDeleteBtn.appendChild(deleteIcon);
     commentElement.appendChild(commentDeleteBtn);
   }
-  const hr = create.elem('hr');
-  commentElement.appendChild(hr);
-  commentDeleteBtn.onclick = function() {
-    api.remove('comments', comment.commentID);
-    location.reload();
-  };
 
   return commentElement;
 }

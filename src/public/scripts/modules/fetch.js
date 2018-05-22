@@ -5,6 +5,7 @@ async function login(body) {
     credentials: 'include',
   };
 
+  //
   fetch('/login', postOptions)
     .then((response) => response.json())
     .then((data) => {
