@@ -51,4 +51,16 @@ class UsersController
             ]
         );
     }
+
+        public function update($body, $id)
+        {
+            $statement = $this->db->prepare('UPDATE users SET username = :username, admin = :admin WHERE userID = :userID');
+            $statement->execute([
+            ":username" => $body['username'],
+            ":admin" => $body['admin'],
+            ":userID" => $id
+          ]);
+
+          return ['username' => $body['username']];
+        }
 }
