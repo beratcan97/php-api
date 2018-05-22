@@ -8,6 +8,8 @@ endif; ?>
     <?php require_once('components/navbar.php'); ?>
     <main class="container">
         <p class="title">Welcome, <?= $_SESSION['username'] ?> </p>
+
+        <div id="users-container" class="users-container"></div>
     </main>
 
 <!--
