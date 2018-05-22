@@ -14,9 +14,7 @@ const signOut = get.id('sign_out');
 if (sessionStorage.getItem('userID')) {
   Searchbar();
 
-  if (entriesContainer) {
-    BuildEntries();
-  }
+  BuildEntries();
 
   if (isset(entryForm)) {
     entryForm.addEventListener('submit', function(event) {

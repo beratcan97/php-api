@@ -12,8 +12,7 @@ endif; ?>
         <input type="text" class="input" name="searchbar" placeholder="Search entries by title" id="searchbar">
       </span>
       <?php include_once('components/entry_form.php'); ?>
-      <div id="entries_container" class="entries_container">
-  </div>
+      <div id="entries_container" class="entries_container"></div>
 </main>
 
 <?php require_once('components/footer.php'); ?>
