@@ -1,14 +1,13 @@
-import * as api from './fetch';
-import { buildAdminUsersPanel } from './buildAdminUsersPanel';
-import { get, isset } from './utils';
-import { BuildEntries } from './buildEntries';
-import { Searchbar } from './searchbar';
+import * as api from './modules/fetch';
+import { get, isset } from './modules/utils';
+import { buildAdminPanel } from './partials/buildAdminPanel';
+import { BuildEntries } from './partials/buildEntries';
+import { Searchbar } from './components/searchbar/searchbar';
 
 // Declarations
 const registerForm = get.id('register_form');
 const loginForm = get.id('login_form');
 const entryForm = get.id('entry_form');
-const entriesContainer = get.id('entries_container');
 const signOut = get.id('sign_out');
 
 // Check session timer if session has timed
@@ -34,7 +33,7 @@ if (sessionStorage.getItem('userID')) {
   });
 
   if (window.location.pathname === '/admin') {
-    buildAdminUsersPanel();
+    buildAdminPanel();
   }
 } else {
   if (window.location.pathname === '/register') {
@@ -53,7 +52,3 @@ if (sessionStorage.getItem('userID')) {
     });
   }
 }
-
-console.log(sessionStorage);
-
-export { entriesContainer };
