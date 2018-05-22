@@ -91,6 +91,34 @@ async function update(route, id, body) {
   return patch;
 }
 
+async function updateUser(id, body) {
+
+  const username = body.username;
+ 
+  const admin = body.admin;
+ 
+  const patchOptions = {
+ 
+    method: 'PATCH',
+ 
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+ 
+    body: `username=${username}&admin=${admin}`,
+ 
+  };
+ 
+  const patch = fetch(`/api/users/${id}`, patchOptions)
+ 
+    .then((res) => res.json())
+ 
+    .then((data) => data)
+ 
+    .catch((err) => console.log(err));
+ 
+  return patch;
+ 
+ }
+
 async function remove(route, id) {
   route = route.toString();
 
@@ -106,4 +134,4 @@ async function remove(route, id) {
   return remove;
 }
 
-export { login, get, getOne, post, update, remove, register };
+export { login, get, getOne, post, update, remove, register, updateUser };
