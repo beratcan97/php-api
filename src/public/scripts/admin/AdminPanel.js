@@ -12,6 +12,10 @@ export function AdminPanel(user) {
   const username = create.elem('p');
   const admin = create.elem('p');
 
+  // Adds classes
+  const usersWrapperClass = ["card-header", "box", "title-style"];
+  usersWrapper.classList.add(...usersWrapperClass);
+
   // Text
   const usernameText = create.text(user.username);
   const adminText = create.text(user.admin);
@@ -21,7 +25,6 @@ export function AdminPanel(user) {
   admin.appendChild(adminText);
 
   usersWrapper.appendChild(username);
-  usersWrapper.appendChild(admin);
   usersWrapper.appendChild(makeAdmin);
 
   // get.id('users-container').appendChild(usersWrapper);
