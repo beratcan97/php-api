@@ -14,7 +14,10 @@ const signOut = get.id('sign_out');
 // Check session timer if session has timed
 if (sessionStorage.getItem('userID')) {
   Searchbar();
-  BuildEntries();
+
+  if (entriesContainer) {
+    BuildEntries();
+  }
 
   if (isset(entryForm)) {
     entryForm.addEventListener('submit', function(event) {

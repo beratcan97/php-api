@@ -14,5 +14,5 @@ endif; ?>
         <div id="users-container" class="users-container"></div>
     </main>
 
-<!--
+
 <?php require_once('components/footer.php'); ?>
