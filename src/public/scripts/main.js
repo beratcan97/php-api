@@ -1,4 +1,5 @@
 import * as api from './fetch';
+import { buildAdminUsersPanel } from './buildAdminUsersPanel';
 import { get, isset } from './utils';
 import { BuildEntries } from './buildEntries';
 import { Searchbar } from './searchbar';
@@ -28,8 +29,12 @@ if (sessionStorage.getItem('userID')) {
   signOut.addEventListener('click', () => {
     sessionStorage.clear();
   });
+
+  if (window.location.pathname === '/admin') {
+    buildAdminUsersPanel();
+  }
 } else {
-  if (window.location.pathname == '/register') {
+  if (window.location.pathname === '/register') {
     registerForm.addEventListener('submit', function(event) {
       event.preventDefault();
       const formData = new FormData(this);
@@ -37,7 +42,7 @@ if (sessionStorage.getItem('userID')) {
     });
   }
 
-  if (window.location.pathname == '/login') {
+  if (window.location.pathname === '/login') {
     loginForm.addEventListener('submit', function(event) {
       event.preventDefault();
       const formData = new FormData(this);
