@@ -19,7 +19,6 @@
 
     <?php else: ?>
       <div class="container">
-        <p class="title">Welcome, <?= $_SESSION['username'] ?> </p>
         <span id="search_wrapper">
           <input type="text" class="input" name="searchbar" placeholder="Search entries by title" id="searchbar">
         </span>

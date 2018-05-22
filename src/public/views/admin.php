@@ -7,10 +7,7 @@ endif; ?>
 <body>
   <?php require_once('components/navbar.php'); ?>
     <main class="container">
-        <p class="title">Welcome, <?= $_SESSION['username'] ?> </p>
-        <span id="search_wrapper">
-          <input type="text" class="input" name="searchbar" placeholder="Search entries by title" id="searchbar">
-        </span>
+      <h2 class="title">Make anyone an admin:</h2>
         <div id="users-container" class="users-container"></div>
   </main>
 <?php require_once('components/footer.php'); ?>
