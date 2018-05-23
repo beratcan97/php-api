@@ -25,6 +25,9 @@ export async function Entries(entry, comments, likes) {
   const date = create.elem('p');
   let content = create.elem('p');
 
+  // set attributes
+  createdBy.setAttribute('href', `/profile/${entry.entryUsername}`);
+
   // get classes
   const clEWH = ['card-header', 'box', 'title-style'];
   const clEWB = ['card-body', 'box'];
@@ -36,7 +39,6 @@ export async function Entries(entry, comments, likes) {
   entryWrapperBody.classList.add(...clEWB);
   entryWrapper.classList.add(...clEW);
   title.classList.add(...clT);
-
   date.classList.add('entries-date-style');
   contentWrapper.classList.add('content-style');
   createdBy.classList.add('entry_createdBy');
@@ -56,28 +58,30 @@ export async function Entries(entry, comments, likes) {
   contentWrapper.appendChild(content);
 
   // Append header components
-  entryWrapperHeader.appendChild(titleWrapper);
-
-  // Click events
-  createdBy.setAttribute('href', `/profile/${entry.entryUsername}`);
 
   title.onclick = function() {
     window.location.href = `/entries/${entry.entryID}`;
   };
 
-  // Appends delete button if the user is the creator of the entry or admin
-  if (sessionStorage.admin == 1 || sessionStorage.userID == entry.createdBy) {
-    deleteEditWrapper.appendChild(deleteBtnComp);
-    deleteEditWrapper.appendChild(editBtn);
-    entryWrapperHeader.appendChild(deleteEditWrapper);
-  }
+  // append to header
+  entryWrapperHeader.appendChild(titleWrapper);
 
-  // Append body components
+  // Append to body
   entryWrapperBody.appendChild(date);
   entryWrapperBody.appendChild(createdBy);
   entryWrapperBody.appendChild(contentWrapper);
   entryWrapperBody.appendChild(likeBtnComp);
   entryWrapperBody.appendChild(commentsComp);
+
+  // Appends delete button if the user is the OP or admin
+  if (
+    sessionStorage.admin === '1' ||
+    sessionStorage.userID === entry.createdBy
+  ) {
+    deleteEditWrapper.appendChild(deleteBtnComp);
+    deleteEditWrapper.appendChild(editBtn);
+    entryWrapperHeader.appendChild(deleteEditWrapper);
+  }
 
   // Append to content divs
   entryWrapper.appendChild(entryWrapperHeader);
@@ -86,59 +90,72 @@ export async function Entries(entry, comments, likes) {
   // EDIT BUTTON
   function EditBtn() {
     const editBtn = create.elem('button');
-    const clsE = ['button', 'is-primary'];
-    editBtn.classList.add(...clsE);
-
     const editIcon = create.elem('i');
-    editIcon.classList.add('fas');
-    editIcon.classList.add('fa-pencil-alt');
-    editIcon.classList.add('icons');
+
+    // get classes
+    const clsE = ['button', 'is-primary'];
+    const clsEI = ['fas', 'fa-pencil-alt', 'icons'];
+
+    // Apply classes
+    editBtn.classList.add(...clsE);
+    editIcon.classList.add(...clsEI);
+
     editBtn.appendChild(editIcon);
 
+    // Click events
     editBtn.onclick = function() {
       editBtn.disabled = true;
+
+      // create elements
       const editTitle = create.elem('input');
-      editTitle.classList.add('input');
       const editContent = create.elem('textarea');
-      editContent.classList.add('textarea');
       const sendEditBtn = create.elem('button');
       const cancelEditBtn = create.elem('button');
-      const clsEd = ['button', 'is-outlined', 'is-primary'];
-      const clsD = ['button', 'is-outlined', 'is-danger'];
-      sendEditBtn.classList.add(...clsEd);
-      sendEditBtn.classList.add('is-small');
-      cancelEditBtn.classList.add(...clsD);
-      cancelEditBtn.classList.add('is-small');
+      const sendIcon = create.elem('i');
+      const cancelIcon = create.elem('i');
 
-      editTitle.setAttribute('type', 'text');
+      // create text
+      const sendEditBtnText = create.text('Confirm changes');
+      const cancelEditBtnText = create.text('Cancel edit');
+
+      // set attributes
       editContent.cols = '30';
       editContent.rows = '10';
+      editTitle.setAttribute('type', 'text');
 
+      // get classes
+      const clsEd = ['button', 'is-outlined', 'is-primary', 'is-small'];
+      const clsD = ['button', 'is-outlined', 'is-danger', 'is-small'];
+      const clsSI = ['fas', 'fa-paper-plane', 'icons'];
+      const clsCI = ['fas', 'fa-times', 'icons'];
+
+      // apply classes
+      editTitle.classList.add('input');
+      editContent.classList.add('textarea');
+      sendEditBtn.classList.add(...clsEd);
+      cancelEditBtn.classList.add(...clsD);
+      sendIcon.classList.add(...clsSI);
+      cancelIcon.classList.add(...clsCI);
+
+      // apply text
       editTitle.value = titleText.textContent;
       editContent.value = contentText.textContent;
-      sendEditBtn.innerHTML = 'Confirm changes';
-      cancelEditBtn.innerHTML = 'Cancel edit';
+      sendEditBtn.appendChild(sendEditBtnText);
+      cancelEditBtn.appendChild(cancelEditBtnText);
 
-      const sendIcon = create.elem('i');
-      sendIcon.classList.add('fas');
-      sendIcon.classList.add('fa-paper-plane');
-      sendIcon.classList.add('icons');
-      sendEditBtn.appendChild(sendIcon);
-
-      const cancelIcon = create.elem('i');
-      cancelIcon.classList.add('fas');
-      cancelIcon.classList.add('fa-times');
-      cancelIcon.classList.add('icons');
-      cancelEditBtn.appendChild(cancelIcon);
-
+      // Remove static title & content
       title.remove();
       content.remove();
 
+      // append stuff
+      sendEditBtn.appendChild(sendIcon);
+      cancelEditBtn.appendChild(cancelIcon);
       titleWrapper.appendChild(editTitle);
       contentWrapper.appendChild(editContent);
       contentWrapper.appendChild(sendEditBtn);
       contentWrapper.appendChild(cancelEditBtn);
 
+      // Confirm edit button
       sendEditBtn.onclick = async function() {
         const body = {
           id: entry.entryID,
@@ -150,16 +167,19 @@ export async function Entries(entry, comments, likes) {
         editBtn.disabled = false;
       };
 
+      // Cancel edit button
       cancelEditBtn.onclick = async function() {
         const earlierData = await api.getOne('entries', entry.entryID);
         cancelEdit(earlierData.data);
         editBtn.disabled = false;
       };
 
-      async function cancelEdit(patchedEntry) {
+      // Revert from edit mode to normal entry
+      function cancelEdit(patchedEntry) {
         title = create.elem('h2');
-        title.classList.add('title');
         content = create.elem('p');
+
+        title.classList.add('title');
         content.classList.add('content');
 
         titleText = create.text(patchedEntry.title);
@@ -179,7 +199,7 @@ export async function Entries(entry, comments, likes) {
     };
 
     return editBtn;
-  }
+  } // end EditBtn()
 
   return entryWrapper;
 }
