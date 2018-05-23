@@ -28,6 +28,7 @@ export async function Searchbar() {
           if (entry.title.toLowerCase().includes(searchVal)) {
             return entry;
           }
+          return null;
         });
         filteredEntries.forEach((entry) => {
           searchResults.appendChild(searchbarResults(entry));
