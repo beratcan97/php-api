@@ -27,6 +27,5 @@ export function AdminPanel(user) {
   usersWrapper.appendChild(username);
   usersWrapper.appendChild(makeAdmin);
 
-  // get.id('users-container').appendChild(usersWrapper);
   return usersWrapper;
 }

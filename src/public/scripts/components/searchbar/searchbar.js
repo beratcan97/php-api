@@ -23,16 +23,20 @@ export async function Searchbar() {
       if (searchbar.value.length > 0) {
         searchVal = searchbar.value.toLowerCase();
         searchResults.innerHTML = '';
+
         const entries = await api.get('entries');
+
         const filteredEntries = entries.data.filter((entry) => {
           if (entry.title.toLowerCase().includes(searchVal)) {
             return entry;
           }
           return null;
         });
-        filteredEntries.forEach((entry) => {
-          searchResults.appendChild(searchbarResults(entry));
-        });
+
+        filteredEntries.forEach((entry) =>
+          searchResults.appendChild(searchbarResults(entry))
+        );
+
         searchWrapper.appendChild(searchResults);
       }
     }, 700);
@@ -46,8 +50,8 @@ export async function Searchbar() {
 function searchbarResults(entry) {
   const listOption = create.elem('a');
   const listOptionText = create.text(entry.title);
-  listOption.classList.add('search_results');
 
+  listOption.classList.add('search_results');
   listOption.appendChild(listOptionText);
 
   listOption.onclick = function() {

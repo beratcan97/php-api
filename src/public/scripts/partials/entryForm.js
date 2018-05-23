@@ -8,7 +8,6 @@ export async function EntryForm() {
     entryForm.addEventListener('submit', function(event) {
       event.preventDefault();
       const formData = new FormData(this);
-      formData.forEach((item) => console.log(item));
       post('entries', formData);
       location.reload();
     });

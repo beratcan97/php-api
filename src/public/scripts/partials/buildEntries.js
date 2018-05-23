@@ -51,9 +51,9 @@ export async function BuildEntries() {
           const commentRoute = `comments/entries/${
             userEntries.data[i].entryID
           }`;
+          const likesRoute = `likes/${userEntries.data[i].entryID}`;
 
           const comments = await api.get(commentRoute);
-          const likesRoute = `likes/${userEntries.data[i].entryID}`;
           const likes = await api.get(likesRoute);
 
           const newEntry = await Entries(

@@ -15,11 +15,11 @@ export async function buildAdminPanel() {
       const usersContainer = get.id('users-container');
       const users = await api.get('users');
 
-      for (let i = 0; i < users.data.length; i++) {
-        usersContainer.appendChild(AdminPanel(users.data[i]));
-      }
+      users.data.forEach((user) =>
+        usersContainer.appendChild(AdminPanel(user))
+      );
+
       loader.remove();
-      console.log(sessionStorage.getItem('admin'));
     } else {
       window.location.href = '/';
     }

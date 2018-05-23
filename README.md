@@ -1,117 +1,93 @@
 # php-api
->`School assigment`
 
->Gruppnamn: `php-api`,
->Medlemmar: `Beratcan`, `Maia`, `Leo`
+> `School assigment`
 
----
-
-### To Do:
-#### Inloggning:
-- [x] Skapa en `<form>` som tar emot username och password
-- [x] `action` bör vara `action="api/login"`.
-- [x] Om `<button>` används behöver den vara av `type="submit"`
-- [x] `Formdata` behöver fånga upp data och skicka det vidare till `api.get("login")`
-- [x] en "response" bör returneras från fetch funktionen
-- [ ] Kanske bör lägga till `userID` till session
-
-#### Front page:
-- [ ] Om man är inloggad bör sidan ladda 20 senaste entries.
-- [ ] Det bör räcka att hämta de sista 20 ID:n
-- [ ] Kanske skriva en `"/profile"` sida där man ser sina egna entries och har möjlighet att redigera/radera samt posta nytt.
-
-#### Profile:
-- [ ] Ett förslag bara. Om vi hinner
-- [ ] en profilsida som är baserat på /users
-- [x] Man kan se användarens entries och läsa de kommentarer denne har fått.
-
+> Gruppnamn: `php-api`,
+> Medlemmar: `Beratcan`, `Maia`, `Leo`
 
 ---
-
-#### Att tänka på:
-- När man raderar ett inlägg ska kommentarerna som är länkat till den också försvinna. Förslagsvist raderas kommentarerna först.
-- lösenordet till jespers användare i databasen är: `bunneltan`
-- Tips: installera `eslint` och `prettier` paketen för snygg javascript kod.
-- Använd semantiska taggar i HTML
-
 
 #### Fetch funktioner:
-  - `api.get("/route")` - Hämtar data från angiven route
-  - `api.getOne("/route", {id})` - Hämtar **ett** objekt med {id} från routen
-  - `api.post("/route", body)` - postar data som finns i body mot angiven route
-  - `api.patch("/route", body)` - samma som `post` fast uppdaterar. EJ TESTAD
-  - `api.delete("/route/{id}")` - Raderar objektet i angiven route med {id}
-  - `api.login(body)` - skickar data som ligger i body mot /login routen. Body måste innehålla "username" och "password".
 
+* / routes
+  * `api.login(body)` - skickar data som ligger i body mot /login routen.
+  * `api.register(body)` - registrerar ny användare via /register route.
 
----
+- /api/ routes
+  * `api.get("/route")` - Hämtar data från angiven route
+  * `api.getOne("/route", {id})` - Hämtar **ett** objekt med {id} från routen
+  * `api.post("/route", body)` - postar data som finns i body mot angiven route
+  * `api.updateEntry(body)` - Uppdaterar entry när man är i edit läge.
+  * `api.updateUser(body)` - Gör en användare eller ta bort en användares admin privilegium
+  * `api.remove("/route/{id}")` - Raderar objektet i angiven route med {id}
 
-### Controllers
- #### Entries:
-- [ ] Hämta 20 senaste entries med `GET` (/api/entries)
-- [ ] Hämta ett specifikt entry efter ID med `GET` (/api/entries/{id})
-- [ ] Hämta alla entries en user har skrivit via en endpoint. med `GET` via endpoint (/api/entries nånting)
-- [x] Skapa ett inlägg med `POST` (/api/entries)
-- [x] Ta bort ett specifikt entry efter ID med `DELETE` (/api/entries)
-- [x] Uppdatera ett specifikt entry efter ID med `PATCH` (/api/entries)
-- [x] Man ska kunna söka efter en entry via dess titel (/api/entries/{title} kanske)
+## Controllers
 
-#### Comments:  
-- [ ] Hämta 20 senaste kommentarerna med `GET` (/api/comments)
-- [ ] Hämta en specifik kommentar med `GET` (/api/comments/{id})
-- [x] Hämta alla kommentarerna som tillhör ett inlägg med `GET` via endpoint (/api/comments nånting)
-- [x] Skapa en kommentar med `POST` (/api/comments/{id})
-- [x] Ta bort en kommentar med `DELETE` (/api/comments/{id})
-- [ ] Uppdatera en kommentar med `PATCH` (Om vi får tid)
-
-
-#### Users:
-- [ ] Hämta alla användare med `GET` (/api/users)
-- [x] Hämta en specifik användare med `GET` (/api/users/{id})
-- [x] Skapa en användare med `POST` (/register)
-
-
-#### Likes:
-- [x] Hämta alla likes länkade till en entry med `GET` (/api/likes/{entryId})
-- [x] Skapa en like länkad till användaren som "Like":at och entryt som "Like":as med `POST` (/api/likes)
-- [x] Ta bort en like med `DELETE`(/api/likes/{id})
+* Entries
+* Comments
+* Users
+* Likes
 
 ---
 
 # Project structure:
-  * App
-    * Controllers
-      * EntriesController.php
-      * UsersController.php
-      * CommentsController.php
-      * LikesController.php
-    * auth.php
-    * ConfigHandler.php
-    * container.php
-    * cors.php
-  * public
-    * index.php
-    * css
-      * style.css
-    * scss
-      * partials
-        * header.scss
-        * footer.scss
-      * modules
-        * colors.scss
-        * spaces.scss
-      * style.scss
-    * scripts
+
+* App
+  * Controllers
+    * EntriesController.php
+    * UsersController.php
+    * CommentsController.php
+    * LikesController.php
+  * auth.php
+  * ConfigHandler.php
+  * container.php
+  * cors.php
+* public
+  * index.php
+  * css
+    * style.css
+  * scripts
+    * components
+      * adminPanel
+        * AdminPanel.js
+        * partials
+          * makeAdminBtn.js
+      * entries
+        * entries.js
+        * partials
+          * comments.js
+          * deleteBtn.js
+          * likeBtn.js
+      * searchbar
+        * searchbar.js
+    * modules
       * fetch.js
-      * main.js
-    * views
-      * components
-        * Här finns komponenter
-      * index.php
+      * utils.js
+    * partials
+      * buildAdminPanel.js
+      * buildEntries.js
+      * entryForm.js
+      * loginForm.js
+      * registerForm.js
+      * signOut.js
+    * main.js
+  * views
+    * components
+      * entry_form.php
+      * footer.php
+      * head.php
+      * navbar.php
+    * admin.php
+    * entries.php
+    * index.php
+    * login.php
+    * profile.php
+    * register.php
 
 ---
 
 # Database structure:
+
 * entries
   * entryID - INT (AI)(PK)
   * title - VARCHAR (100)
@@ -119,14 +95,12 @@
   * createdBy - INT
   * createdAt - DATETIME
 
-
-* users
+- users
   * userID - INT (AI)(PK)
   * username - VARCHAR (50)
   * password - VARCHAR (200)
   * createdAt - DATETIME
   * admin - BOOL
-
 
 * comments
   * commentID - (AI)(PK)
@@ -135,8 +109,7 @@
   * createdBy - INT
   * createdAt - createdAt
 
-
-* likes
+- likes
   * likeID - INT
   * userID - INT
   * entryID - INT
