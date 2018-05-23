@@ -1,8 +1,7 @@
 
 <div class="tabs is-right">
-  <ul>
 	<?php if (!isset($_SESSION['userID'])): ?>
-
+<ul>
 	<li>
 		<a href="/login">Log in</a>
 	</li>
@@ -10,10 +9,10 @@
 		<a href="/register">Register</a>
 	</li>
 </ul>
-
+</div>
 	<?php else:  ?>
   <a href="/profile/<?= $_SESSION['username'] ?>">
-    <p class="is-small">Logged in as <?= $_SESSION['username'] ?> </p>
+    <p class="is-small">Welcome, <?= $_SESSION['username'] ?> </p>
   </a>
 
   <ul>
@@ -36,6 +35,13 @@
     <li>
       <a href="/logout" id="sign_out">Sign out</a>
     </li>
-	<?php endif; ?>
   </ul>
 </div>
+
+<div class="container">
+  <span id="search_wrapper" class="searchbar">
+    <input type="text" class="input" name="searchbar" placeholder="Search entries by title" id="searchbar">
+  </span>
+</div>
+
+<?php endif; ?>

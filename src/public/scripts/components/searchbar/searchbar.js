@@ -7,9 +7,6 @@ export async function Searchbar() {
   const searchVal = searchbar.value.toLowerCase();
   const searchResults = create.elem('div');
 
-  searchWrapper.style.position = 'absolute';
-  searchWrapper.style.zIndex = '100';
-
   let timer = null;
 
   document.body.addEventListener('click', (e) => {

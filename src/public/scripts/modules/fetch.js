@@ -5,12 +5,11 @@ async function login(body) {
     credentials: 'include',
   };
 
-  //
+  // sets sessionStorage if data is returned, else alert failure
   fetch('/login', postOptions)
     .then((response) => response.json())
     .then((data) => {
       if (data.hasOwnProperty('data')) {
-        console.log(data);
         sessionStorage.setItem('userID', data.data[0]);
         sessionStorage.setItem('username', data.data[1]);
         sessionStorage.setItem('admin', data.data[2]);
@@ -73,10 +72,8 @@ async function post(route, body) {
     .catch((err) => console.log(err));
 }
 
-async function update(route, id, body) {
-  route = route.toString();
-  const content = body.content;
-  const title = body.title;
+async function updateEntry(body) {
+  const [id, content, title] = [body.id, body.content, body.title];
 
   const patchOptions = {
     method: 'PATCH',
@@ -84,7 +81,7 @@ async function update(route, id, body) {
     body: `content=${content}&title=${title}`,
   };
 
-  const patch = fetch(`/api/${route}/${id}`, patchOptions)
+  const patch = fetch(`/api/entries/${id}`, patchOptions)
     .then((res) => res.json())
     .then((data) => data)
     .catch((err) => console.log(err));
@@ -92,14 +89,13 @@ async function update(route, id, body) {
   return patch;
 }
 
-async function updateUser(id, body) {
-  const username = body.username;
-  const admin = body.admin;
+async function updateUser(body) {
+  const [id, admin] = [body.id, body.admin];
 
   const patchOptions = {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=${username}&admin=${admin}`,
+    body: `admin=${admin}`,
   };
 
   const patch = fetch(`/api/users/${id}`, patchOptions)
@@ -125,4 +121,4 @@ async function remove(route, id) {
   return remove;
 }
 
-export { login, get, getOne, post, update, remove, register, updateUser };
+export { login, get, getOne, post, updateEntry, updateUser, remove, register };

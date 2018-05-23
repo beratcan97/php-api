@@ -141,11 +141,11 @@ export async function Entries(entry, comments, likes) {
 
       sendEditBtn.onclick = async function() {
         const body = {
+          id: entry.entryID,
           title: editTitle.value,
           content: editContent.value,
         };
-        const patchedEntry = await api.update('entries', entry.entryID, body);
-        console.log(patchedEntry.data);
+        const patchedEntry = await api.updateEntry(body);
         cancelEdit(patchedEntry.data);
         editBtn.disabled = false;
       };

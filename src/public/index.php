@@ -23,12 +23,12 @@ $app->get('/', function ($request, $response, $args) {
 
 $app->get('/register', function ($request, $response, $args) {
     if (!$request->isXhr()) {
-        return $this->view->render($response, 'components/register.php');
+        return $this->view->render($response, 'register.php');
     }
 });
 
 $app->get('/login', function ($request, $response, $args) {
-    return $this->view->render($response, 'components/login.php');
+    return $this->view->render($response, 'login.php');
 });
 
 $app->get('/profile/{username}', function ($request, $response, $args) {
@@ -81,7 +81,7 @@ $app->post('/register', function ($request, $response, $args) {
     ]
   );
 
-  return $response->withJson(['data' => $body['username']]);
+    return $response->withJson(['data' => $body['username']]);
 });
 
 $app->get('/logout', function ($request, $response, $args) {

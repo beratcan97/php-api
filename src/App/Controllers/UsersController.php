@@ -37,7 +37,6 @@ class UsersController
         $hashed = password_hash($user["password"], PASSWORD_BCRYPT);
         $date = date('Y-m-d, H:i:s');
 
-
         $addOne = $this->db->prepare(
             'INSERT INTO users (username, password, createdAt, admin) VALUES (:username, :password, :createdAt, :admin)'
         );
@@ -52,15 +51,14 @@ class UsersController
         );
     }
 
-        public function update($body, $id)
-        {
-            $statement = $this->db->prepare('UPDATE users SET username = :username, admin = :admin WHERE userID = :userID');
-            $statement->execute([
-            ":username" => $body['username'],
+    public function update($body, $id)
+    {
+        $statement = $this->db->prepare('UPDATE users SET admin = :admin WHERE userID = :userID');
+        $statement->execute([
             ":admin" => $body['admin'],
             ":userID" => $id
           ]);
 
-          return ['username' => $body['username']];
-        }
+        return ['username' => $body['username']];
+    }
 }

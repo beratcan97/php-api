@@ -1,5 +1,5 @@
-<?php require('head.php'); ?>
-<?php require_once('navbar.php'); ?>
+<?php require('components/head.php'); ?>
+<?php require_once('components/navbar.php'); ?>
 
 <form action="/login" class="box" id="login_form" method="post">
     <div class="section">
@@ -26,5 +26,4 @@
     </div>
   </form>
 
-  <?php require('footer.php'); ?>
-
+  <?php require('components/footer.php'); ?>

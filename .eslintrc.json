@@ -12,6 +12,8 @@
     "no-await-in-loop": "off",
     "func-names": "off",
     "no-restricted-globals": "off",
+    "no-alert": "off",
+    "no-prototype-builtins": "off",
     "prettier/prettier": [
       "error",
       {

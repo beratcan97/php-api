@@ -1,5 +1,5 @@
-<?php require('head.php'); ?>
-<?php require_once('navbar.php'); ?>
+<?php require('components/head.php'); ?>
+<?php require_once('components/navbar.php'); ?>
 
 <form action="/register" class="box" id="register_form" method="post">
     <div class="section">
@@ -26,6 +26,6 @@
         <button type="submit" name="registerBtn" id="registerBtn" class="button is-outlined is-primary btn-style">Register</button>
       </div>
     </div>
-  </form>
+</form>
 
-<?php require('footer.php'); ?>
+<?php require('components/footer.php'); ?>

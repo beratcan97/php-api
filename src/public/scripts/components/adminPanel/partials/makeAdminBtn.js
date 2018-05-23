@@ -8,7 +8,7 @@ export function makeAdminBtn(user) {
   const clsLC = ['button', 'is-outlined', 'is-info', 'is-small'];
   adminBtn.classList.add(...clsLC);
 
-  if (user.admin == 0) {
+  if (user.admin === '0') {
     admin = 'Ej admin';
   } else {
     admin = 'Admin';
@@ -20,19 +20,18 @@ export function makeAdminBtn(user) {
   let body = {};
 
   adminBtn.onclick = function() {
-    const id = user.userID;
-    if (user.admin == 0) {
+    if (user.admin === '0') {
       body = {
-        username: user.username,
+        id: user.userID,
         admin: 1,
       };
     } else {
       body = {
-        username: user.username,
+        id: user.userID,
         admin: 0,
       };
     }
-    api.updateUser(id, body);
+    api.updateUser(body);
     location.reload();
   };
 
