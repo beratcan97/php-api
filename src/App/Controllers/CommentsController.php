@@ -30,7 +30,7 @@ class CommentsController
         $getAllByEntry = $this->db->prepare('SELECT comments.*, users.username AS "username"
           FROM comments
           INNER JOIN users ON comments.createdBy = users.userID
-          WHERE entryID = :entryID');
+          WHERE entryID = :entryID ORDER BY commentID DESC LIMIT 20');
         $getAllByEntry->execute([':entryID' => $entryID]);
         return $getAllByEntry->fetchAll();
     }
@@ -56,7 +56,7 @@ class CommentsController
           ':entryID' => $comment['entryID'],
           ':createdBy' => $comment['createdBy']
         ]);
-        
+
         // return [
         //   'commentID'          => (int)$this->db->lastInsertId(),
         //   'content'     => $comment['content'],

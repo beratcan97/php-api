@@ -76,7 +76,7 @@ export async function Comments(comments, entryID) {
     postCommentBtn.classList.toggle('toggle-visible');
   };
 
-  postCommentBtn.onclick = function() {
+  postCommentBtn.onclick = async function() {
     const body = new FormData();
     const route = 'comments';
     body.append('content', commentInput.value);
