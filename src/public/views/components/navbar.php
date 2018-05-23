@@ -11,7 +11,7 @@
 </ul>
 </div>
 	<?php else:  ?>
-  <a href="/profile/<?= $_SESSION['username'] ?>">
+  <a href="/profile/<?= $_SESSION['username'] ?>" class="nav_welcome">
     <p class="is-small">Welcome, <?= $_SESSION['username'] ?> </p>
   </a>
 
