@@ -2,24 +2,22 @@ import * as api from '../../../modules/fetch';
 import { create } from '../../../modules/utils';
 
 export async function LikeBtn(entry, likes) {
+  // Init with amount of likes
   let amountOfLikes;
+  !likes ? (amountOfLikes = 0) : (amountOfLikes = likes.length);
+
   const likeBtn = create.elem('button');
-
-  const clsLC = ['button', 'is-outlined', 'is-primary', 'is-small'];
-  likeBtn.classList.add(...clsLC);
-
-  if (!likes) {
-    amountOfLikes = 0;
-  } else {
-    amountOfLikes = likes.length;
-  }
-
   const likeIcon = create.elem('i');
-  likeIcon.classList.add('far');
-  likeIcon.classList.add('fa-thumbs-up');
-  likeIcon.classList.add('icons');
+
   const likeBtnText = create.text(amountOfLikes);
 
+  const clsLC = ['button', 'is-outlined', 'is-primary', 'is-small'];
+  const clsLI = ['far', 'fa-thumbs-up', 'icons'];
+
+  likeBtn.classList.add(...clsLC);
+  likeIcon.classList.add(...clsLI);
+
+  // fill like button if current user has liked
   likes.forEach((like) => {
     if (like.userID === sessionStorage.getItem('userID')) {
       likeBtn.classList.remove('is-outlined');
@@ -30,6 +28,7 @@ export async function LikeBtn(entry, likes) {
   likeBtn.onclick = async function() {
     const route = 'likes';
     const body = new FormData();
+
     let checkUserID = false;
     let currentLikeID = 0;
 
