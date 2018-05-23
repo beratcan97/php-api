@@ -22,9 +22,7 @@ $app->get('/', function ($request, $response, $args) {
 });
 
 $app->get('/register', function ($request, $response, $args) {
-    if (!$request->isXhr()) {
-        return $this->view->render($response, 'register.php');
-    }
+    return $this->view->render($response, 'register.php');
 });
 
 $app->get('/login', function ($request, $response, $args) {
@@ -79,9 +77,9 @@ $app->post('/register', function ($request, $response, $args) {
       ':createdAt'  => $date,
       ':admin' => false
     ]
-  );
+    );
 
-    return $response->withJson(['data' => $body['username']]);
+    return $response->withRedirect("/login");
 });
 
 $app->get('/logout', function ($request, $response, $args) {

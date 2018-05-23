@@ -28,8 +28,8 @@ async function register(body) {
   };
 
   fetch('/register', postOptions)
-    .then((res) => res.json())
-    .then((data) => console.log(`${data.data} registrered`))
+    .then((response) => response.json())
+    .then((data) => console.log(`${data.data} was registered!`))
     .catch((err) => console.log(err));
 }
 
@@ -63,7 +63,7 @@ async function post(route, body) {
   };
 
   fetch(`/api/${route}`, postOptions)
-    .then((res) => res.json())
+    .then((response) => response.json())
     .then((data) => data)
     .catch((err) => console.log(err));
 }
@@ -78,7 +78,7 @@ async function updateEntry(body) {
   };
 
   const patch = fetch(`/api/entries/${id}`, patchOptions)
-    .then((res) => res.json())
+    .then((response) => response.json())
     .then((data) => data)
     .catch((err) => console.log(err));
 
@@ -95,7 +95,7 @@ async function updateUser(body) {
   };
 
   const patch = fetch(`/api/users/${id}`, patchOptions)
-    .then((res) => res.json())
+    .then((response) => response.json())
     .then((data) => data)
     .catch((err) => console.log(err));
 
@@ -110,7 +110,7 @@ async function remove(route, id) {
   };
 
   const remove = fetch(`/api/${route}/${id}`, removeOptions)
-    .then((res) => res.json())
+    .then((response) => response.json())
     .then((data) => data)
     .catch((err) => console.log(err));
 

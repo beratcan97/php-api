@@ -9,7 +9,6 @@ export function RegisterForm() {
       event.preventDefault();
       const formData = new FormData(this);
       register(formData);
-      window.location.href = '/login';
     });
   }
 }
