@@ -19,7 +19,7 @@
       </section>
     <?php else: ?>
       <?php include_once('components/entry_form.php'); ?>
-      <div id="entries_container" class="entries_container">
+      <div id="entries-container" class="entries-container">
       </div>
     <?php endif; ?>
 

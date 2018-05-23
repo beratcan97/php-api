@@ -24,8 +24,8 @@ export async function Comments(comments, entryID) {
   const clsLC = ['button', 'is-info', 'is-small', 'comment-btn-style'];
   const clsCIcon = ['far', 'fa-comment', 'icons', 'medium'];
   const clsCW = ['box', 'comments-box'];
-  const clsCI = ['textarea', 'toggle_visible'];
-  const clsP = ['button', 'is-outlined', 'is-info', 'toggle_visible'];
+  const clsCI = ['textarea', 'toggle-visible'];
+  const clsP = ['button', 'is-outlined', 'is-info', 'toggle-visible'];
   const clsCS = ['button', 'is-outlined', 'is-info', 'box'];
   const clsPI = ['fas', 'fa-paper-plane', 'icons'];
 
@@ -51,10 +51,10 @@ export async function Comments(comments, entryID) {
       commentsWrapper.appendChild(newComment);
     });
 
-    commentsWrapper.classList.add('toggle_visible');
+    commentsWrapper.classList.add('toggle-visible');
 
     commentSpan.onclick = function() {
-      commentsWrapper.classList.toggle('toggle_visible');
+      commentsWrapper.classList.toggle('toggle-visible');
     };
   }
 
@@ -72,8 +72,8 @@ export async function Comments(comments, entryID) {
   };
 
   commentBtn.onclick = function() {
-    commentInput.classList.toggle('toggle_visible');
-    postCommentBtn.classList.toggle('toggle_visible');
+    commentInput.classList.toggle('toggle-visible');
+    postCommentBtn.classList.toggle('toggle-visible');
   };
 
   postCommentBtn.onclick = function() {

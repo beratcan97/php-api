@@ -11,6 +11,6 @@ require_once('components/head.php');
   <?php require_once('components/navbar.php'); ?>
   <main class="container">
       <?php include_once('components/entry_form.php'); ?>
-      <div id="entries_container" class="entries_container"></div>
+      <div id="entries-container" class="entries-container"></div>
   </main>
 <?php require_once('components/footer.php'); ?>

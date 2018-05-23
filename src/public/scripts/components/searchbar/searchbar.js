@@ -2,7 +2,7 @@ import * as api from '../../modules/fetch';
 import { get, create } from '../../modules/utils';
 
 export async function Searchbar() {
-  const searchWrapper = get.id('search_wrapper');
+  const searchWrapper = get.id('search-wrapper');
   const searchbar = get.id('searchbar');
   const searchResults = create.elem('div');
 
@@ -51,7 +51,7 @@ function searchbarResults(entry) {
   const listOption = create.elem('a');
   const listOptionText = create.text(entry.title);
 
-  listOption.classList.add('search_results');
+  listOption.classList.add('search-results');
   listOption.appendChild(listOptionText);
 
   listOption.onclick = function() {

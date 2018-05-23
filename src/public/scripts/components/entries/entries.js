@@ -31,8 +31,8 @@ export async function Entries(entry, comments, likes) {
   // get classes
   const clEWH = ['card-header', 'box', 'title-style'];
   const clEWB = ['card-body', 'box'];
-  const clEW = ['card', 'container-entry-style', 'entries_wrapper'];
-  const clT = ['entry_title', 'title'];
+  const clEW = ['card', 'container-entry-style', 'entries-wrapper'];
+  const clT = ['entry-title', 'title'];
 
   // apply classes
   entryWrapperHeader.classList.add(...clEWH);
@@ -41,7 +41,7 @@ export async function Entries(entry, comments, likes) {
   title.classList.add(...clT);
   date.classList.add('entries-date-style');
   contentWrapper.classList.add('content-style');
-  createdBy.classList.add('entry_createdBy');
+  createdBy.classList.add('entry-createdBy');
 
   // Text
   let titleText = create.text(entry.title);

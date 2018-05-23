@@ -7,7 +7,7 @@ html {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.toggle_visible {
+.toggle-visible {
   display: none;
 }
 
@@ -42,16 +42,16 @@ html {
   }
 }
 
-.nav_welcome {
+.nav-welcome {
   border-bottom-width: 2px !important;
 }
 
-.search_container {
+.search-container {
   z-index: 100;
   position: relative;
 }
 
-.entry_title:hover {
+.entry-title:hover {
   cursor: pointer;
 }
 
@@ -71,7 +71,7 @@ html {
   padding: 2em 0;
 }
 
-.search_results {
+.search-results {
   position: relative;
   display: block;
   background-color: white;
@@ -111,7 +111,7 @@ html {
   margin: 0.3em;
 }
 
-.entries_wrapper {
+.entries-wrapper {
   margin-bottom: 1em;
 }
 

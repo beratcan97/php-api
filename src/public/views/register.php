@@ -6,18 +6,18 @@
       <p class="title">Create a new account</p>
     </div>
     <div class="field">
-      <label for="register_username" for="username" class="subtitle">Username</label>
+      <label for="register-username" for="username" class="subtitle">Username</label>
       <div class="control has-icons-left">
-          <input id="register_username" class="input" type="text" name="username" placeholder="Username" required>
+          <input id="register-username" class="input" type="text" name="username" placeholder="Username" required>
           <span class="icon is-small is-left">
             <i class="fas fa-user"></i>
           </span>
       </div>
     </div>
     <div>
-      <label for="register_password" class="subtitle">Password</label>
+      <label for="register-password" class="subtitle">Password</label>
       <div class="control has-icons-left">
-          <input id="register_password" class="input" type="password" name="password" placeholder="Password" required>
+          <input id="register-password" class="input" type="password" name="password" placeholder="Password" required>
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>

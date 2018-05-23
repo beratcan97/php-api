@@ -3,7 +3,7 @@ import { Entries } from '../components/entries/entries';
 import { get } from '../modules/utils';
 
 export async function BuildEntries() {
-  const entriesContainer = get.id('entries_container');
+  const entriesContainer = get.id('entries-container');
 
   // Checks if current page has entriesContainer to prevent errors
   if (entriesContainer) {

@@ -11,7 +11,7 @@
 </ul>
 </div>
 	<?php else:  ?>
-  <a href="/profile/<?= $_SESSION['username'] ?>" class="nav_welcome">
+  <a href="/profile/<?= $_SESSION['username'] ?>" class="nav-welcome">
     <p class="is-small">Welcome, <?= $_SESSION['username'] ?> </p>
   </a>
 
@@ -33,13 +33,13 @@
     <?php endif; ?>
 
     <li>
-      <a href="/logout" id="sign_out">Sign out</a>
+      <a href="/logout" id="sign-out">Sign out</a>
     </li>
   </ul>
 </div>
 
 <div class="container">
-  <span id="search_wrapper" class="searchbar">
+  <span id="search-wrapper" class="searchbar">
     <input type="text" class="input" name="searchbar" placeholder="Search entries by title" id="searchbar">
   </span>
 </div>

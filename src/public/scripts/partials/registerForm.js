@@ -2,7 +2,7 @@ import { get } from '../modules/utils';
 import { register } from '../modules/fetch';
 
 export function RegisterForm() {
-  const registerForm = get.id('register_form');
+  const registerForm = get.id('register-form');
 
   if (registerForm) {
     registerForm.addEventListener('submit', function(event) {
