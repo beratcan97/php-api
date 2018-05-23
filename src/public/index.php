@@ -1,7 +1,6 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_unset();
-    // session_set_cookie_params(30); TEST TIMER
     session_set_cookie_params(3600);
     session_start();
 }
@@ -70,14 +69,12 @@ $app->post('/register', function ($request, $response, $args) {
     $hashed = password_hash($body["password"], PASSWORD_BCRYPT);
     $date = date('Y-m-d, H:i:s');
 
-    $registerUser->execute(
-    [
+    $registerUser->execute([
       ':username'  => $body['username'],
       ':password'  => $hashed,
       ':createdAt'  => $date,
       ':admin' => false
-    ]
-    );
+    ]);
 
     return $response->withRedirect("/login");
 });

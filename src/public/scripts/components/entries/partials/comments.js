@@ -142,7 +142,6 @@ function commentsBuilder(comment) {
   commentElement.appendChild(createdBy);
   commentElement.appendChild(date);
   commentElement.appendChild(content);
-  commentElement.appendChild(hr);
 
   // only OP or admin may delete comments
   if (
@@ -157,6 +156,8 @@ function commentsBuilder(comment) {
     commentDeleteBtn.appendChild(deleteIcon);
     commentElement.appendChild(commentDeleteBtn);
   }
+
+  commentElement.appendChild(hr);
 
   return commentElement;
 }
