@@ -4,9 +4,9 @@ import { get, create } from '../../modules/utils';
 export async function Searchbar() {
   const searchWrapper = get.id('search_wrapper');
   const searchbar = get.id('searchbar');
-  const searchVal = searchbar.value.toLowerCase();
   const searchResults = create.elem('div');
 
+  let searchVal;
   let timer = null;
 
   document.body.addEventListener('click', (e) => {
@@ -21,10 +21,11 @@ export async function Searchbar() {
 
     timer = setTimeout(async () => {
       if (searchbar.value.length > 0) {
+        searchVal = searchbar.value.toLowerCase();
         searchResults.innerHTML = '';
         const entries = await api.get('entries');
         const filteredEntries = entries.data.filter((entry) => {
-          if (entry.title.includes(searchVal)) {
+          if (entry.title.toLowerCase().includes(searchVal)) {
             return entry;
           }
         });
