@@ -5,6 +5,17 @@
 > Gruppnamn: `php-api`,
 > Medlemmar: `Beratcan`, `Maia`, `Leo`
 
+##### Start guide:
+
+* Skapa en db som heter "phpapi" i phpMyAdmin
+* importera .sql filen som liger i root-mappen
+* Skriv följande i terminalen/kommandotolken:
+  * `composer install`
+  * `npm install`
+  * `php -S localhost:3000 -t src/public`
+  * `npm start`
+* Besök localhost adressen i webbläsaren
+
 ---
 
 #### Fetch funktioner:

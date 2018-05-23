@@ -1,0 +1,13 @@
+{
+  "short_name": "PHP-API",
+  "name": "PHP-API",
+  "icons": [{}],
+  "start_url": "./views/index.php",
+  "display": "standalone",
+  "permissions": [
+    "http://localhost:*",
+    "https://localhost:*",
+    "http://localhost/*",
+    "http://localhost:3000/*"
+  ]
+}

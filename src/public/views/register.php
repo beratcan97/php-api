@@ -6,7 +6,7 @@
       <p class="title">Create a new account</p>
     </div>
     <div class="field">
-      <label for="register-username" for="username" class="subtitle">Username</label>
+      <label for="username" class="subtitle">Username</label>
       <div class="control has-icons-left">
           <input id="register-username" class="input" type="text" name="username" placeholder="Username" required>
           <span class="icon is-small is-left">
@@ -15,16 +15,15 @@
       </div>
     </div>
     <div>
-      <label for="register-password" class="subtitle">Password</label>
+      <label for="password" class="subtitle">Password</label>
       <div class="control has-icons-left">
           <input id="register-password" class="input" type="password" name="password" placeholder="Password" required>
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
       </div>
-      <div class="control">
         <button type="submit" name="registerBtn" id="registerBtn" class="button is-outlined is-primary btn-style">Register</button>
-      </div>
+      
     </div>
 </form>
 

@@ -13,7 +13,6 @@ async function login(body) {
         sessionStorage.setItem('userID', data.data[0]);
         sessionStorage.setItem('username', data.data[1]);
         sessionStorage.setItem('admin', data.data[2]);
-        window.location.href = '/';
       } else {
         alert(data.error);
       }
@@ -30,10 +29,7 @@ async function register(body) {
 
   fetch('/register', postOptions)
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      window.location.href = '/login';
-    })
+    .then((data) => console.log(`${data.data} registrered`))
     .catch((err) => console.log(err));
 }
 
